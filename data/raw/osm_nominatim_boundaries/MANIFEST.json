@@ -1,0 +1,116 @@
+{
+  "entries": [
+    {
+      "bytes": 112240,
+      "fetched_at_utc": "2026-10-24T14:06:56Z",
+      "file": "bhandara_district,_maharashtra,_india.json",
+      "http_status": 200,
+      "manifest_id": "osm_nominatim_boundaries:fefc4bec5dec",
+      "method": "GET",
+      "params": {
+        "addressdetails": 0,
+        "format": "jsonv2",
+        "limit": 3,
+        "polygon_geojson": 1,
+        "q": "Bhandara District, Maharashtra, India"
+      },
+      "retrieval": "pipeline_http",
+      "sha256": "fefc4bec5dec4893052a58d65f84f9bff09f2bb96998f01853f4ee70ed713df9",
+      "url": "https://nominatim.openstreetmap.org/search?q=Bhandara+District%2C+Maharashtra%2C+India&format=jsonv2&polygon_geojson=1&limit=3&addressdetails=0"
+    },
+    {
+      "bytes": 61573,
+      "fetched_at_utc": "2026-10-24T14:07:04Z",
+      "file": "chandrapur_district,_maharashtra,_india.json",
+      "http_status": 200,
+      "manifest_id": "osm_nominatim_boundaries:acfcb0b2d4c7",
+      "method": "GET",
+      "params": {
+        "addressdetails": 0,
+        "format": "jsonv2",
+        "limit": 3,
+        "polygon_geojson": 1,
+        "q": "Chandrapur District, Maharashtra, India"
+      },
+      "retrieval": "pipeline_http",
+      "sha256": "acfcb0b2d4c76165fe1e8865737e94fcff759ab5654562553f8882aa3db1b0a5",
+      "url": "https://nominatim.openstreetmap.org/search?q=Chandrapur+District%2C+Maharashtra%2C+India&format=jsonv2&polygon_geojson=1&limit=3&addressdetails=0"
+    },
+    {
+      "bytes": 65779,
+      "fetched_at_utc": "2026-10-24T14:07:07Z",
+      "file": "gadchiroli_district,_maharashtra,_india.json",
+      "http_status": 200,
+      "manifest_id": "osm_nominatim_boundaries:01b995257f59",
+      "method": "GET",
+      "params": {
+        "addressdetails": 0,
+        "format": "jsonv2",
+        "limit": 3,
+        "polygon_geojson": 1,
+        "q": "Gadchiroli District, Maharashtra, India"
+      },
+      "retrieval": "pipeline_http",
+      "sha256": "01b995257f59c0d0958e85b1575db536cb44731147cd670f5d45205a881435af",
+      "url": "https://nominatim.openstreetmap.org/search?q=Gadchiroli+District%2C+Maharashtra%2C+India&format=jsonv2&polygon_geojson=1&limit=3&addressdetails=0"
+    },
+    {
+      "bytes": 106726,
+      "fetched_at_utc": "2026-10-24T14:07:00Z",
+      "file": "gondiya_district,_maharashtra,_india.json",
+      "http_status": 200,
+      "manifest_id": "osm_nominatim_boundaries:90a50dc1e7bf",
+      "method": "GET",
+      "params": {
+        "addressdetails": 0,
+        "format": "jsonv2",
+        "limit": 3,
+        "polygon_geojson": 1,
+        "q": "Gondiya District, Maharashtra, India"
+      },
+      "retrieval": "pipeline_http",
+      "sha256": "90a50dc1e7bf195f16b9cf33f379272a38c642b6acef64f6c7ef295bb455019e",
+      "url": "https://nominatim.openstreetmap.org/search?q=Gondiya+District%2C+Maharashtra%2C+India&format=jsonv2&polygon_geojson=1&limit=3&addressdetails=0"
+    },
+    {
+      "bytes": 156909,
+      "fetched_at_utc": "2026-10-24T14:06:33Z",
+      "file": "nagpur_district,_maharashtra,_india.json",
+      "http_status": 200,
+      "manifest_id": "osm_nominatim_boundaries:2a45a0248b66",
+      "method": "GET",
+      "params": {
+        "addressdetails": 0,
+        "format": "jsonv2",
+        "limit": 3,
+        "polygon_geojson": 1,
+        "q": "Nagpur District, Maharashtra, India"
+      },
+      "retrieval": "pipeline_http",
+      "sha256": "2a45a0248b66dd1a0d80dcdb34ebfb6775c941acd343c74b8f155517f74c186e",
+      "url": "https://nominatim.openstreetmap.org/search?q=Nagpur+District%2C+Maharashtra%2C+India&format=jsonv2&polygon_geojson=1&limit=3&addressdetails=0"
+    },
+    {
+      "bytes": 51405,
+      "fetched_at_utc": "2026-10-24T14:06:36Z",
+      "file": "wardha_district,_maharashtra,_india.json",
+      "http_status": 200,
+      "manifest_id": "osm_nominatim_boundaries:f3e5992b97be",
+      "method": "GET",
+      "params": {
+        "addressdetails": 0,
+        "format": "jsonv2",
+        "limit": 3,
+        "polygon_geojson": 1,
+        "q": "Wardha District, Maharashtra, India"
+      },
+      "retrieval": "pipeline_http",
+      "sha256": "f3e5992b97be8be51d32ef0215a2d482aea0299cd7392f750b725159cf611ba2",
+      "url": "https://nominatim.openstreetmap.org/search?q=Wardha+District%2C+Maharashtra%2C+India&format=jsonv2&polygon_geojson=1&limit=3&addressdetails=0"
+    }
+  ],
+  "licence": "ODbL 1.0 (OpenStreetMap). Attribution required: '© OpenStreetMap contributors'.",
+  "notes": "District polygons via Nominatim search with polygon_geojson=1.",
+  "source": "osm_nominatim_boundaries",
+  "terms_url": "https://operations.osmfoundation.org/policies/nominatim/"
+}

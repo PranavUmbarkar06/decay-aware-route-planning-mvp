@@ -1,0 +1,26 @@
+{
+  "need": "Market arrivals & prices by commodity, market, date (M4 crowd meter, demand proxy)",
+  "source_name": "Agmarknet 2.0 Daily Price and Arrival Report",
+  "status": "RESTRICTED",
+  "access": "Public web report gated by captcha; manual export ingestion only",
+  "auth": "captcha (human)",
+  "licence": "UNVERIFIED: no explicit data licence found on agmarknet.gov.in; Government of India portal. robots.txt (fetched) allows '/', disallows auth/admin paths. Treat as attribution-required.",
+  "coverage": "none ingested. Portal date ranges: arrival from 2021-01-01, both price+arrival from 2025-11-07; max 1-year span per query.",
+  "tried": [
+    "Opened https://agmarknet.gov.in/daily-price-and-arrival-report in a browser: 'Enter captcha' field present",
+    "Did not attempt automated access to report endpoints (ADR-015)",
+    "no inputs/agmarknet_exports/ directory"
+  ],
+  "why_failed": "Captcha-protected; automating it would circumvent bot-detection.",
+  "fallback": "Owner downloads report exports by hand into inputs/agmarknet_exports/ (ingested automatically), or registers a data.gov.in API key (prices only, see datagov_mandi). Until then M4 shows 'no data' and the demo uses SYNTHETIC_DEMO arrivals with a DEMO badge.",
+  "urls": [
+    "https://agmarknet.gov.in/daily-price-and-arrival-report"
+  ],
+  "rate_limits": "",
+  "freshness": "",
+  "known_problems": "Arrivals may be missing for some market-days; units (quintal/tonne) must be read per row.",
+  "flags": [
+    "CAPTCHA",
+    "MANUAL_STEP_REQUIRED"
+  ]
+}

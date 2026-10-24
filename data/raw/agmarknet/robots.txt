@@ -1,0 +1,60 @@
+# Agmarknet 2.0 - https://agmarknet.gov.in
+# https://www.robotstxt.org/robotstxt.html
+
+User-agent: *
+Allow: /
+
+# Authentication & password recovery
+Disallow: /signin
+Disallow: /forgotpassword
+Disallow: /selectotpoption
+Disallow: /otpconfirm
+Disallow: /resetpassword
+Disallow: /createnewpassword
+Disallow: /changepassword
+Disallow: /unauthorized
+
+# Data entry, submissions, and authenticated workflows
+Disallow: /lotwiseentry
+Disallow: /editlotwiseentry
+Disallow: /cummulativeentry
+Disallow: /editcumulativeentry
+Disallow: /niltransaction
+Disallow: /editniltransaction
+Disallow: /viewsubmission
+Disallow: /viewsubmissioncumulative
+Disallow: /viewsubmissionniltransaction
+Disallow: /abnormal-data-
+Disallow: /entrytypeselector
+Disallow: /marketpreference
+Disallow: /personalized-dashboard
+
+# Admin, configuration, and back-office
+Disallow: /userlist
+Disallow: /commoditygrouplist
+Disallow: /commodityadminlist
+Disallow: /statelist
+Disallow: /gradelist
+Disallow: /varietylist
+Disallow: /unitlist
+Disallow: /issuecategory
+Disallow: /feedback
+Disallow: /adminPMS
+Disallow: /adminfaqlist
+Disallow: /apiconfigurationlist
+Disallow: /emailconfigurationlist
+Disallow: /ticketListAllHierarchy
+Disallow: /notice-list
+Disallow: /mspcommodity
+Disallow: /seasonlist
+Disallow: /marketholidaylist
+Disallow: /price-trigger-system
+Disallow: /resources-list
+
+# Helpdesk (authenticated)
+Disallow: /viewticket
+Disallow: /rasieticket
+Disallow: /selectedticket
+Disallow: /raiseticketfarmer
+
+Sitemap: https://agmarknet.gov.in/sitemap.xml

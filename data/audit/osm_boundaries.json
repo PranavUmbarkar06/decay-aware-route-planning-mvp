@@ -1,0 +1,29 @@
+{
+  "need": "Pilot geography boundary (Nagpur Division)",
+  "source_name": "OpenStreetMap admin relations via Nominatim",
+  "status": "AVAILABLE",
+  "access": "HTTP GET (Nominatim search API)",
+  "auth": "none (User-Agent required)",
+  "licence": "ODbL 1.0 (OpenStreetMap). Attribution required: '© OpenStreetMap contributors'.",
+  "coverage": "6/6 district polygons: Nagpur=relation/1991091, Wardha=relation/1991095, Bhandara=relation/1988468, Gondia=relation/1988443, Chandrapur=relation/1988465, Gadchiroli=relation/1988452",
+  "tried": [
+    "GET https://nominatim.openstreetmap.org/search?q=Nagpur District, Maharashtra, India",
+    "GET https://nominatim.openstreetmap.org/search?q=Wardha District, Maharashtra, India",
+    "GET https://nominatim.openstreetmap.org/search?q=Bhandara District, Maharashtra, India",
+    "GET https://nominatim.openstreetmap.org/search?q=Gondiya District, Maharashtra, India",
+    "GET https://nominatim.openstreetmap.org/search?q=Chandrapur District, Maharashtra, India",
+    "GET https://nominatim.openstreetmap.org/search?q=Gadchiroli District, Maharashtra, India"
+  ],
+  "why_failed": "",
+  "fallback": "If missing: no bbox is hand-typed; graph build falls back to the labelled synthetic network (§9 step 9).",
+  "urls": [
+    "https://nominatim.openstreetmap.org/search"
+  ],
+  "rate_limits": "Nominatim policy: max 1 req/s; we use 1.5 s",
+  "freshness": "OSM live data at fetch time",
+  "known_problems": "District boundaries in OSM are community-mapped; not an official survey boundary. Division polygon is the union of the six district relations (no 'Nagpur Division' relation used).",
+  "flags": [
+    "ATTRIBUTION_REQUIRED",
+    "SHARE_ALIKE_ODbL"
+  ]
+}

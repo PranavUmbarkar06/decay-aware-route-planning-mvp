@@ -1,0 +1,20 @@
+{
+  "entries": [
+    {
+      "bytes": 3762512,
+      "fetched_at_utc": "2026-10-24T14:00:32Z",
+      "file": "ah66rev.pdf",
+      "http_status": 200,
+      "manifest_id": "usda_hb66:98fe86ba0a13",
+      "method": "GET",
+      "params": {},
+      "retrieval": "pipeline_http",
+      "sha256": "98fe86ba0a133c7dfdd0edc17ebad2f2c035a833a3be37bc5e378022dcd94ab7",
+      "url": "https://ageconsearch.umn.edu/record/348552/files/ah66rev.pdf"
+    }
+  ],
+  "licence": "US Government work (public domain in the US) - UNVERIFIED: confirm on AgEcon record page",
+  "notes": "USDA ARS Agriculture Handbook 66, rev. Feb 2016 (Gross, Wang, Saltveit eds.)",
+  "source": "usda_hb66",
+  "terms_url": "https://ageconsearch.umn.edu/record/348552"
+}

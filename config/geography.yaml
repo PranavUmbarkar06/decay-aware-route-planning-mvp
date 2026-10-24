@@ -11,7 +11,7 @@ geographies:
       - {name: "Nagpur",     agmarknet: "Nagpur",     osm_query: "Nagpur District, Maharashtra, India"}
       - {name: "Wardha",     agmarknet: "Wardha",     osm_query: "Wardha District, Maharashtra, India"}
       - {name: "Bhandara",   agmarknet: "Bhandara",   osm_query: "Bhandara District, Maharashtra, India"}
-      - {name: "Gondia",     agmarknet: "Gondiya",    osm_query: "Gondia District, Maharashtra, India"}
+      - {name: "Gondia",     agmarknet: "Gondiya",    osm_query: "Gondiya District, Maharashtra, India"}  # OSM spells it Gondiya; "Gondia District" matched the city relation
       - {name: "Chandrapur", agmarknet: "Chandrapur", osm_query: "Chandrapur District, Maharashtra, India"}
       - {name: "Gadchiroli", agmarknet: "Gadchiroli", osm_query: "Gadchiroli District, Maharashtra, India"}
     # Road classes kept for the inter-market truck network (ADR-017). Lower classes are excluded to keep

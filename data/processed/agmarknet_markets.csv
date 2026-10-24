@@ -1,0 +1,58 @@
+agmarknet_market_id,agmarknet_market_name,market_name_clean,district,agmarknet_district_id,agmarknet_state_id,provenance,source_manifest_id
+155,APMC Nagpur ,APMC Nagpur,Nagpur,358,20,REAL_FETCHED,agmarknet:c44f4572ad0a
+156,APMC Umared ,APMC Umared,Nagpur,358,20,REAL_FETCHED,agmarknet:c44f4572ad0a
+170,APMC Hinganghat ,APMC Hinganghat,Wardha,373,20,REAL_FETCHED,agmarknet:c44f4572ad0a
+578,APMC Amgaon ,APMC Amgaon,Gondia,350,20,REAL_FETCHED,agmarknet:c44f4572ad0a
+579,APMC Arjuni Morgaon ,APMC Arjuni Morgaon,Gondia,350,20,REAL_FETCHED,agmarknet:c44f4572ad0a
+580,APMC Chandrapur ,APMC Chandrapur,Chandrapur,345,20,REAL_FETCHED,agmarknet:c44f4572ad0a
+581,APMC Gadchiroli ,APMC Gadchiroli,Gadchiroli,349,20,REAL_FETCHED,agmarknet:c44f4572ad0a
+582,APMC Savner ,APMC Savner,Nagpur,358,20,REAL_FETCHED,agmarknet:c44f4572ad0a
+1117,APMC Tumsar ,APMC Tumsar,Bhandara,343,20,REAL_FETCHED,agmarknet:c44f4572ad0a
+1208,APMC Bhandara ,APMC Bhandara,Bhandara,343,20,REAL_FETCHED,agmarknet:c44f4572ad0a
+1346,APMC Lakhandur ,APMC Lakhandur,Bhandara,343,20,REAL_FETCHED,agmarknet:c44f4572ad0a
+1347,APMC Lakhani ,APMC Lakhani,Bhandara,343,20,REAL_FETCHED,agmarknet:c44f4572ad0a
+1348,APMC Brahmpuri ,APMC Brahmpuri,Chandrapur,345,20,REAL_FETCHED,agmarknet:c44f4572ad0a
+1349,APMC  Chimur,APMC Chimur,Chandrapur,345,20,REAL_FETCHED,agmarknet:c44f4572ad0a
+1350,APMC Mul ,APMC Mul,Chandrapur,345,20,REAL_FETCHED,agmarknet:c44f4572ad0a
+1351,APMC Nagbhid,APMC Nagbhid,Chandrapur,345,20,REAL_FETCHED,agmarknet:c44f4572ad0a
+1352,APMC Gondpimpri ,APMC Gondpimpri,Chandrapur,345,20,REAL_FETCHED,agmarknet:c44f4572ad0a
+1353,APMC Savali ,APMC Savali,Chandrapur,345,20,REAL_FETCHED,agmarknet:c44f4572ad0a
+1354,APMC Bhiwapur ,APMC Bhiwapur,Nagpur,358,20,REAL_FETCHED,agmarknet:c44f4572ad0a
+1355,APMC Kalmeshwar ,APMC Kalmeshwar,Nagpur,358,20,REAL_FETCHED,agmarknet:c44f4572ad0a
+1356,APMC Katol ,APMC Katol,Nagpur,358,20,REAL_FETCHED,agmarknet:c44f4572ad0a
+1357,APMC Narkhed ,APMC Narkhed,Nagpur,358,20,REAL_FETCHED,agmarknet:c44f4572ad0a
+1358,APMC Arvi ,APMC Arvi,Wardha,373,20,REAL_FETCHED,agmarknet:c44f4572ad0a
+1359,APMC Pulgaon ,APMC Pulgaon,Wardha,373,20,REAL_FETCHED,agmarknet:c44f4572ad0a
+1360,APMC Sindi ,APMC Sindi,Wardha,373,20,REAL_FETCHED,agmarknet:c44f4572ad0a
+1361,APMC Gondiya ,APMC Gondiya,Gondia,350,20,REAL_FETCHED,agmarknet:c44f4572ad0a
+1362,APMC Tiroda,APMC Tiroda,Gondia,350,20,REAL_FETCHED,agmarknet:c44f4572ad0a
+1635,APMC Wardha ,APMC Wardha,Wardha,373,20,REAL_FETCHED,agmarknet:c44f4572ad0a
+1641,APMC Varora ,APMC Varora,Chandrapur,345,20,REAL_FETCHED,agmarknet:c44f4572ad0a
+1642,APMC Armori ,APMC Armori,Gadchiroli,349,20,REAL_FETCHED,agmarknet:c44f4572ad0a
+1643,APMC Pavani,APMC Pavani,Bhandara,343,20,REAL_FETCHED,agmarknet:c44f4572ad0a
+1647,APMC Chamorshi ,APMC Chamorshi,Gadchiroli,349,20,REAL_FETCHED,agmarknet:c44f4572ad0a
+1933,APMC  Rajura,APMC Rajura,Chandrapur,345,20,REAL_FETCHED,agmarknet:c44f4572ad0a
+1934,APMC Sindevahi,APMC Sindevahi,Chandrapur,345,20,REAL_FETCHED,agmarknet:c44f4572ad0a
+1935,APMC Bhadrawati ,APMC Bhadrawati,Chandrapur,345,20,REAL_FETCHED,agmarknet:c44f4572ad0a
+1936,APMC Korpana ,APMC Korpana,Chandrapur,345,20,REAL_FETCHED,agmarknet:c44f4572ad0a
+1937,APMC Aheri ,APMC Aheri,Gadchiroli,349,20,REAL_FETCHED,agmarknet:c44f4572ad0a
+1938,APMC Mandhal ,APMC Mandhal,Nagpur,358,20,REAL_FETCHED,agmarknet:c44f4572ad0a
+1939,APMC Ramtek ,APMC Ramtek,Nagpur,358,20,REAL_FETCHED,agmarknet:c44f4572ad0a
+1940,APMC Parshiwani ,APMC Parshiwani,Nagpur,358,20,REAL_FETCHED,agmarknet:c44f4572ad0a
+1941,APMC Ashti ,APMC Ashti,Wardha,373,20,REAL_FETCHED,agmarknet:c44f4572ad0a
+1942,APMC Samudrapur ,APMC Samudrapur,Wardha,373,20,REAL_FETCHED,agmarknet:c44f4572ad0a
+1943,APMC Goregaon ,APMC Goregaon,Gondia,350,20,REAL_FETCHED,agmarknet:c44f4572ad0a
+2163,Chandrapur(Ganjwad) ,Chandrapur(Ganjwad),Chandrapur,345,20,REAL_FETCHED,agmarknet:c44f4572ad0a
+2164,Armori(Desaiganj) ,Armori(Desaiganj),Gadchiroli,349,20,REAL_FETCHED,agmarknet:c44f4572ad0a
+2166,Ashti(Karanja) ,Ashti(Karanja),Wardha,373,20,REAL_FETCHED,agmarknet:c44f4572ad0a
+3139,Sindi (Selu),Sindi (Selu),Wardha,373,20,REAL_FETCHED,agmarknet:c44f4572ad0a
+3142,APMC Kamthi ,APMC Kamthi,Nagpur,358,20,REAL_FETCHED,agmarknet:c44f4572ad0a
+3452,APMC Hingna,APMC Hingna,Nagpur,358,20,REAL_FETCHED,agmarknet:c44f4572ad0a
+3456,APMC Pombhurna,APMC Pombhurna,Chandrapur,345,20,REAL_FETCHED,agmarknet:c44f4572ad0a
+3459,APMC Sadak Arjuni ,APMC Sadak Arjuni,Gondia,350,20,REAL_FETCHED,agmarknet:c44f4572ad0a
+3461,APMC Mauda,APMC Mauda,Nagpur,358,20,REAL_FETCHED,agmarknet:c44f4572ad0a
+3464,APMC Sironcha,APMC Sironcha,Gadchiroli,349,20,REAL_FETCHED,agmarknet:c44f4572ad0a
+3983,"M/S Kalpana Agri Commodities Marketing, Nagpur","M/S Kalpana Agri Commodities Marketing, Nagpur",Nagpur,358,20,REAL_FETCHED,agmarknet:c44f4572ad0a
+3984,"Arihant Krishi Utpan Bazar Pvt Ltd, Wardha","Arihant Krishi Utpan Bazar Pvt Ltd, Wardha",Wardha,373,20,REAL_FETCHED,agmarknet:c44f4572ad0a
+3994,"Sai Agro Infratrade Pvt Agri Market, Dist Wardha","Sai Agro Infratrade Pvt Agri Market, Dist Wardha",Wardha,373,20,REAL_FETCHED,agmarknet:c44f4572ad0a
+3998,"Hinganghat Infrastructure Pvt Ltd, Hinganghat, Dist Wardha","Hinganghat Infrastructure Pvt Ltd, Hinganghat, Dist Wardha",Wardha,373,20,REAL_FETCHED,agmarknet:c44f4572ad0a

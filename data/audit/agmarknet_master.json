@@ -1,0 +1,25 @@
+{
+  "need": "Market list for pilot geography (business nodes)",
+  "source_name": "Agmarknet 2.0 filter/master endpoint",
+  "status": "AVAILABLE",
+  "access": "HTTP GET JSON (undocumented endpoint used by the public report page)",
+  "auth": "none",
+  "licence": "UNVERIFIED: no explicit data licence found on agmarknet.gov.in; Government of India portal. robots.txt (fetched) allows '/', disallows auth/admin paths. Treat as attribution-required.",
+  "coverage": "57 markets in pilot districts: {'Bhandara': 5, 'Chandrapur': 14, 'Gadchiroli': 6, 'Gondia': 6, 'Nagpur': 14, 'Wardha': 12}; commodities verified: [['tomato', 'Tomato'], ['orange', 'Orange'], ['onion', 'Onion']]",
+  "tried": [
+    "GET https://api.agmarknet.gov.in/v1/daily-price-arrival/filters"
+  ],
+  "why_failed": "",
+  "fallback": "",
+  "urls": [
+    "https://api.agmarknet.gov.in/v1/daily-price-arrival/filters",
+    "https://agmarknet.gov.in/robots.txt"
+  ],
+  "rate_limits": "none published; pipeline uses ≥2 s between calls and caches",
+  "freshness": "master list as of fetch date",
+  "known_problems": "Names are market labels, not coordinates; 'APMC X' labels must be geocoded (Phase 2). Includes private markets (e.g. 'M/S … Pvt Ltd'). Endpoint undocumented → may change.",
+  "flags": [
+    "UNDOCUMENTED_API",
+    "LICENCE_UNVERIFIED"
+  ]
+}

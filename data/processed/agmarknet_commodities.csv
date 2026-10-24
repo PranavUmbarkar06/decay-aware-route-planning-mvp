@@ -1,0 +1,4 @@
+commodity,agmarknet_cmdt_id,agmarknet_cmdt_name,verified_in_master,provenance,source_manifest_id
+onion,23,Onion,True,REAL_FETCHED,agmarknet:c44f4572ad0a
+orange,18,Orange,True,REAL_FETCHED,agmarknet:c44f4572ad0a
+tomato,65,Tomato,True,REAL_FETCHED,agmarknet:c44f4572ad0a

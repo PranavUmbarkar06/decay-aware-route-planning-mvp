@@ -1,0 +1,32 @@
+{
+  "entries": [
+    {
+      "bytes": 525549,
+      "fetched_at_utc": "2026-10-24T14:04:17Z",
+      "file": "filters.json",
+      "http_status": 200,
+      "manifest_id": "agmarknet:c44f4572ad0a",
+      "method": "GET",
+      "params": {},
+      "retrieval": "pipeline_http",
+      "sha256": "c44f4572ad0abf99485f7d6b1c43297f44c170c770aac7dbc9dc8e3685a66333",
+      "url": "https://api.agmarknet.gov.in/v1/daily-price-arrival/filters"
+    },
+    {
+      "bytes": 1573,
+      "fetched_at_utc": "2026-10-24T14:04:13Z",
+      "file": "robots.txt",
+      "http_status": 200,
+      "manifest_id": "agmarknet:439db94b0e97",
+      "method": "GET",
+      "params": {},
+      "retrieval": "pipeline_http",
+      "sha256": "439db94b0e97a7f9f39837f57b502649eba3da06592dace54ad37f9528e1e31b",
+      "url": "https://agmarknet.gov.in/robots.txt"
+    }
+  ],
+  "licence": "UNVERIFIED: no explicit data licence found on agmarknet.gov.in; Government of India portal. robots.txt (fetched) allows '/', disallows auth/admin paths. Treat as attribution-required.",
+  "notes": "Agmarknet 2.0 (go-live 2025-11-07 per its filter metadata). Master endpoint is undocumented and may change.",
+  "source": "agmarknet",
+  "terms_url": "https://agmarknet.gov.in/robots.txt"
+}
