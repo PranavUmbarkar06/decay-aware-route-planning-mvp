@@ -1,0 +1,23 @@
+# Pilot geography (ADR-001). To add a geography, add a block under `geographies` and set `active`.
+active: nagpur_division
+
+geographies:
+  nagpur_division:
+    label: "Nagpur Division, Maharashtra"
+    state: "Maharashtra"
+    agmarknet_state_id: 20          # REAL_FETCHED from Agmarknet 2.0 filters, 2026-10-24
+    districts:
+      # name: canonical; agmarknet: spelling in Agmarknet 2.0 district master; osm: Nominatim query
+      - {name: "Nagpur",     agmarknet: "Nagpur",     osm_query: "Nagpur District, Maharashtra, India"}
+      - {name: "Wardha",     agmarknet: "Wardha",     osm_query: "Wardha District, Maharashtra, India"}
+      - {name: "Bhandara",   agmarknet: "Bhandara",   osm_query: "Bhandara District, Maharashtra, India"}
+      - {name: "Gondia",     agmarknet: "Gondiya",    osm_query: "Gondia District, Maharashtra, India"}
+      - {name: "Chandrapur", agmarknet: "Chandrapur", osm_query: "Chandrapur District, Maharashtra, India"}
+      - {name: "Gadchiroli", agmarknet: "Gadchiroli", osm_query: "Gadchiroli District, Maharashtra, India"}
+    # Road classes kept for the inter-market truck network (ADR-017). Lower classes are excluded to keep
+    # the graph tractable; business nodes connect via a snapped access leg.
+    road_classes: [motorway, motorway_link, trunk, trunk_link, primary, primary_link,
+                   secondary, secondary_link, tertiary, tertiary_link]
+    boundary_buffer_km: 5
+    # Illustrative only (feature-list copy). Not supported until a geography block exists for them.
+    illustrative_markets_not_supported: ["Nashik", "Pune", "Vashi", "Satara", "Solapur"]

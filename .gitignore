@@ -1,0 +1,37 @@
+# Python
+.venv/
+__pycache__/
+*.pyc
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+.hypothesis/
+*.egg-info/
+
+# Node
+node_modules/
+frontend/dist/
+frontend/dev-dist/
+frontend/test-results/
+frontend/playwright-report/
+
+# Secrets / local env
+.env
+*.local
+
+# Databases (rebuilt by `tasks.py load`)
+*.sqlite
+*.sqlite3
+*.db
+
+# Large raw downloads: the MANIFEST.json files are committed, payloads are cached locally.
+# Small raw payloads (< 5 MB) are committed so the pipeline can be re-run offline from a clean clone.
+data/raw/**/*.graphml
+data/raw/**/*.osm
+data/raw/**/*.pbf
+data/cache/**
+!data/cache/.gitkeep
+
+# OS
+Thumbs.db
+.DS_Store

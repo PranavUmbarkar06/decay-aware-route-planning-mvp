@@ -1,0 +1,33 @@
+[project]
+name = "phl-platform"
+version = "0.1.0"
+description = "Post-harvest-loss platform prototype (working title). Simulation-led, quality-aware routing + operations layer."
+requires-python = ">=3.11,<3.12"
+
+[tool.pytest.ini_options]
+pythonpath = [".", "backend"]
+testpaths = ["backend/tests"]
+addopts = "-q --strict-markers"
+markers = [
+  "network: test needs live network access (skipped by default; run with -m network)",
+  "slow: long-running test",
+]
+filterwarnings = ["ignore::DeprecationWarning"]
+
+[tool.ruff]
+line-length = 110
+target-version = "py311"
+extend-exclude = ["frontend", "inputs", "source", ".venv"]
+
+[tool.ruff.lint]
+select = ["E", "F", "W", "I", "B", "UP", "SIM"]
+ignore = ["E501", "B008"]
+
+[tool.mypy]
+python_version = "3.11"
+ignore_missing_imports = true
+warn_unused_ignores = false
+check_untyped_defs = true
+mypy_path = "backend"
+explicit_package_bases = true
+packages = ["app"]

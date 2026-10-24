@@ -1,0 +1,24 @@
+# Class-default free-flow speeds for laden ambient trucks, used only when OSM `maxspeed` is absent.
+# provenance: ASSUMPTION. needs_validation: true.
+# Rationale: chosen conservatively below typical car speeds for a loaded truck on Indian roads; NOT taken
+# from any source. Replace with measured trip data (the operations layer logs real scan timestamps).
+provenance: ASSUMPTION
+needs_validation: true
+truck_speed_cap_kmh: 60          # ASSUMPTION: even where maxspeed is higher, laden trucks capped here
+plausible_range_kmh: [5, 120]    # edges outside this are flagged, never clipped silently
+class_default_kmh:
+  motorway: 55
+  motorway_link: 30
+  trunk: 45
+  trunk_link: 25
+  primary: 40
+  primary_link: 25
+  secondary: 35
+  secondary_link: 20
+  tertiary: 30
+  tertiary_link: 20
+  unclassified: 25
+  residential: 15
+access_leg:
+  detour_factor: 1.3             # ASSUMPTION: road distance ≈ 1.3 × straight-line for the snap leg
+  speed_kmh: 20                  # ASSUMPTION

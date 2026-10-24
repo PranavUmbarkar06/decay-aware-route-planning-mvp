@@ -1,0 +1,36 @@
+# Commodity profiles for the decay model (M3) and simulation.
+# Every numeric parameter carries `source` + `status` (SOURCED | ASSUMPTION | MISSING).
+# MISSING values use a placeholder that makes every downstream output carry a warning.
+q10:
+  range: [2.0, 3.0]
+  default: 2.5
+  status: SOURCED
+  source: "Kader & Rolle (2004) FAO AGS Bulletin 152 §3.2: deterioration rate increases 2–3× per 10 °C rise (as cited in the Round-1 brief, ref [6]). Verified in Phase 1, see DATA_SOURCES.md"
+  note: "Generic rule of thumb for non-chilling-sensitive produce; crop-specific rates differ."
+
+commodities:
+  tomato:
+    label: "Tomato"
+    agmarknet_cmdt_id: 65        # REAL_FETCHED (Agmarknet 2.0 filters, 2026-10-24)
+    base_shelf_life_h: {value: null, ref_temp_c: null, status: MISSING, source: null}
+    handling_damage_per_100km: {value: 0.01, status: ASSUMPTION, rationale: "placeholder; no measured value"}
+    nabcons_market_level_loss_pct: {value: 3.25, status: SOURCED, source: "NABCONS 2022 via PIB 2151371 Annex-II Table 2 (as cited in the brief)"}
+  orange:
+    label: "Nagpur orange"
+    agmarknet_cmdt_id: 18        # Agmarknet commodity "Orange" (REAL_FETCHED); variety-level split not used
+    base_shelf_life_h: {value: null, ref_temp_c: null, status: MISSING, source: null}
+    handling_damage_per_100km: {value: 0.005, status: ASSUMPTION, rationale: "placeholder; no measured value"}
+    nabcons_market_level_loss_pct: {value: null, status: MISSING, source: "Not in the brief's chart; looked up in Phase 1"}
+  onion:
+    label: "Onion"
+    agmarknet_cmdt_id: 23
+    base_shelf_life_h: {value: null, ref_temp_c: null, status: MISSING, source: null}
+    handling_damage_per_100km: {value: 0.002, status: ASSUMPTION, rationale: "placeholder; no measured value"}
+    nabcons_market_level_loss_pct: {value: 1.96, status: SOURCED, source: "NABCONS 2022 via PIB 2151371 Annex-II Table 2 (as cited in the brief)"}
+
+# Used ONLY where base_shelf_life_h is MISSING. Every output that depends on it shows a warning.
+missing_placeholder:
+  base_shelf_life_h: 120
+  ref_temp_c: 25
+  status: ASSUMPTION
+  warning: "Base shelf life is a placeholder; no cited value was found. Outputs are illustrative only."

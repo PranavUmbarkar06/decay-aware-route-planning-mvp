@@ -1,0 +1,12 @@
+# Thresholds. Every value here is an ASSUMPTION unless a source is given.
+traffic_light:                 # remaining saleable life (hours) → colour
+  provenance: ASSUMPTION
+  needs_confirmation_with_operators: true
+  red_below_h: 24
+  green_at_or_above_h: 72      # yellow = [24, 72)
+graph:
+  snap_distance_review_m: 2000      # business node farther than this from the road graph → needs_review
+  geocode_confidence_min: 0.6       # below → needs_review
+quality:
+  saleable_min: 0.5            # ASSUMPTION: quality score below which a lot is not saleable as fresh
+  processing_min: 0.25         # ASSUMPTION: below this even processing will not accept it → waste
