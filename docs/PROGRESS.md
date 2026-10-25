@@ -44,3 +44,19 @@ Each phase ends with: tests run → commit → this file updated → gate report
   `graph-apply-review` (USER_ENTERED overrides), synthetic fallback (tested).
 - **Gate:** all §9A step-5 checks pass; rebuild byte-identical (SHA-256); schema test; 46 tests pass; ruff, mypy,
   honest-check clean. **PASS.**
+
+## Phase 3: domain model, invariants, hash-chained log, M1/M2 backend (2026-10-25)
+- Pure domain layer (`backend/app/domain/`): Consignment, Node types with `release` / `receive_consignment`,
+  `record_wastage`, dispositions, invariants I1–I4; tamper-evident hash chain; PIN security; explainable decay
+  model (FAO 152 Table 1 + lognormal unit variation, ASSUMPTION A17) with Q10 2/3 sensitivity bounds.
+- Property testing (Hypothesis) found that a hash chain cannot detect deletion of its *last* event; consignments
+  now record chain head + count (SECURITY.md).
+- DB + API: SQLAlchemy models, Alembic initial migration, phone+OTP dev-stub auth with DEV AUTH flag, JWT, RBAC on
+  every endpoint, rate limits, audit log, request ids, /healthz, /readyz, OpenAPI at /api/docs.
+- M1: create (short code + QR + one-time PIN), two-party handover (atomic confirm), DISPUTED_WEIGHT surfaced as
+  `unreconciled_kg` (never booked as waste), transporter scan-only, timeline from actual scans, chain verify,
+  idempotent offline sync preserving real scan time vs sync time.
+- M2: wastage with reason enum, slider guards, undo window (soft, compensating UNDO row).
+- **Gate:** 75 tests pass: property tests for mass balance / non-negativity / chain / single location (300
+  random operation sequences), tamper detection (edit and tail delete), 6-thread confirm race → exactly one winner,
+  RBAC matrix (9 endpoints × 7 roles), PIN lockout, OTP limits. ruff + mypy clean; honest-check 0. **PASS.**
