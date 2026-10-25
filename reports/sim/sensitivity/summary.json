@@ -1,0 +1,198 @@
+{
+  "set": "sensitivity",
+  "finished_utc": "2026-10-25T07:54:25+00:00",
+  "wall_s": 487.2,
+  "preregistration_commit": "5c840ce4f0171f784202f0bd68b67a8f3b9b426b 2026-10-25T12:55:23+05:30",
+  "preregistration_sha256": "3512eb4dd2f8296fc6abb71ac785067286a49ec3650b50dc012bdc464f248718",
+  "seeds": [
+    101,
+    102,
+    103,
+    104,
+    105
+  ],
+  "verdicts": [
+    {
+      "set": "sensitivity",
+      "variant": "hot_truck",
+      "season": "monsoon",
+      "beats_baseline": false,
+      "guardrail_flag": false,
+      "failure_seeds": [
+        101,
+        102,
+        103,
+        104,
+        105
+      ],
+      "n_failures": 5
+    },
+    {
+      "set": "sensitivity",
+      "variant": "hot_truck",
+      "season": "summer",
+      "beats_baseline": false,
+      "guardrail_flag": false,
+      "failure_seeds": [
+        101,
+        102,
+        103,
+        104,
+        105
+      ],
+      "n_failures": 5
+    },
+    {
+      "set": "sensitivity",
+      "variant": "hot_truck",
+      "season": "winter",
+      "beats_baseline": false,
+      "guardrail_flag": false,
+      "failure_seeds": [
+        101,
+        102,
+        103,
+        104,
+        105
+      ],
+      "n_failures": 5
+    },
+    {
+      "set": "sensitivity",
+      "variant": "oversupply",
+      "season": "monsoon",
+      "beats_baseline": false,
+      "guardrail_flag": false,
+      "failure_seeds": [
+        101,
+        102,
+        103,
+        104,
+        105
+      ],
+      "n_failures": 5
+    },
+    {
+      "set": "sensitivity",
+      "variant": "oversupply",
+      "season": "summer",
+      "beats_baseline": false,
+      "guardrail_flag": false,
+      "failure_seeds": [
+        101,
+        102,
+        103,
+        104,
+        105
+      ],
+      "n_failures": 5
+    },
+    {
+      "set": "sensitivity",
+      "variant": "oversupply",
+      "season": "winter",
+      "beats_baseline": false,
+      "guardrail_flag": false,
+      "failure_seeds": [
+        101,
+        102,
+        103,
+        104,
+        105
+      ],
+      "n_failures": 5
+    },
+    {
+      "set": "sensitivity",
+      "variant": "q10_high",
+      "season": "monsoon",
+      "beats_baseline": false,
+      "guardrail_flag": false,
+      "failure_seeds": [
+        101,
+        102,
+        103,
+        104,
+        105
+      ],
+      "n_failures": 5
+    },
+    {
+      "set": "sensitivity",
+      "variant": "q10_high",
+      "season": "summer",
+      "beats_baseline": false,
+      "guardrail_flag": false,
+      "failure_seeds": [
+        101,
+        102,
+        103,
+        104,
+        105
+      ],
+      "n_failures": 5
+    },
+    {
+      "set": "sensitivity",
+      "variant": "q10_high",
+      "season": "winter",
+      "beats_baseline": false,
+      "guardrail_flag": false,
+      "failure_seeds": [
+        101,
+        102,
+        103,
+        104,
+        105
+      ],
+      "n_failures": 5
+    },
+    {
+      "set": "sensitivity",
+      "variant": "q10_low",
+      "season": "monsoon",
+      "beats_baseline": false,
+      "guardrail_flag": false,
+      "failure_seeds": [
+        101,
+        102,
+        103,
+        104,
+        105
+      ],
+      "n_failures": 5
+    },
+    {
+      "set": "sensitivity",
+      "variant": "q10_low",
+      "season": "summer",
+      "beats_baseline": false,
+      "guardrail_flag": false,
+      "failure_seeds": [
+        101,
+        102,
+        103,
+        104,
+        105
+      ],
+      "n_failures": 5
+    },
+    {
+      "set": "sensitivity",
+      "variant": "q10_low",
+      "season": "winter",
+      "beats_baseline": false,
+      "guardrail_flag": false,
+      "failure_seeds": [
+        101,
+        102,
+        103,
+        104,
+        105
+      ],
+      "n_failures": 5
+    }
+  ],
+  "label": "PRE-REGISTERED SENSITIVITY (exploratory)",
+  "max_abs_balance_error_kg": 2.9802322387695312e-08
+}

@@ -60,3 +60,21 @@ Each phase ends with: tests run → commit → this file updated → gate report
 - **Gate:** 75 tests pass: property tests for mass balance / non-negativity / chain / single location (300
   random operation sequences), tamper detection (edit and tail delete), 6-thread confirm race → exactly one winner,
   RBAC matrix (9 endpoints × 7 roles), PIN lockout, OTP limits. ruff + mypy clean; honest-check 0. **PASS.**
+
+## Phase 4: simulation engine, policies, experiments, report (2026-10-25)
+- Pre-registration (`config/experiments.yaml`, `config/simulation.yaml`) committed **before any run**
+  (5c840ce, 12:55 IST). Engine committed before registered runs (b4b3823). Engineering runs used seed 1 on a March
+  window outside the registered design. ADR-023 logs two design properties found on the dev seed and the post-hoc
+  variants, written before the registered runs.
+- Primary (registered): 3 seasons × 20 seeds × 2 policies = 120 runs (7.4 min). **QualityAwareDynamic does NOT beat
+  the baseline in any season.** It lowers wastage in summer (12.1% → 6.2%) and monsoon (11.1% → 6.4%) but raises
+  unmet demand in every season (e.g. summer 12.1% → 24.0%); winter is worse on both. Failure seeds: all 20 per season.
+- Sensitivity (pre-registered, seeds 101–105): Q10 2/3, +5 °C truck, 20% oversupply: same pattern, no win.
+  Exploratory post-hoc (forecast plans, diurnal forecast, both): same pattern, no win.
+- Plausibility vs NABCONS: tomato simulated 23.7% vs 3.25% market-level → FLAG (7×; cold-storage extrapolation A2/A3);
+  onion 1.9% vs 1.96%; orange 1.0% vs citrus 2.18%: within band. Reported, not tuned.
+- Mass balance asserted every tick of every run (max |error| 3e-8 kg). Reproducibility: summer/seed 101 re-run in a
+  fresh process after the engine refactor matches the recorded event-log SHA-256 for both policies.
+- `reports/simulation_report.html` (charts + table view + verdicts + failures + plausibility + limitations).
+- **Gate:** baseline bit-for-bit reproducible ✔; mass balance ✔; pre-registration committed before first run ✔. **PASS.**
+  (The deck's 4th checkpoint, "proposed beats baseline", is **not met**, and is reported as such.)

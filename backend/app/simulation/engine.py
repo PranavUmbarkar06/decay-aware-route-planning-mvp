@@ -423,42 +423,62 @@ class Engine:
 
     # ------------------------------------------------------------------ main loop
     def run(self) -> RunResult:
-        by_tick: dict[int, list[Lot]] = defaultdict(list)
-        for lot in self.scen.lots:
-            by_tick[lot.dispatch_tick].append(lot)
         for t in range(self.scen.ticks):
-            ctx = TickContext(self, t)
-            for lot in sorted(by_tick.get(t, []), key=lambda x: x.lot_id):
-                origin = self.net.business[lot.origin]
-                m = self.models[lot.commodity]
-                age = 0.0                                          # harvest → dispatch ageing at origin temperatures
-                for h in range(lot.harvest_lead_h):
-                    age += m.accel(self.scen.temp(int(self.net.node_district[origin.gidx]), t - lot.harvest_lead_h + h))
-                ls = LotState(lot, lot.qty_kg, age, status="transit", cur_node=origin.gidx,
-                              origin_access_left_s=origin.access_s)
-                self.injected += lot.qty_kg
-                self.active.append(ls)
-                self._log(t, ls, "DISPATCH", dest=lot.planned_dest, origin=lot.origin)
-                self._apply(t, ls, self.policy.on_dispatch(ls, ctx), at_dispatch=True)
-            for ls in [x for x in self.active if x.status == "transit"]:
-                if ls.dest is not None and ls.lot.dispatch_tick != t:
-                    dec = self.policy.in_transit(ls, ctx)
-                    if dec is not None and dec.dest != ls.dest:
-                        self._apply(t, ls, dec, at_dispatch=False)
-            for ls in [x for x in self.active if x.status == "transit"]:
-                self._move(t, ls)
-            for ls in [x for x in self.active if x.status in ("transit", "market")]:
-                self._age(t, ls)
-                if ls.qty <= 1e-9:
-                    ls.qty = 0.0
-                    self._finish(t, ls, ls.dest or "spoiled")
-            self._trade(t)
-            self._check_balance(t)
-            if self.record_replay:
-                self.replay.append([t] + [[ls.lot.lot_id, round(float(self.net.y[ls.cur_node]), 5),
-                                           round(float(self.net.x[ls.cur_node]), 5), ls.status, ls.dest, ls.lot.commodity,
-                                           round(self.quality(ls), 3)] for ls in self.active])
+            self.step(t)
         return self._result()
+
+    def step(self, t: int) -> None:
+        """Advance one hourly tick (used by `run` and by the live dashboard stream)."""
+        if not hasattr(self, "_by_tick"):
+            self._by_tick: dict[int, list[Lot]] = defaultdict(list)
+            for lot in self.scen.lots:
+                self._by_tick[lot.dispatch_tick].append(lot)
+        ctx = TickContext(self, t)
+        for lot in sorted(self._by_tick.get(t, []), key=lambda x: x.lot_id):
+            origin = self.net.business[lot.origin]
+            m = self.models[lot.commodity]
+            age = 0.0                                          # harvest → dispatch ageing at origin temperatures
+            for h in range(lot.harvest_lead_h):
+                age += m.accel(self.scen.temp(int(self.net.node_district[origin.gidx]), t - lot.harvest_lead_h + h))
+            ls = LotState(lot, lot.qty_kg, age, status="transit", cur_node=origin.gidx,
+                          origin_access_left_s=origin.access_s)
+            self.injected += lot.qty_kg
+            self.active.append(ls)
+            self._log(t, ls, "DISPATCH", dest=lot.planned_dest, origin=lot.origin)
+            self._apply(t, ls, self.policy.on_dispatch(ls, ctx), at_dispatch=True)
+        for ls in [x for x in self.active if x.status == "transit"]:
+            if ls.dest is not None and ls.lot.dispatch_tick != t:
+                dec = self.policy.in_transit(ls, ctx)
+                if dec is not None and dec.dest != ls.dest:
+                    self._apply(t, ls, dec, at_dispatch=False)
+        for ls in [x for x in self.active if x.status == "transit"]:
+            self._move(t, ls)
+        for ls in [x for x in self.active if x.status in ("transit", "market")]:
+            self._age(t, ls)
+            if ls.qty <= 1e-9:
+                ls.qty = 0.0
+                self._finish(t, ls, ls.dest or "spoiled")
+        self._trade(t)
+        self._check_balance(t)
+        if self.record_replay:
+            self.replay.append([t] + [[ls.lot.lot_id, round(float(self.net.y[ls.cur_node]), 5),
+                                       round(float(self.net.x[ls.cur_node]), 5), ls.status, ls.dest, ls.lot.commodity,
+                                       round(self.quality(ls), 3)] for ls in self.active])
+
+    def snapshot(self, t: int) -> dict:
+        """Cumulative state after tick t, for the live dashboard (same accounting as the mass-balance check)."""
+        b = self.balance[-1] if self.balance else {}
+        inj = b.get("injected", 0.0)
+        demand_so_far = sum(q for (m, c, d), q in self.scen.demand.items() if 1 <= d < self.scen.days and d < day_ist(t))
+        unmet = sum(v for (m, c, d), v in self.unmet.items())
+        return {"tick": t, "injected_kg": inj, "sold_kg": b.get("sold", 0.0), "donated_kg": b.get("donated", 0.0),
+                "processed_kg": b.get("processed", 0.0), "wasted_kg": b.get("wasted", 0.0),
+                "in_market_kg": b.get("in_market", 0.0), "in_transit_kg": b.get("in_transit", 0.0),
+                "wastage_rate": (b.get("wasted", 0.0) / inj) if inj else None,
+                "unmet_demand_kg": unmet, "unmet_demand_rate": (unmet / demand_so_far) if demand_so_far else None,
+                "reroutes": sum(x.reroutes for x in self.active + self.done),
+                "redirects": sum(x.redirects for x in self.active + self.done),
+                "balance_error_kg": b.get("error_kg", 0.0)}
 
     def _check_balance(self, t: int) -> None:
         allls = self.active + self.done
