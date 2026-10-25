@@ -4,6 +4,7 @@ from __future__ import annotations
 
 import json
 import logging
+import mimetypes
 import time
 import uuid
 
@@ -33,6 +34,11 @@ def _setup_logging() -> None:
     if not root.handlers:
         root.addHandler(h)
         root.setLevel(logging.INFO)
+
+
+# Windows registries often lack these: module workers (MapLibre) and the web manifest need correct types.
+mimetypes.add_type("text/javascript", ".mjs")
+mimetypes.add_type("application/manifest+json", ".webmanifest")
 
 
 def create_app() -> FastAPI:

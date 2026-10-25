@@ -48,6 +48,16 @@ def meta() -> dict:
             "units": cfg.units.display_options}
 
 
+@router.get("/demo/personas", tags=["meta"])
+def demo_personas(db: Session = Depends(get_db)) -> list[dict]:
+    """Demo mode only: the fictional demo personas (SYNTHETIC_DEMO) and their home locations."""
+    if not app_config().runtime.demo_mode:
+        raise ServiceError(404, "Not available outside demo mode", "not_found")
+    rows = db.scalars(select(User).where(User.provenance == "SYNTHETIC_DEMO").order_by(User.phone))
+    return [{"phone": u.phone, "name": u.name, "role": u.role, "home_node_id": u.home_node_id, "provenance": u.provenance}
+            for u in rows]
+
+
 @router.get("/roles", tags=["meta"])
 def roles() -> list[dict]:
     return [{"role": r.value, "description": d} for r, d in ROLE_DESCRIPTIONS.items() if r != Role.ADMIN]
@@ -56,7 +66,7 @@ def roles() -> list[dict]:
 # ---------------------------------------------------------------- auth
 @router.post("/auth/otp/request", response_model=s.OtpRequested, tags=["auth"])
 def otp_request(body: s.OtpRequest, request: Request, db: Session = Depends(get_db)) -> s.OtpRequested:
-    enforce(request, "otp_request", 5)
+    enforce(request, "otp_request", app_config().auth.otp_requests_per_min)
     code = new_otp()
     ch = OtpChallenge(id=str(uuid.uuid4()), phone=body.phone, code_hash=hash_otp(body.phone, code),
                       expires_at=utcnow() + timedelta(seconds=app_config().auth.otp_ttl_s))
@@ -97,6 +107,11 @@ def otp_verify(body: s.OtpVerify, request: Request, db: Session = Depends(get_db
                     consent_at=utcnow(), created_at=utcnow(), provenance="USER_ENTERED")
         db.add(user)
         custody.audit(db, user, "user.register", "user", user.id, {"role": p.role})
+    elif user.consent_at is None:                     # invited by an admin: must accept the data notice once
+        if body.profile is None or not body.profile.consent:
+            db.rollback()
+            raise ServiceError(409, "Please accept the data-use notice to continue", "needs_consent")
+        user.consent_at = utcnow()
     custody.audit(db, user, "auth.login", "user", user.id)
     db.commit()
     return s.TokenOut(token=issue_token(user), user=s.UserOut.model_validate(user), auth_mode=app_config().auth.mode)
@@ -120,6 +135,28 @@ def list_nodes(type: str | None = None, district: str | None = None, include_rev
         q = q.where(or_(Node.needs_review.is_(False), Node.review_status.in_(["accept", "move"])))
     q = q.where(or_(Node.review_status.is_(None), Node.review_status != "reject"))
     return list(db.scalars(q.order_by(Node.node_type, Node.name)))
+
+
+@router.get("/public/places", tags=["nodes"])
+def public_places(type: str | None = None, db: Session = Depends(get_db)) -> list[dict]:
+    """Unauthenticated reference list for onboarding (pick your location): public names/types/districts only."""
+    q = select(Node).where(or_(Node.review_status.is_(None), Node.review_status != "reject"))
+    if type:
+        q = q.where(Node.node_type.in_(type.split(",")))
+    return [{"node_id": n.node_id, "name": n.name, "node_type": n.node_type, "district": n.district,
+             "provenance": n.provenance, "needs_review": n.needs_review} for n in db.scalars(q.order_by(Node.district, Node.name))]
+
+
+@router.post("/feedback", status_code=201, tags=["meta"])
+def feedback(body: dict, request: Request, user: User = Depends(require(*ANY_ROLE)), db: Session = Depends(get_db)) -> dict:
+    """'Report a problem': stored in the audit log for the team. Never sent anywhere else."""
+    enforce(request, "feedback", 10)
+    text = str(body.get("message", ""))[:2000]
+    if not text.strip():
+        raise ServiceError(422, "Please describe the problem", "empty")
+    custody.audit(db, user, "feedback.report", "page", str(body.get("page", ""))[:200], {"message": text})
+    db.commit()
+    return {"ok": True}
 
 
 @router.get("/nodes/{node_id}", response_model=s.NodeOut, tags=["nodes"])

@@ -120,7 +120,30 @@ def frontend_build() -> None:
 
 
 def e2e() -> None:
-    npm("run", "e2e")
+    """Fresh isolated demo stack on :8001 (own SQLite file), then Playwright (Pixel 7 emulation, local Chrome)."""
+    import time
+    import urllib.request
+    db = ROOT / "data" / "cache" / "phl_e2e.sqlite"
+    for f in db.parent.glob("phl_e2e.sqlite*"):
+        f.unlink()
+    env = {**os.environ, "PYTHONUTF8": "1", "PYTHONPATH": str(ROOT / "backend") + os.pathsep + str(ROOT), "PHL_DEMO_MODE": "1", "PHL_RATE_LIMIT_MULTIPLIER": "100",
+           "PHL_DATABASE_URL": "sqlite:///" + str(db).replace("\\", "/")}
+    run([PY, "-m", "app.cli", "load"], env=env)
+    if not (ROOT / "frontend" / "dist" / "index.html").exists():
+        npm("run", "build")
+    srv = subprocess.Popen([PY, "-m", "uvicorn", "app.main:app", "--port", "8001"], cwd=str(ROOT), env=env)
+    try:
+        for _ in range(60):
+            try:
+                urllib.request.urlopen("http://localhost:8001/readyz", timeout=2)
+                break
+            except Exception:  # noqa: BLE001
+                time.sleep(1)
+        rc = npm("run", "e2e", "--", *sys.argv[2:], check=False, env={"PHL_BASE": "http://localhost:8001"})
+    finally:
+        srv.terminate()
+        srv.wait(timeout=20)
+    sys.exit(rc)
 
 
 def demo() -> None:

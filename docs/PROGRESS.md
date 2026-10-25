@@ -95,3 +95,25 @@ Each phase ends with: tests run → commit → this file updated → gate report
 - **Gate:** 102 tests pass incl. threshold boundaries, two NGOs claiming simultaneously → exactly one wins, claim
   expiry cascade logged, DONATED booking with mass balance + chain intact, explanation payloads, live stream mass
   balance per tick. ruff + mypy clean; honest-check 0. **PASS.**
+
+## Phase 6: frontend PWA (2026-10-25)
+- React 19 + Vite 8 + TypeScript + Tailwind 4 installable PWA (manifest, service worker, offline app shell, cached geo
+  layers and reference APIs); MapLibre 6 (lazy chunk; worker bundled), zxing QR (lazy) with manual code + PIN fallback.
+- Screens: onboarding (language → phone/OTP → role → profile/location → consent → permission primers → role tour on
+  DEMO sample data), home dashboards per role, register lot (QR + one-time PIN, printable), scan, lot detail (timeline
+  from actual scans + map path + chain verification + mass balance), handover/receipt, 1-tap wastage logger (slider + 4
+  picture buttons, undo toast), storage FEFO with traffic lights + "why this colour", crowd meter (map + list, verbatim
+  definition, alternates), rescue (sender broadcast + matches with score breakdown; NGO offers, claim, countdown,
+  profile), route advisor (usual vs suggested on map, reasons, alerts, Q10 bounds), Simulation lab (pre-registered
+  verdicts, per-seed dot plots + table view, replay scrubber, **live dashboard streaming wastage % and unmet demand
+  for both policies**), Evidence & limitations, Help, Report a problem, Admin (invites, CSV place import with row errors,
+  review queue, audit log), Guided demo (6 scripted steps with real/made-up/assumed captions).
+- Persistent DEMO DATA / DEV AUTH / demo-clock / offline + sync-queue banners; provenance badges; 48 px targets;
+  dark mode tokens; reduced motion; IST display; kg/quintal/tonne toggle; EN/HI/MR (HI/MR flagged needs_native_review).
+- Bugs found while testing and fixed: onboarding skipped permissions/tour after sign-up; `load` not re-runnable (FK);
+  MapLibre worker 404 in production build; `.mjs` MIME on Windows.
+- **Gate:** Playwright E2E (Pixel 7 emulation, local Chrome, isolated stack via `python tasks.py e2e`): 10/10 pass:
+  onboarding for 4 roles, QR handshake via manual code + PIN, wastage logger + undo, two NGOs claiming simultaneously →
+  exactly one wins, offline handover queued and synced with real scan time, full guided demo, evidence statement.
+  Vitest 6/6 (incl. provenance lint: DEMO records always badged). Backend 105 pass. tsc, eslint, ruff, mypy clean;
+  npm audit 0 vulnerabilities; honest-check 0. **PASS.**

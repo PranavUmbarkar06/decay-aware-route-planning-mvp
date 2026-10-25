@@ -28,6 +28,8 @@ expiry at 72 h and every scan is logged with the actor. **TODO for pilot:** aler
 ## Authentication (ADR-010)
 - Phone + OTP. Demo/dev uses a stub provider that returns the OTP in the API response; the UI shows a "DEV AUTH"
   banner. **Never deploy with `auth.mode: dev_stub`.**
+- OTP requests are rate-limited per client (`auth.otp_requests_per_min`): 5/min is the production default; the demo
+  config sets 20/min so the guided demo can switch personas. **Restore 5 before any pilot.** `PHL_RATE_LIMIT_MULTIPLIER` is set only by the isolated E2E stack; never set it in a deployment.
 - Short-lived JWT (`auth.jwt_ttl_s`); secret from env var `PHL_JWT_SECRET`, with a per-process random fallback in dev
   only (logged as DEV).
 - RBAC is checked on every endpoint (role matrix tested in `test_api_rbac.py`).

@@ -47,8 +47,11 @@ def load_nodes(db: Session) -> int:
     df = pd.read_csv(PROCESSED / "nodes.csv", dtype={"snapped_graph_node": str})
     ov_path = PROCESSED / "node_overrides.csv"
     ov = pd.read_csv(ov_path).set_index("node_id") if ov_path.exists() else pd.DataFrame()
-    db.execute(delete(Node))
+    # Idempotent upsert: re-running `load` refreshes nodes from nodes.csv without breaking users/lots that reference
+    # them. Admin-imported places (USER_ENTERED) and the demo persona node are kept.
+    seen: set[str] = set()
     for r in df.itertuples(index=False):
+        seen.add(r.node_id)
         review = None
         lat, lon = (None if pd.isna(r.lat) else float(r.lat)), (None if pd.isna(r.lon) else float(r.lon))
         if len(ov) and r.node_id in ov.index:
@@ -56,7 +59,7 @@ def load_nodes(db: Session) -> int:
             review = o["decision"]
             if review == "move":
                 lat, lon = float(o["lat"]), float(o["lon"])
-        db.add(Node(node_id=r.node_id, node_type=r.node_type, name=r.name, lat=lat, lon=lon,
+        db.merge(Node(node_id=r.node_id, node_type=r.node_type, name=r.name, lat=lat, lon=lon,
                     district=None if pd.isna(r.district) else r.district,
                     snapped_graph_node=None if pd.isna(r.snapped_graph_node) else str(r.snapped_graph_node).split(".")[0],
                     snap_distance_m=None if pd.isna(r.snap_distance_m) else float(r.snap_distance_m),
@@ -68,6 +71,14 @@ def load_nodes(db: Session) -> int:
                     review_status=review, notes=None if pd.isna(r.notes) else r.notes,
                     agmarknet_market_name=None if pd.isna(r.agmarknet_market_name) else r.agmarknet_market_name))
     db.flush()
+    stale = [n for n in db.scalars(select(Node)) if n.node_id not in seen and n.provenance not in ("USER_ENTERED",)
+             and n.node_id != "NDEMOCOLD0001"]
+    for n in stale:
+        try:
+            with db.begin_nested():
+                db.delete(n)
+        except Exception:  # noqa: BLE001 - still referenced: keep it (it simply stops being refreshed)
+            pass
     return len(df)
 
 

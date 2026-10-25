@@ -34,7 +34,7 @@ def world(client, app_db):
             s.add(Node(node_id=nid, node_type="NGOSink", name=f"Test NGO {i} DEMO", lat=home.lat + dlat, lon=home.lon,
                        district=home.district, provenance="SYNTHETIC_DEMO", source_manifest_id="test", needs_review=False))
             s.add(User(id=f"test-ngo-{i}", phone=f"+91000000008{i}", role="NGO", name=f"Test NGO user {i}", language="en",
-                       home_node_id=nid, created_at=now(), provenance="SYNTHETIC_DEMO"))
+                       home_node_id=nid, created_at=now(), consent_at=now(), provenance="SYNTHETIC_DEMO"))
             s.flush()
             s.add(NgoProfile(node_id=nid, user_id=f"test-ngo-{i}", accepted_commodities="onion,orange,tomato",
                              daily_capacity_kg=5000, pickup_start_ist=0, pickup_end_ist=24, can_collect=True,

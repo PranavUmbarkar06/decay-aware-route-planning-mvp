@@ -16,6 +16,7 @@ auth:
   mode: "dev_stub"           # dev_stub | provider (provider adapter not implemented; see INTEGRATIONS_TODO)
   otp_ttl_s: 300
   otp_max_attempts: 5
+  otp_requests_per_min: 20   # per client. 5 is the production default; demo mode is relaxed so the guided demo can switch personas
   jwt_ttl_s: 3600
   jwt_secret_env: "PHL_JWT_SECRET"   # read from env; dev fallback is generated per process and logged as DEV
 

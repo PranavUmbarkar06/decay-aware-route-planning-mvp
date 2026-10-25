@@ -29,6 +29,7 @@ class Auth(_Strict):
     mode: Literal["dev_stub", "provider"]
     otp_ttl_s: int = Field(gt=0)
     otp_max_attempts: int = Field(gt=0)
+    otp_requests_per_min: int = Field(5, gt=0)
     jwt_ttl_s: int = Field(gt=0)
     jwt_secret_env: str
 
