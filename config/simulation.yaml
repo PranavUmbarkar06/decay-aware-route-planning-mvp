@@ -1,0 +1,54 @@
+# Simulation model parameters (project brief §7). Each value is tagged. ASSUMPTION values need validation and are
+# listed in docs/ASSUMPTIONS.md. Changing anything here after pre-registration must be logged as a deviation in the
+# experiment report (the runner records this file's SHA-256 with every run).
+
+tick_h: 1
+network:
+  use_synthetic_demo_nodes: false        # fictional demo nodes are never part of experiments
+  origins: AssemblyMandi                 # supply enters at routable assembly mandis (origin choice: ASSUMPTION A19)
+  markets: ReceivingMarket               # demand sinks; only markets with Agmarknet arrivals that day
+  redirect_sinks: [ProcessingSink, NGOSink]
+
+supply:
+  source: "REAL_DERIVED: daily Agmarknet arrivals per receiving market and commodity (owner exports)"
+  supply_ratio: {value: 1.0, status: ASSUMPTION, note: "supply injected = ratio × total market arrivals that day (A20)"}
+  lot_size_kg: {median: 3000, sigma: 0.5, min: 500, max: 10000, status: ASSUMPTION, note: "lognormal truck-load size (A21)"}
+  harvest_to_dispatch_h: {min: 6, max: 36, status: ASSUMPTION, note: "hours from harvest to dispatch, at origin ambient temperature (A22)"}
+  dispatch_hour_ist: {min: 16, max: 23, status: ASSUMPTION, note: "evening dispatch to reach the morning market (A23)"}
+  planned_destination: "drawn ∝ that day's arrivals share across markets (A24)"
+
+market:
+  trade_window_ist: {start: 4, end: 12, status: ASSUMPTION,
+                     note: "brief cites WRI 2024: trade mostly in morning hours (DOCUMENTED, qualitative); hours chosen (A25)"}
+  demand: "REAL_DERIVED: market absorbs that day's reported Agmarknet arrivals (proxy, not measured demand)"
+  max_wait_days: {value: 2, status: ASSUMPTION, note: "no storage at market (WRI, DOCUMENTED); unsold lots wait at most 2 days (A26)"}
+
+sinks:
+  processing_accepts_quality_min: from_thresholds   # thresholds.yaml quality.processing_min
+  processing_capacity_kg_day: {value: null, status: MISSING, note: "no source; treated as unconstrained and flagged"}
+  ngo_accepts_quality_min: from_thresholds_saleable  # thresholds.yaml quality.saleable_min (edible-quality proxy)
+  ngo_capacity_kg_day: {value: 2000, status: ASSUMPTION, note: "per NGO node per day (A27); capacity MISSING in data"}
+
+decay:
+  model: fao_table1                   # ADR-018
+  unit_variation_sigma: {value: 0.25, status: ASSUMPTION}   # A17
+  truck_temp_offset_c: {value: 0.0, status: ASSUMPTION, note: "no source for in-truck vs ambient; sensitivity run at +5 °C (A18)"}
+  weather_source: "REAL_FETCHED: Open-Meteo archive, district representative points"
+
+traffic:                               # A9: modelled, never shown as observed traffic
+  peak_hours_ist: [[8, 11], [17, 21]]
+  peak_extra: {value: 0.3, status: ASSUMPTION}
+  class_hour_noise_sigma: {value: 0.15, status: ASSUMPTION}
+  edge_factor_sigma: {value: 0.10, status: ASSUMPTION}
+  disruption_rate_per_edge_day: {value: 0.0005, status: ASSUMPTION}
+  disruption_duration_h: {min: 2, max: 12, status: ASSUMPTION}
+
+policies:
+  StaticShortestPath:
+    description: "Baseline (deck S5): planned destination, static free-flow shortest path, no reroute/redirect."
+  QualityAwareDynamic:
+    description: "Proposed (deck S5): re-evaluates at dispatch and every tick using current congestion, disruptions,
+      current temperature and quality urgency; may REROUTE to another market or REDIRECT to processing/NGO."
+    knows: "conditions at decision time only (no future traffic or weather)"
+    reroute_margin: {value: 0.10, status: ASSUMPTION, note: "switch only if expected saleable kg improves ≥10% (A28)"}
+    glut_awareness: "sees quantities already sold and committed (in flight) to each market that day"

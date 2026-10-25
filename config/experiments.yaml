@@ -1,0 +1,58 @@
+# PRE-REGISTRATION (project brief §7, deck S7–S8). Committed before any experiment is run.
+# Any later change must be logged as a deviation in the report; the runner records this file's git commit
+# and SHA-256 with every run and refuses to run if the file has uncommitted changes.
+registered: 2026-10-25
+status: pre-registered
+
+question: >
+  In a seeded, hourly simulation of the Nagpur Division road network with real weather replay and real Agmarknet
+  arrival volumes, does the QualityAwareDynamic routing policy produce lower wastage and lower unmet demand than the
+  StaticShortestPath baseline, when the ONLY difference between paired runs is the policy?
+
+fair_test:
+  identical_across_policies: [supply lots, planned destinations, demand, weather replay, network, starting inventory,
+                              congestion and disruption draws, seed]
+  pairing: "each (season, seed) is run once per policy; comparisons are paired"
+
+seeds: [101, 102, 103, 104, 105, 106, 107, 108, 109, 110, 111, 112, 113, 114, 115, 116, 117, 118, 119, 120]
+
+seasons:                     # 14-day windows inside the Agmarknet + weather coverage (2025-11-07 … 2026-10-18)
+  winter:  {start: "2025-12-15", days: 14}
+  summer:  {start: "2026-05-01", days: 14}
+  monsoon: {start: "2026-07-15", days: 14}
+
+commodities: [tomato, orange, onion]   # orange has no reported arrivals May–Aug → no orange lots in summer/monsoon
+
+metrics:
+  primary:
+    wastage_rate: "wasted_kg / injected_kg (all commodities); per-commodity also reported"
+    unmet_demand_rate: "Σ max(0, demand_kg − sold_kg) / Σ demand_kg over market-days"
+  secondary:
+    mean_quality_at_sink: "kg-weighted mean quality score at delivery to any sink (market, processing, NGO)"
+    stock_saved_kg: "(wasted_kg baseline − wasted_kg proposed), paired by seed"
+  guardrail:
+    mean_travel_h_per_lot: "mean door-to-door transit hours"
+    total_km: "total km driven"
+    reroute_count: "REROUTE decisions"
+    redirect_count: "REDIRECT decisions (to processing or NGO)"
+  accounting:
+    donated_kg: "booked as DONATED, not wastage"
+    processed_kg: "booked as PROCESSED"
+
+decision_rule:
+  method: "paired difference proposed − baseline per (season, seed); 95% percentile bootstrap CI over seeds (10,000 resamples, rng seed 20261025)"
+  beats_baseline_on_metric: "CI upper bound < 0 for wastage_rate / unmet_demand_rate (lower is better)"
+  overall: "proposed 'beats baseline' only if it does so on BOTH primary metrics in a season; otherwise reported as not beating it"
+  guardrail_flag: "flag (do not hide) if proposed increases mean_travel_h_per_lot or total_km by more than 10%"
+  report_failures: "list every (season, seed) where proposed is worse on either primary metric"
+
+calibration_check:            # plausibility only: market-level ≠ transit loss (CONTEXT.md)
+  compare: "simulated wastage rate per commodity (baseline) vs NABCONS market-level loss %"
+  nabcons_pct: {tomato: 3.25, onion: 1.96, orange_citrus: 2.18}
+  flag_if_outside_factor: 4    # flagged if sim/NABCONS < 1/4 or > 4; this is a plausibility flag, not a pass/fail
+
+sensitivity_exploratory:      # not part of the decision rule
+  - {name: q10_low, decay_mode: q10, q10: 2.0}
+  - {name: q10_high, decay_mode: q10, q10: 3.0}
+  - {name: hot_truck, truck_temp_offset_c: 5.0}
+  - {name: oversupply, supply_ratio: 1.2}
