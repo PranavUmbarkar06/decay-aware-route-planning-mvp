@@ -139,3 +139,14 @@ Each phase ends with: tests run → commit → this file updated → gate report
 - Honest-claims check 0; provenance lint passes; LIMITATIONS and FINAL_REPORT written; full battery re-run
   (`reports/final/test_results.txt`): pytest 105, vitest 6, Playwright 10, all lint/type/audit clean.
 - **Gate: PASS.** See docs/FINAL_REPORT.md.
+
+## Stage 3 package: flow map and submission (2026-10-26)
+- Simulation Lab flow map: Replay and Live run draw every truck with a line to its destination (direction only, not the
+  road), markets / NGOs / processing units as fixed points, both policies overlaid (toggle each), a *Busiest hour*
+  button, playback speed, and an hour scrubber for the live run. `sim_live` ticks now carry the destination node.
+- `python tasks.py capture` regenerates the 16 screenshots in `submission/screenshots/` (Playwright, isolated stack);
+  `python tasks.py submission` renders `submission/SUBMISSION.md` to HTML and PDF (headless Chrome, downscaled images).
+- Package: `SUBMISSION.md/.html/.pdf`, `architecture.svg`, `workflow.svg`, `VIDEO_SHOTLIST.md` (the team records the
+  video), source zip via `git archive`. Honest-claims check now also scans `submission/`.
+- Fixes: lot label capitalised "Kg"/"Am" (capitalize moved to the commodity only); one eslint `any` in vite.config.ts.
+- Re-run after the changes: pytest 105, vitest 6, Playwright 10, tsc / eslint / ruff / mypy clean, honest-check 0.

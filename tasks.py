@@ -119,7 +119,7 @@ def frontend_build() -> None:
     npm("run", "build")
 
 
-def e2e() -> None:
+def e2e(npm_args: tuple[str, ...] = ("run", "e2e", "--")) -> None:
     """Fresh isolated demo stack on :8001 (own SQLite file), then Playwright (Pixel 7 emulation, local Chrome)."""
     import time
     import urllib.request
@@ -139,11 +139,22 @@ def e2e() -> None:
                 break
             except Exception:  # noqa: BLE001
                 time.sleep(1)
-        rc = npm("run", "e2e", "--", *sys.argv[2:], check=False, env={"PHL_BASE": "http://localhost:8001"})
+        rc = npm(*npm_args, *sys.argv[2:], check=False, env={"PHL_BASE": "http://localhost:8001"})
     finally:
         srv.terminate()
         srv.wait(timeout=20)
     sys.exit(rc)
+
+
+def capture() -> None:
+    """Regenerate submission/screenshots on an isolated demo stack (same setup as e2e)."""
+    (ROOT / "submission" / "screenshots").mkdir(parents=True, exist_ok=True)
+    e2e(("exec", "--", "playwright", "test", "-c", "playwright.capture.config.ts"))
+
+
+def submission() -> None:
+    """Render submission/SUBMISSION.md to HTML and PDF (headless Chrome)."""
+    py("scripts/build_submission.py")
 
 
 def demo() -> None:
@@ -167,7 +178,7 @@ TARGETS = {
     "setup": setup, "test": test, "test-network": test_network, "lint": lint, "typecheck": typecheck,
     "honest-check": honest_check, "audit-deps": audit_deps, "data": data, "data-audit": data_audit,
     "graph": graph, "graph-apply-review": graph_apply_review, "load": load, "experiments": experiments,
-    "report": report, "api": api, "frontend-build": frontend_build, "e2e": e2e, "demo": demo, "ci": ci,
+    "report": report, "api": api, "frontend-build": frontend_build, "e2e": e2e, "capture": capture, "submission": submission, "demo": demo, "ci": ci,
 }
 
 if __name__ == "__main__":

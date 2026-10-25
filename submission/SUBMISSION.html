@@ -1,0 +1,547 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>Stage 3 Submission</title><style>
+@page { size: A4; margin: 14mm 14mm 16mm; }
+:root { --ink:#1b2a2f; --muted:#56666c; --line:#d5e0e2; --brand:#0f8b8d; --warn-bg:#fff4dc; --warn:#7a5200; }
+* { box-sizing: border-box; }
+body { margin: 0 auto; max-width: 900px; padding: 24px 16px; background: #fff; color: var(--ink);
+  font: 10.5pt/1.5 "Segoe UI", Roboto, Helvetica, Arial, sans-serif; }
+h1 { font-size: 24pt; line-height: 1.15; margin: 6px 0 12px; }
+h2 { font-size: 15pt; margin: 26px 0 8px; padding-bottom: 4px; border-bottom: 2px solid var(--brand); break-after: avoid; }
+h3 { font-size: 11.5pt; margin: 16px 0 4px; color: var(--brand); break-after: avoid; }
+p, li { orphans: 3; widows: 3; }
+ul, ol { padding-left: 20px; margin: 4px 0 8px; }
+code { font: 9pt Consolas, "Cascadia Mono", monospace; background: #f1f4f5; padding: 1px 4px; border-radius: 4px; }
+pre { background: #f1f4f5; padding: 10px 12px; border-radius: 8px; overflow-x: auto; break-inside: avoid; }
+pre code { background: none; padding: 0; }
+table { border-collapse: collapse; width: 100%; margin: 8px 0 12px; font-size: 9.5pt; break-inside: auto; }
+th, td { border: 1px solid var(--line); padding: 5px 7px; text-align: left; vertical-align: top; }
+th { background: #eef5f5; }
+tr { break-inside: avoid; }
+.cover { min-height: 250mm; display: flex; flex-direction: column; justify-content: center; break-after: page; }
+.cover .kicker { color: var(--brand); font-weight: 700; letter-spacing: .04em; text-transform: uppercase; font-size: 10pt; }
+.cover .lede { font-size: 12.5pt; color: var(--muted); max-width: 680px; }
+.cover table { max-width: 560px; font-size: 10.5pt; }
+.cover thead { display: none; }
+.cover td:first-child { width: 140px; }
+.note { background: var(--warn-bg); color: var(--warn); border-radius: 10px; padding: 12px 14px; font-size: 10pt; }
+img.fig { width: 100%; display: block; margin: 8px 0 12px; border: 1px solid var(--line); border-radius: 8px; }
+figure { margin: 10px 0 14px; break-inside: avoid; }
+figure img.shot { width: 100%; display: block; border: 1px solid var(--line); border-radius: 8px; }
+figcaption { font-size: 9pt; color: var(--muted); margin-top: 4px; }
+.phones { display: grid; grid-template-columns: repeat(4, 1fr); gap: 10px; margin: 10px 0 14px; break-inside: avoid; }
+.phones figure { margin: 0; }
+.phones img { width: 100%; border: 1px solid var(--line); border-radius: 10px; display: block; }
+@media (max-width: 640px) { .phones { grid-template-columns: repeat(2, 1fr); } h1 { font-size: 20pt; } }
+@media print { body { max-width: none; padding: 0; } a { color: inherit; text-decoration: none; } }
+</style></head><body>
+<div class="cover">
+<p class="kicker">IMPACT TANK ’26 · Stage 3 · Prototype / MVP submission</p>
+<h1>The Journey After Harvest: prototype v0.1.0</h1>
+<p class="lede">A working research prototype for perishable produce (tomato, Nagpur orange, onion) in the Nagpur Division,
+Maharashtra. It combines a quality-aware routing assistant, tested in a simulation, with a phone app that records
+what happens to each lot from farm to market.</p>
+<table>
+<thead>
+<tr>
+<th></th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Team</strong></td>
+<td>[Team name]</td>
+</tr>
+<tr>
+<td><strong>Members</strong></td>
+<td>[Member 1] · [Member 2] · [Member 3] · [Member 4] · [Member 5]</td>
+</tr>
+<tr>
+<td><strong>Institution</strong></td>
+<td>[College / University]</td>
+</tr>
+<tr>
+<td><strong>Built</strong></td>
+<td>24–26 October 2026 (git history in section 10)</td>
+</tr>
+<tr>
+<td><strong>Product name</strong></td>
+<td>&quot;Impact Tank Post-Harvest Platform&quot; is a working title</td>
+</tr>
+</tbody>
+</table>
+<p class="note"><b>Read first.</b> Every impact number in this document is a <b>simulation output, not field-validated</b>.
+In our pre-registered experiment the quality-aware policy <b>did not beat</b> the static baseline: it wasted less in
+summer and monsoon but left more demand unmet in every season (section 7). Dispatcher needs have <b>not</b> yet
+been checked in interviews. All people and lots in the demo are made up and are labelled DEMO on screen.</p>
+</div>
+<h2>Contents of this submission</h2>
+<table>
+<thead>
+<tr>
+<th>Stage 3 asks for</th>
+<th>Where it is</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Prototype / MVP</td>
+<td>The full source code (<code>phl-prototype-source.zip</code>, or the repository), runnable with two commands (section 9)</td>
+</tr>
+<tr>
+<td>Short demonstration video</td>
+<td>Recorded separately by the team (<code>VIDEO_SHOTLIST.md</code> has the plan)</td>
+</tr>
+<tr>
+<td>User workflow or architecture</td>
+<td>Section 3 (user workflow) and section 4 (architecture); also <code>workflow.svg</code> and <code>architecture.svg</code></td>
+</tr>
+<tr>
+<td>Core features implemented</td>
+<td>Section 5, with screenshots of the running app</td>
+</tr>
+<tr>
+<td>Known limitations</td>
+<td>Section 8</td>
+</tr>
+</tbody>
+</table>
+<h2>1. The problem (recap from Rounds 1 and 2)</h2>
+<p>India loses about <strong>19.3 million tonnes</strong> of fruit and vegetables a year across all stages from farm to retail
+(NABCONS for MoFPI, reference period 2020–22). Our brief focused on one stretch: from the assembly mandi, by road, to
+the receiving market. Once a load leaves, the dispatcher cannot see heat, delays, handling or how crowded the destination
+market is. No public dataset records trip-level spoilage, so nobody knows how much of that loss happens in transit.</p>
+<p>The Round 1 solution deck picked a <strong>simulation-led, quality-aware routing assistant</strong> and asked one question:
+<em>does a quality-aware routing policy reduce wastage compared with a static shortest-path route, without leaving
+demand unmet?</em> Stage 3 is our attempt to build that and answer it honestly.</p>
+<h2>2. What we built</h2>
+<p>The prototype has two layers that share one data model.</p>
+<ul>
+<li><strong>Decision layer.</strong> An hourly simulation of produce lots moving on the real road network of Nagpur Division, using
+replayed weather and real market arrival volumes. It compares two routing policies on identical inputs. The same
+logic powers a <strong>Route advisor</strong> that compares the usual route with a quality-aware option for a single load.</li>
+<li><strong>Operations layer.</strong> An installable phone web app (PWA) for farmers, collection-centre supervisors, warehouse owners,
+dispatchers, drivers and NGOs. It registers lots with a QR label, records two-party handovers in a tamper-evident log,
+logs wastage with reasons, shows a shelf-life traffic light, a mandi crowd meter, and an NGO rescue flow for surplus.
+This layer exists because the trip-level data the simulation needs does not exist yet. The app is designed to start
+collecting it.</li>
+</ul>
+<p>Everything runs locally from a clean clone with no API keys: Python/FastAPI backend, SQLite, React PWA.</p>
+<h2>3. User workflow</h2>
+<img class="fig" src="workflow.svg" alt="User workflow: farmer registers a lot, collection centre confirms and stores it, surplus goes to NGOs, dispatcher compares routes and decides.">
+<p><strong>One lot, step by step</strong></p>
+<ol>
+<li><strong>Farmer / FPO</strong> registers a lot (crop, kg, harvest time). The app prints a QR label and a one-time PIN.
+The PIN works only with that lot's code, locks after five wrong tries and expires.</li>
+<li><strong>Handover.</strong> The farmer declares weight and condition. The collection-centre supervisor scans the QR, weighs the
+lot and confirms. Both sides must act. If the weights differ by more than 2%, the lot is marked <em>disputed</em>,
+never silently booked as waste.</li>
+<li><strong>Storage.</strong> The warehouse or collection centre sees every lot as a green / amber / red shelf-life light, sorted
+first-expiring-first-out. <em>How is this calculated?</em> shows every input and whether it is real or assumed.</li>
+<li><strong>Wastage or surplus.</strong> A supervisor logs wastage with a reason in one tap, with an undo window. Produce that
+will not sell is offered to the nearest NGOs that accept that crop and have capacity.</li>
+<li><strong>NGO rescue.</strong> The first NGO to claim wins and gets a two-hour pickup timer. Pickup is another two-party
+handover, and the kilograms are booked as <em>donated</em>, not <em>wasted</em>.</li>
+<li><strong>Dispatcher.</strong> Before sending a load, the dispatcher checks the crowd meter, which compares today's arrivals with
+the market's usual 14-day median. The <strong>Route advisor</strong> then compares the usual route with a quality-aware option.
+The app recommends; the person decides.</li>
+<li><strong>Analyst.</strong> The Simulation Lab shows the pre-registered results, a map replay of both policies, and a live
+side-by-side run.</li>
+</ol>
+<p>Offline: handovers made without signal are queued on the phone and synced later. Languages: English, Hindi, Marathi
+(machine drafts awaiting native review).</p>
+<h2>4. Architecture</h2>
+<img class="fig" src="architecture.svg" alt="Architecture: public data sources feed Python pipelines that produce provenance-tagged CSVs, loaded into a FastAPI backend with domain, services and simulation layers, serving an installable React PWA.">
+<table>
+<thead>
+<tr>
+<th>Layer</th>
+<th>What it does</th>
+<th>Built with</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Data pipelines</td>
+<td>Fetch, checksum and clean public data; build the road graph and travel-time matrix; audit gaps</td>
+<td>Python 3.11, pandas, OSMnx, NetworkX, pyosmium, GeoPandas</td>
+</tr>
+<tr>
+<td>Domain (pure Python)</td>
+<td>Lot and node operations, invariants (mass balance, non-negative stock, one location at a time), hash chain, PIN, decay model</td>
+<td>Plain Python, Hypothesis property tests</td>
+</tr>
+<tr>
+<td>Services and API</td>
+<td>One database transaction per action; optimistic locking for races (e.g. two NGOs claiming at once)</td>
+<td>FastAPI, SQLAlchemy 2, Alembic, pydantic</td>
+</tr>
+<tr>
+<td>Simulation</td>
+<td>Hourly engine on the real road graph; two policies; pre-registered runner; HTML report</td>
+<td>NetworkX, SciPy, NumPy</td>
+</tr>
+<tr>
+<td>App</td>
+<td>Installable PWA, maps, QR scanning, offline queue, three languages</td>
+<td>React 19, Vite, TypeScript, Tailwind, MapLibre, zxing, i18next</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Data used, and how real it is.</strong> Every row carries a provenance tag, and the app shows it.</p>
+<table>
+<thead>
+<tr>
+<th>Data</th>
+<th>Size</th>
+<th>Provenance</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Agmarknet market list (6 districts)</td>
+<td>57 markets</td>
+<td>Real, fetched</td>
+</tr>
+<tr>
+<td>Agmarknet arrivals for tomato, onion, orange (manual CSV exports; captcha is never automated)</td>
+<td>4,452 rows → 3,989 market-days</td>
+<td>Real, fetched → derived</td>
+</tr>
+<tr>
+<td>Road network from OpenStreetMap (Geofabrik extract)</td>
+<td>22,644 edges, 9,677 nodes</td>
+<td>Real, derived (94% of speeds are road-class defaults)</td>
+</tr>
+<tr>
+<td>Places: markets, cold storage, processing units, NGOs</td>
+<td>170</td>
+<td>100 real, 69 town-centre stand-ins (assumption), 1 demo</td>
+</tr>
+<tr>
+<td>Weather replay (Open-Meteo, 6 points, 1 Nov 2025 → 18 Oct 2026)</td>
+<td>50,688 hours</td>
+<td>Real, fetched</td>
+</tr>
+<tr>
+<td>NABCONS loss table, FAO temperature curve, USDA/UC Davis shelf lives, Census 2011</td>
+<td>reference tables</td>
+<td>Real, fetched</td>
+</tr>
+<tr>
+<td>Demo people and lots; simulation supply lots</td>
+<td>n/a</td>
+<td>Synthetic, badged DEMO everywhere</td>
+</tr>
+<tr>
+<td>Thresholds, speeds, congestion, decay extrapolation</td>
+<td>29 assumptions (A1–A29)</td>
+<td>Assumption, listed in <code>docs/ASSUMPTIONS.md</code></td>
+</tr>
+</tbody>
+</table>
+<h2>5. Core features implemented</h2>
+<p>All screens below are from the running prototype (demo data). Module numbers match section 3.</p>
+<div class="feat">
+<h3>M1 · Lot registration, QR label and two-party handover</h3>
+<ul>
+<li>Short lot code, QR label and a one-time PIN (hashed, with lockout and expiry).</li>
+<li>Each handover needs the sender to declare and the receiver to weigh and confirm. A weight gap over 2% marks the
+lot as disputed.</li>
+<li>Every event is appended to a <strong>hash-chained custody log</strong>. Editing, deleting or truncating history is detected,
+and tests cover each of these cases.</li>
+</ul>
+<h3>M2 · One-tap wastage logger</h3>
+<ul>
+<li>Slider in kg, a fixed list of reasons and an undo window. Undo writes a compensating entry, so history is never deleted.</li>
+<li>Mass balance is checked: a lot can never lose more than it holds.</li>
+</ul>
+</div>
+<div class="phones">
+<figure><img src="screenshots/01_onboarding_language.png" alt=""><figcaption>Onboarding: language first</figcaption></figure>
+<figure><img src="screenshots/03_lot_label_qr_pin.png" alt=""><figcaption>M1: QR label and one-time PIN</figcaption></figure>
+<figure><img src="screenshots/04_wastage_logger.png" alt=""><figcaption>M2: wastage logger</figcaption></figure>
+<figure><img src="screenshots/04b_lot_journey_tamper_evident.png" alt=""><figcaption>Lot journey with a tamper-evident chain</figcaption></figure>
+</div>
+<div class="feat">
+<h3>M3 · Shelf-life traffic light (first-expiring-first-out)</h3>
+<ul>
+<li>Remaining life comes from a sourced reference shelf life and FAO's rule that deterioration roughly doubles to
+triples for every 10 °C, using replayed hourly weather for the lot's location.</li>
+<li><em>How is this calculated?</em> lists every input with its provenance and the low and high bounds. It states plainly that
+this is a model, not a food-safety certificate.</li>
+</ul>
+</div>
+<figure><img class="shot" src="screenshots/05_storage_traffic_light.png" alt=""><figcaption>M3: storage view, sorted first-expiring-first-out</figcaption></figure>
+<figure><img class="shot" src="screenshots/06_shelf_life_explanation.png" alt=""><figcaption>M3: every input behind the estimate, with its provenance</figcaption></figure>
+<div class="feat">
+<h3>M4 · Mandi crowd meter</h3>
+<ul>
+<li>Shows today's reported arrivals divided by the market's trailing 14-day median, from Agmarknet.</li>
+<li>It never says &quot;% full&quot;, because no market capacity data exists. Markets that did not report show &quot;no data&quot; and
+are never filled in.</li>
+<li>When a market is unusually busy, the app suggests nearby markets that have data, with the road time to each.</li>
+</ul>
+<h3>M5 / M6 · NGO rescue and redistribution matching</h3>
+<ul>
+<li>Surplus is offered in waves to the nearest suitable NGOs. Matching uses road time, remaining shelf life and capacity
+fit, and the score breakdown is shown.</li>
+<li>The first claim wins, enforced in the database (tested with two NGOs claiming at the same moment). The winner gets a
+two-hour pickup timer; if it expires, the offer goes to the next wave.</li>
+</ul>
+</div>
+<figure><img class="shot" src="screenshots/08_crowd_meter.png" alt=""><figcaption>M4: mandi crowd meter</figcaption></figure>
+<div class="phones">
+<figure><img src="screenshots/02_home_farmer.png" alt=""><figcaption>Farmer home screen</figcaption></figure>
+<figure><img src="screenshots/07b_ngo_claim_timer.png" alt=""><figcaption>M5: NGO claim with a pickup timer</figcaption></figure>
+</div>
+<div class="feat">
+<h3>M7 · Route advisor</h3>
+<ul>
+<li>For one load, compares the usual static shortest route with the quality-aware option. Shows predicted quality on
+arrival with Q10 bounds, kilograms likely left, the crowd at the destination and the road on a map.</li>
+<li>Gives a recommendation with its reasons, for example <em>keep the planned market</em>, plus alerts. It never acts on its own.</li>
+</ul>
+</div>
+<figure><img class="shot" src="screenshots/09_route_advisor.png" alt=""><figcaption>M7: route advisor</figcaption></figure>
+<div class="feat">
+<h3>Simulation Lab: pre-registered results, flow-map replay and live run</h3>
+<ul>
+<li><strong>Pre-registered results.</strong> Each season (summer, monsoon, winter) is run with 20 seeds. The policies get identical
+lots, weather, roads and random draws; only the routing differs. The decision rule was committed before any
+registered run (commit <code>5c840ce</code>).</li>
+<li><strong>Replay on map.</strong> Both policies on the real map, hour by hour. Each truck is drawn with a line to its destination,
+and a <em>Busiest hour</em> button jumps to the busiest moment.</li>
+<li><strong>Live run.</strong> Choose a start date, a number of days and a seed, and watch both policies run side by side, streamed
+from the server. Wastage, unmet demand, a cumulative chart, a map you can scrub hour by hour, and a mass-balance
+check every hour.</li>
+</ul>
+</div>
+<figure><img class="shot" src="screenshots/10_lab_results.png" alt=""><figcaption>Pre-registered results and verdict</figcaption></figure>
+<figure><img class="shot" src="screenshots/11_lab_replay_flow_map.png" alt=""><figcaption>Replay: blue = baseline trucks, orange = proposed trucks; lines point to each truck's destination</figcaption></figure>
+<figure><img class="shot" src="screenshots/12_lab_live_dashboard.png" alt=""><figcaption>Live run: wastage and unmet demand as the run progresses (one exploratory 3-day run, not the registered experiment)</figcaption></figure>
+<figure><img class="shot" src="screenshots/13_lab_live_map.png" alt=""><figcaption>Live run map at its busiest hour, with the final table for that run</figcaption></figure>
+<div class="feat">
+<h3>Built in from the start</h3>
+<ul>
+<li><strong>Guided demo</strong> (<code>/demo</code>) walks through the whole story in six steps, signing in as fictional personas.</li>
+<li><strong>Evidence &amp; limits</strong> page: every stakeholder claim with its source and tag (documented / interpretation / hypothesis),
+and the list of limitations.</li>
+<li><strong>Provenance badges</strong> on every number; synthetic data is always badged DEMO, and a test enforces this.</li>
+<li>Role-based access for seven roles, on-screen dev sign-in codes (no SMS), rate limiting, security headers, an audit
+log, health checks, and a business clock that keeps the demo inside the weather-replay window.</li>
+</ul>
+</div>
+<figure><img class="shot" src="screenshots/07_guided_demo.png" alt=""><figcaption>Guided demo</figcaption></figure>
+<figure><img class="shot" src="screenshots/14_evidence_limits.png" alt=""><figcaption>Evidence &amp; limits page</figcaption></figure>
+<h2>6. Quality and testing (actual results)</h2>
+<table>
+<thead>
+<tr>
+<th>Check</th>
+<th>Result</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Backend tests (pytest): unit tests; property tests for mass balance, non-negativity, the hash chain and single location; tamper detection; concurrency race; role-access matrix; PIN lockout; M3–M7; pipelines; simulation determinism</td>
+<td><strong>105 passed</strong></td>
+</tr>
+<tr>
+<td>Frontend unit tests (Vitest), including &quot;synthetic data is always badged&quot;</td>
+<td><strong>6 passed</strong></td>
+</tr>
+<tr>
+<td>End-to-end (Playwright, Pixel 7 profile in Chrome): onboarding for 4 roles, QR handshake, wastage and undo, two NGOs claiming at once, offline handover then sync, guided demo, evidence page</td>
+<td><strong>10 passed</strong></td>
+</tr>
+<tr>
+<td>Type checks and lint (mypy, ruff, tsc, eslint)</td>
+<td>clean</td>
+</tr>
+<tr>
+<td>Dependency audit (npm audit, pip-audit)</td>
+<td>0 known vulnerabilities</td>
+</tr>
+<tr>
+<td>Reproducibility: registered runs re-run in a fresh process</td>
+<td>event-log SHA-256 matches</td>
+</tr>
+<tr>
+<td>Lighthouse, mobile, welcome page (localhost)</td>
+<td>Performance 82 · Accessibility 100 · Best Practices 82 · SEO 100</td>
+</tr>
+</tbody>
+</table>
+<h2>7. What the simulation found</h2>
+<p>The pre-registered rule: the proposed policy &quot;beats&quot; the baseline only if it lowers wastage <strong>without</strong> raising unmet
+demand, judged by a paired bootstrap over 20 seeds per season.</p>
+<table>
+<thead>
+<tr>
+<th>Season</th>
+<th>Wastage, baseline → proposed</th>
+<th>Unmet demand, baseline → proposed</th>
+<th>Verdict</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Summer</td>
+<td>12.1% → 6.2%</td>
+<td>12.1% → 24.0%</td>
+<td>does not beat baseline</td>
+</tr>
+<tr>
+<td>Monsoon</td>
+<td>11.1% → 6.4%</td>
+<td>11.1% → 19.4%</td>
+<td>does not beat baseline</td>
+</tr>
+<tr>
+<td>Winter</td>
+<td>2.8% → 5.0%</td>
+<td>2.8% → 22.8%</td>
+<td>does not beat baseline (worse on both)</td>
+</tr>
+</tbody>
+</table>
+<p>All differences are outside their 95% confidence intervals, and unmet demand is higher in all 20 seeds of every
+season. <strong>Simulation output, not field-validated.</strong> The quality-aware policy moves produce that is at risk towards
+processing units and NGOs. That cuts recorded waste but leaves markets short. Four sensitivity variants and three
+post-hoc variants show the same trade-off. <strong>We claim no reduction in loss</strong>, and we do not use the provisional 14%
+figure from earlier decks.</p>
+<p>The useful outcome is that the routing objective must make this trade-off explicit, or leave it as the dispatcher's
+choice, before anyone uses the routing in the field.</p>
+<h2>8. Known limitations</h2>
+<p><strong>Evidence and users</strong></p>
+<ul>
+<li>Dispatcher, supervisor and NGO needs have <strong>not been validated by interviews</strong>. Stakeholder difficulties come from
+published studies, and each is tagged on the Evidence page.</li>
+<li>There is <strong>no real trip-level data</strong>. The simulation runs synthetic lots on real roads, real weather and real market
+volumes.</li>
+</ul>
+<p><strong>Model</strong></p>
+<ul>
+<li><strong>Decay levels are uncertain.</strong> Reference shelf lives are cold-storage values extrapolated to ambient heat with FAO's
+generic curve. Simulated tomato loss (23.7%) is far above the NABCONS market-level figure (3.25%), and our own
+plausibility check flags it.</li>
+<li><strong>Congestion and disruptions are modelled assumptions</strong>, not observed traffic, and 94% of road speeds are road-class
+defaults.</li>
+<li>The value weights for market, NGO and processing outcomes are assumptions, and they drive the trade-off in section 7.</li>
+</ul>
+<p><strong>Data</strong></p>
+<ul>
+<li>Agmarknet arrivals come from manual exports (the site uses a captcha). Only the Nagpur and Chandrapur districts
+report the pilot crops, and orange has no arrivals from May to August.</li>
+<li>21 of 57 markets are waiting for a human to review their location. Until then, town centres stand in for market yards.</li>
+<li>No capacity data exists for markets, cold storage or NGOs. That is why the crowd meter is relative, never &quot;% full&quot;.</li>
+<li>Weather is one gridded point per district, not the temperature inside the truck. Populations are from Census 2011.</li>
+</ul>
+<p><strong>Product</strong></p>
+<ul>
+<li>Sign-in is a development stub: codes are shown on screen and no SMS is sent.</li>
+<li>Hindi and Marathi text is machine-drafted and needs native review.</li>
+<li>The Postgres / Docker deployment files were written but <strong>not built or tested</strong>; only the SQLite path is tested.</li>
+<li>The rate limiter works for a single server only.</li>
+</ul>
+<p><strong>Legal</strong></p>
+<ul>
+<li>The free Open-Meteo API and public OSM map tiles are for non-commercial use, which fits this research prototype.</li>
+<li>Road data derived from OSM is under the ODbL licence.</li>
+<li>Food-donation liability and data protection need review by qualified people before any pilot.</li>
+</ul>
+<p>The full list is in <code>docs/LIMITATIONS.md</code>; every assumption is in <code>docs/ASSUMPTIONS.md</code>.</p>
+<h2>9. How to run it</h2>
+<p>Requirements: Python 3.11, Node 22, Git. No API keys and no Docker.</p>
+<pre><code>python tasks.py setup      # creates .venv from the lock file and runs npm ci (about 3.5 minutes)
+python tasks.py demo       # loads committed data into SQLite and serves http://localhost:8000
+</code></pre>
+<p>Open <strong>http://localhost:8000/demo</strong> for the guided demo. Demo phone numbers are <code>+910000000001</code> (farmer) to
+<code>+910000000007</code> (admin / analyst); the sign-in code appears on screen. To run the tests:
+<code>python tasks.py test</code> and <code>python tasks.py e2e</code>. To regenerate these screenshots: <code>python tasks.py capture</code>.
+A clean clone was verified end to end on 25 October 2026.</p>
+<h2>10. Built during the competition period</h2>
+<p>The repository's first commit (24 October 2026, 19:26 IST) holds the project scaffold (task runner, config, CI) and
+the Round 1 materials (problem brief, solution deck, source register). The data pipelines, domain model, simulation
+and app were all written after it:</p>
+<table>
+<thead>
+<tr>
+<th>Commit</th>
+<th>Date and time (IST)</th>
+<th>Work</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>71e4d8e</code></td>
+<td>24 Oct 2026, 19:26</td>
+<td>Phase 0: repository scaffold, decisions, config, task runner</td>
+</tr>
+<tr>
+<td><code>cdffe9d</code> → <code>d2df53d</code></td>
+<td>24 Oct 21:30 → 25 Oct 12:03</td>
+<td>Phase 1: data pipelines (Agmarknet, boundaries, weather, references) and data audit</td>
+</tr>
+<tr>
+<td><code>ee53a00</code></td>
+<td>25 Oct 12:43</td>
+<td>Phase 2: road graph, <code>nodes.csv</code> and <code>edges.csv</code> from OpenStreetMap</td>
+</tr>
+<tr>
+<td><code>688cfb7</code></td>
+<td>25 Oct 12:53</td>
+<td>Phase 3: domain model, tamper-evident custody log, M1/M2 backend</td>
+</tr>
+<tr>
+<td><code>5c840ce</code></td>
+<td>25 Oct 12:55</td>
+<td>Experiment pre-registration, committed before any registered run</td>
+</tr>
+<tr>
+<td><code>b4b3823</code>, <code>cf971f1</code></td>
+<td>25 Oct 13:07, 13:56</td>
+<td>Phase 4: simulation engine and policies, then registered results</td>
+</tr>
+<tr>
+<td><code>7e143a8</code></td>
+<td>25 Oct 13:57</td>
+<td>Phase 5: shelf life, crowd meter, NGO rescue, matching, advisor, live simulation stream</td>
+</tr>
+<tr>
+<td><code>d96b6b3</code></td>
+<td>25 Oct 14:27</td>
+<td>Phase 6: installable PWA with all screens and end-to-end tests</td>
+</tr>
+<tr>
+<td><code>e8f10df</code>, <code>b72c01f</code></td>
+<td>25 Oct 16:30, 16:45</td>
+<td>Phase 7: docs, security headers, verified clean-clone demo</td>
+</tr>
+<tr>
+<td><code>5135bf2</code></td>
+<td>25 Oct 16:49</td>
+<td>Phase 8: final audit and report</td>
+</tr>
+<tr>
+<td><code>2eb42e8</code> + this package</td>
+<td>26 Oct 2026</td>
+<td>Flow-map visualisation in the Simulation Lab; Stage 3 package</td>
+</tr>
+</tbody>
+</table>
+<p>Raw data downloads carry their own fetch timestamps in <code>data/raw/*/MANIFEST.json</code> (24–25 October 2026). Run
+<code>git log --format=&quot;%h %ad %s&quot; --date=iso</code> in the repository to check this table.</p>
+<h2>11. Next steps, from prototype to pilot</h2>
+<ol>
+<li><strong>Interview 10–15 dispatchers, supervisors and NGO coordinators</strong> in the Nagpur and Chandrapur mandis, and test the
+hypotheses the decks tagged as unvalidated.</li>
+<li><strong>Rework the routing objective.</strong> Make the waste-versus-unmet-demand trade-off explicit (or a dispatcher setting),
+pre-register again, and re-run.</li>
+<li><strong>Collect field data</strong> with the operations layer at 2–3 collection centres: handover weights and times, wastage
+reasons, and a few temperature loggers in trucks. This calibrates decay and speeds.</li>
+<li><strong>Get approvals and partners:</strong> APMC consent, NGO agreements and a food-donation legal review, a data-protection
+review, an SMS provider, and a licensed weather source for any commercial use.</li>
+</ol>
+</body></html>

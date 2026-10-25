@@ -41,6 +41,8 @@ screen (DEV AUTH); demo phone numbers are `+910000000001` (farmer) … `+9100000
 | `python tasks.py experiments --set primary\|sensitivity\|exploratory\|all` | Run simulation experiments (primary = pre-registered) |
 | `python tasks.py report` | Regenerate `reports/simulation_report.html` |
 | `python tasks.py load` | (Re)build the demo database from the CSVs (idempotent) |
+| `python tasks.py capture` | Regenerate the submission screenshots in `submission/screenshots/` (isolated stack) |
+| `python tasks.py submission` | Render `submission/SUBMISSION.md` to HTML and PDF (needs Chrome or Edge) |
 
 Postgres/PostGIS: `docker compose up` (see `docker-compose.yml`). **Not tested here** (no Docker on the build machine).
 
@@ -55,6 +57,7 @@ Postgres/PostGIS: `docker compose up` (see `docker-compose.yml`). **Not tested h
 `docs/CONTEXT.md` (the decks) · `DECISIONS.md` (ADRs) · `ASSUMPTIONS.md` · `DATA_SOURCES.md` / `DATA_GAPS.md`
 (generated) · `GRAPH_BUILD.md` · `ARCHITECTURE.md` · `SECURITY.md` · `LIMITATIONS.md` · `COMPLIANCE_TODO.md` ·
 `INTEGRATIONS_TODO.md` · `DEMO_SCRIPT.md` · `PROGRESS.md` · `FINAL_REPORT.md` · data columns in `data/processed/README.md`.
+IMPACT TANK '26 Stage 3 package: `submission/` (SUBMISSION.pdf, diagrams, screenshots, video shot list).
 
 Attribution: road data © OpenStreetMap contributors (ODbL); weather data by Open-Meteo.com (CC BY 4.0); market data
 Agmarknet 2.0 (DMI, MoA&FW). Licence for this repository: **placeholder** (see `LICENSE`; the owner has not chosen one).

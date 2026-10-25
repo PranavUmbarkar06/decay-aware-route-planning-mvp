@@ -1,0 +1,74 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 540" font-family="Segoe UI, Roboto, Helvetica, Arial, sans-serif" fill="#1b2a2f">
+  <defs>
+    <marker id="a" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto">
+      <path d="M0 0L10 5L0 10z" fill="#4a5b61"/>
+    </marker>
+  </defs>
+  <style>
+    .lane{stroke:#c9d6d8}
+    .lab{font-size:13px;font-weight:700}
+    .b{fill:#fff;stroke:#0f8b8d;stroke-width:1.4}
+    .h{font-size:12px;font-weight:700;text-anchor:middle}
+    .s{font-size:11px;text-anchor:middle}
+    .ln{stroke:#4a5b61;stroke-width:1.6;fill:none}
+  </style>
+
+  <!-- lanes -->
+  <rect x="0" y="30" width="1000" height="110" fill="#fbf8ef" class="lane"/>
+  <rect x="0" y="140" width="1000" height="110" fill="#f1f8f8" class="lane"/>
+  <rect x="0" y="250" width="1000" height="110" fill="#fbf1f5" class="lane"/>
+  <rect x="0" y="360" width="1000" height="110" fill="#f3f1fb" class="lane"/>
+  <text x="12" y="20" style="font-size:12px" fill="#4a5b61">One lot of produce, left to right. Module numbers (M1–M7) match the feature list in SUBMISSION.md.</text>
+  <text x="12" y="82" class="lab">Farmer / FPO</text>
+  <text x="12" y="186" class="lab">Collection centre</text><text x="12" y="203" class="lab">or warehouse</text>
+  <text x="12" y="310" class="lab">NGO</text>
+  <text x="12" y="408" class="lab">Dispatcher</text><text x="12" y="425" class="lab">and analyst</text>
+
+  <!-- Farmer: c1 145, c2 288, c3 431 -->
+  <rect x="145" y="54" width="125" height="62" rx="8" class="b"/>
+  <text x="207" y="74" class="h">Register lot</text><text x="207" y="91" class="s">crop · kg · harvest</text><text x="207" y="106" class="s">time (M1)</text>
+  <rect x="288" y="54" width="125" height="62" rx="8" class="b"/>
+  <text x="350" y="74" class="h">QR label + PIN</text><text x="350" y="91" class="s">one-time PIN; locks</text><text x="350" y="106" class="s">and expires</text>
+  <rect x="431" y="54" width="125" height="62" rx="8" class="b"/>
+  <text x="493" y="74" class="h">Hand over</text><text x="493" y="91" class="s">declare weight</text><text x="493" y="106" class="s">and condition</text>
+  <path d="M270 85H286" class="ln" marker-end="url(#a)"/>
+  <path d="M413 85H429" class="ln" marker-end="url(#a)"/>
+  <path d="M493 116V162" class="ln" marker-end="url(#a)"/>
+
+  <!-- Centre: c3 431, c4 574, c5 717 -->
+  <rect x="431" y="164" width="125" height="62" rx="8" class="b"/>
+  <text x="493" y="184" class="h">Scan and confirm</text><text x="493" y="201" class="s">weigh; gap &gt; 2%</text><text x="493" y="216" class="s">→ DISPUTED, not waste</text>
+  <rect x="574" y="164" width="125" height="62" rx="8" class="b"/>
+  <text x="636" y="184" class="h">Shelf-life light</text><text x="636" y="201" class="s">FEFO order, with</text><text x="636" y="216" class="s">explanation (M3)</text>
+  <rect x="717" y="164" width="125" height="62" rx="8" class="b"/>
+  <text x="779" y="184" class="h">Wastage / surplus</text><text x="779" y="201" class="s">1-tap reason, undo (M2)</text><text x="779" y="216" class="s">or offer to NGOs</text>
+  <path d="M556 195H572" class="ln" marker-end="url(#a)"/>
+  <path d="M699 195H715" class="ln" marker-end="url(#a)"/>
+  <path d="M779 226V272" class="ln" marker-end="url(#a)"/>
+
+  <!-- NGO: c5 717, c6 860 -->
+  <rect x="717" y="274" width="125" height="62" rx="8" class="b"/>
+  <text x="779" y="294" class="h">Rescue offer</text><text x="779" y="311" class="s">nearest NGOs that</text><text x="779" y="326" class="s">accept it (M5, M6)</text>
+  <rect x="860" y="274" width="125" height="62" rx="8" class="b"/>
+  <text x="922" y="294" class="h">Claim and pickup</text><text x="922" y="311" class="s">first claim wins; 2-h</text><text x="922" y="326" class="s">timer → kg donated</text>
+  <path d="M842 305H858" class="ln" marker-end="url(#a)"/>
+
+  <!-- Dispatcher: c1 dashed lab, c4 574, c5 717, c6 860 -->
+  <rect x="145" y="384" width="268" height="62" rx="8" fill="#fff" stroke="#7b68c8" stroke-dasharray="5 4"/>
+  <text x="279" y="404" class="h">Simulation Lab (evidence for the policy)</text>
+  <text x="279" y="421" class="s">pre-registered results · replay flow map</text>
+  <text x="279" y="436" class="s">live run of both policies, hour by hour</text>
+  <rect x="574" y="384" width="125" height="62" rx="8" class="b"/>
+  <text x="636" y="404" class="h">Crowd meter</text><text x="636" y="421" class="s">arrivals vs 14-day</text><text x="636" y="436" class="s">median (M4)</text>
+  <rect x="717" y="384" width="125" height="62" rx="8" class="b"/>
+  <text x="779" y="404" class="h">Route advisor</text><text x="779" y="421" class="s">usual vs quality-</text><text x="779" y="436" class="s">aware route (M7)</text>
+  <rect x="860" y="384" width="125" height="62" rx="8" class="b"/>
+  <text x="922" y="404" class="h">Person decides</text><text x="922" y="421" class="s">the app only</text><text x="922" y="436" class="s">recommends</text>
+  <path d="M470 226V415H572" class="ln" marker-end="url(#a)"/>
+  <text x="478" y="300" style="font-size:11px" fill="#4a5b61">confirmed lot</text>
+  <path d="M699 415H715" class="ln" marker-end="url(#a)"/>
+  <path d="M842 415H858" class="ln" marker-end="url(#a)"/>
+
+  <text x="12" y="496" style="font-size:12px">Every handover, wastage entry, claim and pickup is appended to a hash-chained custody log, so edits or deleted history are detectable.</text>
+  <text x="12" y="516" style="font-size:12px">Mass balance is checked on every lot. Handovers made offline are queued on the phone and synced later.</text>
+</svg>

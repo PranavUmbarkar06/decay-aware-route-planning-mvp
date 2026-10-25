@@ -91,7 +91,7 @@ export function NewLot() {
             PIN <b className="font-mono text-2xl tracking-widest" data-testid="lot-pin">{made.pin}</b>
             <div className="text-sm">{t("lot.pinOnce")}</div>
           </div>
-          <div className="text-sm text-muted capitalize">{c.commodity} · {weight(c.initial_qty_kg)} · harvested {ist(c.harvest_time)}</div>
+          <div className="text-sm text-muted"><span className="capitalize">{c.commodity}</span> · {weight(c.initial_qty_kg)} · harvested {ist(c.harvest_time)}</div>
         </div>
         <div className="mt-4 flex flex-wrap gap-2">
           <Button variant="secondary" onClick={() => window.print()}>🖨 {t("lot.print")}</Button>

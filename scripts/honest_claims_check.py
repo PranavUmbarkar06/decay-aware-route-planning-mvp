@@ -10,7 +10,7 @@ import sys
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
-SCAN = [ROOT / "docs", ROOT / "frontend" / "src", ROOT / "backend" / "app", ROOT / "README.md", ROOT / "reports"]
+SCAN = [ROOT / "docs", ROOT / "frontend" / "src", ROOT / "backend" / "app", ROOT / "README.md", ROOT / "reports", ROOT / "submission"]
 EXTS = {".md", ".ts", ".tsx", ".json", ".py", ".html", ".yaml"}
 BANNED = [
     r"reduces? (food )?(waste|wastage|loss(es)?) by",

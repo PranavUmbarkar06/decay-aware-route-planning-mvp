@@ -1,0 +1,120 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 700" font-family="Segoe UI, Roboto, Helvetica, Arial, sans-serif" fill="#1b2a2f">
+  <defs>
+    <marker id="a" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M0 0L10 5L0 10z" fill="#4a5b61"/>
+    </marker>
+  </defs>
+  <style>
+    .t{font-size:15px;font-weight:700}
+    .h{font-size:13px;font-weight:700}
+    .s{font-size:11.5px}
+    .c{font-size:12px;text-anchor:middle}
+    .chip{fill:#fff;stroke:#c9d6d8}
+    .ln{stroke:#4a5b61;stroke-width:1.6;fill:none}
+  </style>
+
+  <!-- 1 sources -->
+  <rect x="20" y="20" width="960" height="112" rx="10" fill="#fff6e0" stroke="#e0b44c"/>
+  <text x="36" y="44" class="t">1 · Public data sources  <tspan class="s" font-weight="400">(licence checked; provenance tag on every row)</tspan></text>
+  <g>
+    <rect x="36" y="58" width="222" height="28" rx="6" class="chip"/><text x="147" y="76" class="c">Agmarknet 2.0 · arrivals (manual CSV)</text>
+    <rect x="268" y="58" width="222" height="28" rx="6" class="chip"/><text x="379" y="76" class="c">OpenStreetMap · Geofabrik .pbf</text>
+    <rect x="500" y="58" width="222" height="28" rx="6" class="chip"/><text x="611" y="76" class="c">Open-Meteo · hourly weather archive</text>
+    <rect x="732" y="58" width="232" height="28" rx="6" class="chip"/><text x="848" y="76" class="c">NABCONS loss table (via PIB)</text>
+    <rect x="36" y="94" width="222" height="28" rx="6" class="chip"/><text x="147" y="112" class="c">FAO 152 temperature curve</text>
+    <rect x="268" y="94" width="222" height="28" rx="6" class="chip"/><text x="379" y="112" class="c">USDA HB66 · UC Davis shelf lives</text>
+    <rect x="500" y="94" width="222" height="28" rx="6" class="chip"/><text x="611" y="112" class="c">Census 2011 populations</text>
+    <rect x="732" y="94" width="232" height="28" rx="6" class="chip"/><text x="848" y="112" class="c">District boundaries</text>
+  </g>
+  <path d="M500 132V156" class="ln" marker-end="url(#a)"/>
+
+  <!-- 2 pipelines -->
+  <rect x="20" y="160" width="960" height="104" rx="10" fill="#eef3f6" stroke="#9fb3bd"/>
+  <text x="36" y="184" class="t">2 · Data pipelines  <tspan class="s" font-weight="400">(Python; cache-first, re-runnable offline from a clean clone)</tspan></text>
+  <rect x="36" y="198" width="150" height="52" rx="6" class="chip"/>
+  <text x="111" y="219" class="c">fetch_* (7 sources)</text><text x="111" y="236" class="c">raw bytes + SHA-256</text>
+  <path d="M188 224H207" class="ln" marker-end="url(#a)"/>
+  <rect x="209" y="198" width="240" height="52" rx="6" class="chip"/>
+  <text x="329" y="219" class="c">osm_extract → build_graph</text><text x="329" y="236" class="c">OSMnx · NetworkX · OD matrix</text>
+  <path d="M451 224H470" class="ln" marker-end="url(#a)"/>
+  <rect x="472" y="198" width="180" height="52" rx="6" class="chip"/>
+  <text x="562" y="219" class="c">data audit</text><text x="562" y="236" class="c">+ honest-claims check</text>
+  <path d="M654 224H673" class="ln" marker-end="url(#a)"/>
+  <rect x="675" y="198" width="289" height="52" rx="6" class="chip"/>
+  <text x="819" y="219" class="c">data/processed/*.csv</text><text x="819" y="236" class="c">nodes · edges · arrivals · weather · refs</text>
+  <path d="M320 264V290" class="ln" marker-end="url(#a)"/>
+  <text x="330" y="282" class="s" fill="#4a5b61">python tasks.py load</text>
+
+  <!-- 3 backend -->
+  <rect x="20" y="294" width="600" height="300" rx="10" fill="#e6f3f3" stroke="#0f8b8d"/>
+  <text x="36" y="318" class="t">3 · Backend  <tspan class="s" font-weight="400">(FastAPI · SQLAlchemy 2 · Alembic)</tspan></text>
+  <g class="s">
+    <rect x="36" y="330" width="276" height="78" rx="6" class="chip"/>
+    <text x="48" y="350" class="h">api/</text>
+    <text x="48" y="368">routes_core: sign-in, M1 lots, M2 handovers</text>
+    <text x="48" y="384">and wastage, offline sync</text>
+    <text x="48" y="400">routes_ops: M3–M7, Simulation Lab, evidence</text>
+
+    <rect x="328" y="330" width="276" height="78" rx="6" class="chip"/>
+    <text x="340" y="350" class="h">services/</text>
+    <text x="340" y="368">custody · wastage · shelf_life · crowd</text>
+    <text x="340" y="384">rescue · matching · advisor</text>
+    <text x="340" y="400">one DB transaction each; optimistic locking</text>
+
+    <rect x="36" y="418" width="276" height="78" rx="6" class="chip"/>
+    <text x="48" y="438" class="h">domain/  (pure Python, property-tested)</text>
+    <text x="48" y="456">invariants: mass balance, non-negative,</text>
+    <text x="48" y="472">single location · hash-chained custody log</text>
+    <text x="48" y="488">PIN logic · decay model</text>
+
+    <rect x="328" y="418" width="276" height="78" rx="6" class="chip"/>
+    <text x="340" y="438" class="h">simulation/</text>
+    <text x="340" y="456">hourly engine on the real road graph</text>
+    <text x="340" y="472">StaticShortestPath vs QualityAwareDynamic</text>
+    <text x="340" y="488">pre-registered runner · HTML report</text>
+
+    <rect x="36" y="506" width="276" height="76" rx="6" class="chip"/>
+    <text x="48" y="526" class="h">core/</text>
+    <text x="48" y="544">strict config · OTP stub · JWT · RBAC</text>
+    <text x="48" y="560">rate limit · business vs security clock</text>
+    <text x="48" y="576">provenance · audit log · JSON logs</text>
+
+    <rect x="328" y="506" width="276" height="76" rx="6" class="chip"/>
+    <text x="340" y="526" class="h">database</text>
+    <text x="340" y="544">SQLite (demo path, tested)</text>
+    <text x="340" y="560">Postgres via docker-compose</text>
+    <text x="340" y="576" fill="#a33">(written, not built or tested)</text>
+  </g>
+
+  <!-- link -->
+  <path d="M622 420H678" class="ln" marker-start="url(#a)" marker-end="url(#a)"/>
+  <text x="650" y="410" class="c" style="font-size:11px">HTTP</text>
+  <text x="650" y="438" class="c" style="font-size:11px">+ SSE</text>
+
+  <!-- 4 frontend -->
+  <rect x="680" y="294" width="300" height="196" rx="10" fill="#f1eefa" stroke="#7b68c8"/>
+  <text x="696" y="318" class="t">4 · Installable PWA</text>
+  <g class="s">
+    <text x="696" y="342">React 19 · Vite · TypeScript · Tailwind</text>
+    <text x="696" y="362">MapLibre maps · flow map of trucks</text>
+    <text x="696" y="382">i18next: English · Hindi · Marathi</text>
+    <text x="696" y="402">IndexedDB queue: handovers work offline</text>
+    <text x="696" y="422">Service worker app shell</text>
+    <text x="696" y="442">QR scan (zxing) · large tap targets</text>
+    <text x="696" y="462">Provenance badge on every number</text>
+  </g>
+  <path d="M830 508V492" class="ln" marker-end="url(#a)"/>
+
+  <!-- users -->
+  <rect x="680" y="510" width="300" height="84" rx="10" fill="#fff" stroke="#9fb3bd" stroke-dasharray="5 4"/>
+  <text x="696" y="534" class="h">Users (7 fictional demo personas)</text>
+  <text x="696" y="554" class="s">Farmer · Collection-centre supervisor</text>
+  <text x="696" y="570" class="s">Warehouse owner · Dispatcher · Driver</text>
+  <text x="696" y="586" class="s">NGO coordinator · Admin / analyst</text>
+
+  <!-- cross-cutting -->
+  <rect x="20" y="612" width="960" height="70" rx="10" fill="#f7f7f5" stroke="#c9d6d8"/>
+  <text x="36" y="636" class="h">Cross-cutting</text>
+  <text x="36" y="656" class="s">Provenance travels with every datum (REAL_FETCHED · REAL_DERIVED · USER_ENTERED · ASSUMPTION · SYNTHETIC_DEMO) · CSP and security headers · /healthz, /readyz</text>
+  <text x="36" y="673" class="s">Tests: 105 pytest (incl. Hypothesis property tests) · 6 Vitest · 10 Playwright end-to-end on a Pixel 7 profile · one-command task runner (tasks.py)</text>
+</svg>

@@ -227,6 +227,15 @@ function Replay() {
     }
     stats[pol] = st;
   }
+  const busiest = () => {
+    let best = 0, bestN = -1;
+    for (let t = 0; t < n; t++) {
+      const c = POLS.reduce((acc, pol) => acc + data[pol].ticks[t].slice(1).filter((x: any) => x[3] === "transit").length, 0);
+      if (c > bestN) { bestN = c; best = t; }
+    }
+    setPlaying(false);
+    setTick(best);
+  };
   const start = data.StaticShortestPath.start as string;
   const when = new Date(new Date(`${start}T00:00:00Z`).getTime() + tick * 3600e3);
   const top = (pol: string) => Object.entries(stats[pol].byDest).sort((a, b) => b[1] - a[1]).slice(0, 3)
@@ -244,6 +253,7 @@ function Replay() {
           </label>
         ))}
         <Button variant="secondary" onClick={() => setPlaying(!playing)} data-testid="replay-play">{playing ? "⏸ Pause" : "▶ Play"}</Button>
+        <Button variant="secondary" onClick={busiest} data-testid="replay-busiest">⏩ Busiest hour</Button>
         <select aria-label="Playback speed" className="tap rounded-xl border border-line bg-surface-2 px-2 text-sm" value={speed}
           onChange={(e) => setSpeed(+e.target.value)}>
           <option value={500}>Slow</option><option value={250}>Normal</option><option value={80}>Fast</option>
@@ -284,7 +294,7 @@ function Live() {
     abort.current?.abort();
     const ac = new AbortController();
     abort.current = ac;
-    setHead(null); setTicks([]); setEnd(null); setErr(null); setRunning(true);
+    setHead(null); setTicks([]); setEnd(null); setErr(null); setRunning(true); setView(null);
     try {
       await streamEvents(`/sim/live?start=${start}&days=${days}&seed=${seed}&pace_ms=40`, (e) => {
         if (e.type === "start") setHead(e);
@@ -293,7 +303,13 @@ function Live() {
       }, ac.signal);
     } catch (e) { if ((e as Error).name !== "AbortError") setErr(e); } finally { setRunning(false); }
   }
-  const last = ticks[ticks.length - 1];
+  const [view, setView] = useState<number | null>(null);      // null = follow the latest hour
+  const last = view !== null && ticks[view] ? ticks[view] : ticks[ticks.length - 1];
+  const busiestLive = () => {
+    let best = 0, bestN = -1;
+    ticks.forEach((t, i) => { const c = t.baseline_trucks.length + t.proposed_trucks.length; if (c > bestN) { bestN = c; best = i; } });
+    setView(best);
+  };
   const series = useMemo(() => [
     { key: "b", label: "Baseline: static", color: "series-1" as const, points: ticks.map((t) => ({ x: t.tick, y: t.baseline.wastage_rate })) },
     { key: "p", label: "Proposed: quality-aware", color: "series-2" as const, points: ticks.map((t) => ({ x: t.tick, y: t.proposed.wastage_rate })) },
@@ -344,6 +360,16 @@ function Live() {
           <Card><LineChart title="Unmet-demand rate (closed market days)" series={unmet} xLabel="hour" /></Card>
           <MapView height={420} dots={dots} flows={flows} points={points} cluster={false} showRoads />
           <FlowLegend />
+          <div className="flex flex-wrap items-center gap-2">
+            <label htmlFor="live-scrub" className="text-sm font-semibold">
+              {view === null ? "Following the latest hour" : `Viewing hour ${view}`} · {new Date(last.time_utc + "Z").toLocaleString("en-IN",
+                { timeZone: "Asia/Kolkata", weekday: "short", day: "numeric", month: "short", hour: "2-digit", minute: "2-digit" })} IST
+            </label>
+            <Button variant="secondary" onClick={busiestLive} data-testid="live-busiest">⏩ Busiest hour</Button>
+            {view !== null ? <Button variant="ghost" onClick={() => setView(null)}>Follow latest</Button> : null}
+          </div>
+          <input id="live-scrub" type="range" className="big" min={0} max={Math.max(0, ticks.length - 1)}
+            value={view ?? ticks.length - 1} onChange={(e) => setView(+e.target.value)} />
           <p className="text-xs text-muted">Hour {last.tick} of {head?.ticks}. Blue = baseline trucks, orange = proposed trucks. Mass balance error this hour: {Math.abs(last.baseline.balance_error_kg).toExponential(1)} / {Math.abs(last.proposed.balance_error_kg).toExponential(1)} kg. {SIM_LABEL}.</p>
         </>
       ) : running ? <Loading /> : null}

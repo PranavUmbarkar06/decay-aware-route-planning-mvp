@@ -4,7 +4,7 @@ import react from "@vitejs/plugin-react";
 import tailwindcss from "@tailwindcss/vite";
 import { VitePWA } from "vite-plugin-pwa";
 
-const API = (globalThis as any).process?.env?.PHL_API ?? "http://localhost:8000";
+const API = (globalThis as { process?: { env?: Record<string, string | undefined> } }).process?.env?.PHL_API ?? "http://localhost:8000";
 
 export default defineConfig({
   plugins: [
