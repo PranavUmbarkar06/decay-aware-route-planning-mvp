@@ -1,0 +1,60 @@
+{
+  "entries": [
+    {
+      "bytes": 374,
+      "fetched_at_utc": "2026-10-25T06:18:37Z",
+      "file": "Daily Price Arrival Report-25-10-2026 to 25-10-2026 for Maharashtra.csv",
+      "http_status": null,
+      "manifest_id": "agmarknet_manual_exports:b58dae521eec",
+      "method": "GET",
+      "original_path": "inputs/Daily Price Arrival Report-25-10-2026 to 25-10-2026 for Maharashtra.csv",
+      "params": {},
+      "retrieval": "manual_export",
+      "sha256": "b58dae521eec6663fe394305a3772a34d72239abb8b6b4532e04352f2765a7be",
+      "url": "manual download from https://agmarknet.gov.in/daily-price-and-arrival-report"
+    },
+    {
+      "bytes": 189264,
+      "fetched_at_utc": "2026-10-25T06:18:37Z",
+      "file": "onion.csv",
+      "http_status": null,
+      "manifest_id": "agmarknet_manual_exports:3f9f69e7580d",
+      "method": "GET",
+      "original_path": "inputs/onion.csv",
+      "params": {},
+      "retrieval": "manual_export",
+      "sha256": "3f9f69e7580dbc774f04e62c959508f757ececb843cac8838ee939b89d956992",
+      "url": "manual download from https://agmarknet.gov.in/daily-price-and-arrival-report"
+    },
+    {
+      "bytes": 159843,
+      "fetched_at_utc": "2026-10-25T06:18:37Z",
+      "file": "potato.csv",
+      "http_status": null,
+      "manifest_id": "agmarknet_manual_exports:a73ea08bd29a",
+      "method": "GET",
+      "original_path": "inputs/potato.csv",
+      "params": {},
+      "retrieval": "manual_export",
+      "sha256": "a73ea08bd29a14ea535b0190436ca1dd72c9ba8babd0cfd0516a16a3b1a8b243",
+      "url": "manual download from https://agmarknet.gov.in/daily-price-and-arrival-report"
+    },
+    {
+      "bytes": 236548,
+      "fetched_at_utc": "2026-10-25T06:18:37Z",
+      "file": "tomato.csv",
+      "http_status": null,
+      "manifest_id": "agmarknet_manual_exports:f18dfb5890c1",
+      "method": "GET",
+      "original_path": "inputs/tomato.csv",
+      "params": {},
+      "retrieval": "manual_export",
+      "sha256": "f18dfb5890c1aad9ef676462cd7504cdfd964d88380b233741fa959a6fda9264",
+      "url": "manual download from https://agmarknet.gov.in/daily-price-and-arrival-report"
+    }
+  ],
+  "licence": "UNVERIFIED: no explicit data licence found on agmarknet.gov.in; Government of India portal. robots.txt (fetched) allows '/', disallows auth/admin paths. Treat as attribution-required.",
+  "notes": "Daily Price and Arrival Report CSVs downloaded by the project owner from agmarknet.gov.in (captcha solved by a human).",
+  "source": "agmarknet_manual_exports",
+  "terms_url": "https://agmarknet.gov.in/robots.txt"
+}

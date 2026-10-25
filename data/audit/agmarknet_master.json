@@ -17,7 +17,7 @@
   ],
   "rate_limits": "none published; pipeline uses ≥2 s between calls and caches",
   "freshness": "master list as of fetch date",
-  "known_problems": "Names are market labels, not coordinates; 'APMC X' labels must be geocoded (Phase 2). Includes private markets (e.g. 'M/S … Pvt Ltd'). Endpoint undocumented → may change.",
+  "known_problems": "Names are market labels, not coordinates; must be geocoded (Phase 2). Includes private markets (e.g. 'M/S … Pvt Ltd'). Endpoint undocumented → may change.",
   "flags": [
     "UNDOCUMENTED_API",
     "LICENCE_UNVERIFIED"

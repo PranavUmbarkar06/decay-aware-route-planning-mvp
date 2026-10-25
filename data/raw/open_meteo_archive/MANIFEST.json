@@ -1,0 +1,122 @@
+{
+  "entries": [
+    {
+      "bytes": 270703,
+      "fetched_at_utc": "2026-10-25T06:19:35Z",
+      "file": "bhandara_20251101_20261018.json",
+      "http_status": 200,
+      "manifest_id": "open_meteo_archive:7ca4f5f77b1c",
+      "method": "GET",
+      "params": {
+        "end_date": "2026-10-18",
+        "hourly": "temperature_2m,relative_humidity_2m,precipitation",
+        "latitude": 21.1226,
+        "longitude": 79.7945,
+        "start_date": "2025-11-01",
+        "timezone": "UTC"
+      },
+      "retrieval": "pipeline_http",
+      "sha256": "7ca4f5f77b1c561ad35c0b45e88ba6e67361129eb46adf0eeee020306f0a3aeb",
+      "url": "https://archive-api.open-meteo.com/v1/archive?latitude=21.1226&longitude=79.7945&start_date=2025-11-01&end_date=2026-10-18&hourly=temperature_2m%2Crelative_humidity_2m%2Cprecipitation&timezone=UTC"
+    },
+    {
+      "bytes": 270700,
+      "fetched_at_utc": "2026-10-25T06:19:38Z",
+      "file": "chandrapur_20251101_20261018.json",
+      "http_status": 200,
+      "manifest_id": "open_meteo_archive:0f9144aa30fc",
+      "method": "GET",
+      "params": {
+        "end_date": "2026-10-18",
+        "hourly": "temperature_2m,relative_humidity_2m,precipitation",
+        "latitude": 20.0968,
+        "longitude": 79.5045,
+        "start_date": "2025-11-01",
+        "timezone": "UTC"
+      },
+      "retrieval": "pipeline_http",
+      "sha256": "0f9144aa30fc1befe8f7def14deabc237c5592dedaad94b30015fd75b9dd1cd3",
+      "url": "https://archive-api.open-meteo.com/v1/archive?latitude=20.0968&longitude=79.5045&start_date=2025-11-01&end_date=2026-10-18&hourly=temperature_2m%2Crelative_humidity_2m%2Cprecipitation&timezone=UTC"
+    },
+    {
+      "bytes": 270721,
+      "fetched_at_utc": "2026-10-25T06:19:41Z",
+      "file": "gadchiroli_20251101_20261018.json",
+      "http_status": 200,
+      "manifest_id": "open_meteo_archive:74521ca9a394",
+      "method": "GET",
+      "params": {
+        "end_date": "2026-10-18",
+        "hourly": "temperature_2m,relative_humidity_2m,precipitation",
+        "latitude": 19.7591,
+        "longitude": 80.1623,
+        "start_date": "2025-11-01",
+        "timezone": "UTC"
+      },
+      "retrieval": "pipeline_http",
+      "sha256": "74521ca9a3940c2994e93033ca18a5afe3f9a00e12dd1518dfbda2b0a1b1d7fe",
+      "url": "https://archive-api.open-meteo.com/v1/archive?latitude=19.7591&longitude=80.1623&start_date=2025-11-01&end_date=2026-10-18&hourly=temperature_2m%2Crelative_humidity_2m%2Cprecipitation&timezone=UTC"
+    },
+    {
+      "bytes": 270728,
+      "fetched_at_utc": "2026-10-25T06:19:44Z",
+      "file": "gondia_20251101_20261018.json",
+      "http_status": 200,
+      "manifest_id": "open_meteo_archive:01771eae7f0a",
+      "method": "GET",
+      "params": {
+        "end_date": "2026-10-18",
+        "hourly": "temperature_2m,relative_humidity_2m,precipitation",
+        "latitude": 21.1456,
+        "longitude": 80.2684,
+        "start_date": "2025-11-01",
+        "timezone": "UTC"
+      },
+      "retrieval": "pipeline_http",
+      "sha256": "01771eae7f0a532370af252ad1fe04ee0091a8501a510cf2c77d1a4b462134f6",
+      "url": "https://archive-api.open-meteo.com/v1/archive?latitude=21.1456&longitude=80.2684&start_date=2025-11-01&end_date=2026-10-18&hourly=temperature_2m%2Crelative_humidity_2m%2Cprecipitation&timezone=UTC"
+    },
+    {
+      "bytes": 270691,
+      "fetched_at_utc": "2026-10-25T06:19:47Z",
+      "file": "nagpur_20251101_20261018.json",
+      "http_status": 200,
+      "manifest_id": "open_meteo_archive:e4d42bf0a114",
+      "method": "GET",
+      "params": {
+        "end_date": "2026-10-18",
+        "hourly": "temperature_2m,relative_humidity_2m,precipitation",
+        "latitude": 21.153,
+        "longitude": 79.0145,
+        "start_date": "2025-11-01",
+        "timezone": "UTC"
+      },
+      "retrieval": "pipeline_http",
+      "sha256": "e4d42bf0a1147ecff6dcca38c60313a78087bbe09ad9ff6bdceaf396258aa939",
+      "url": "https://archive-api.open-meteo.com/v1/archive?latitude=21.153&longitude=79.0145&start_date=2025-11-01&end_date=2026-10-18&hourly=temperature_2m%2Crelative_humidity_2m%2Cprecipitation&timezone=UTC"
+    },
+    {
+      "bytes": 270692,
+      "fetched_at_utc": "2026-10-25T06:19:50Z",
+      "file": "wardha_20251101_20261018.json",
+      "http_status": 200,
+      "manifest_id": "open_meteo_archive:6ac68c038676",
+      "method": "GET",
+      "params": {
+        "end_date": "2026-10-18",
+        "hourly": "temperature_2m,relative_humidity_2m,precipitation",
+        "latitude": 20.8256,
+        "longitude": 78.6131,
+        "start_date": "2025-11-01",
+        "timezone": "UTC"
+      },
+      "retrieval": "pipeline_http",
+      "sha256": "6ac68c03867607d48330a413a9f4addecf2ac52cd33cbe5f564021d619418a60",
+      "url": "https://archive-api.open-meteo.com/v1/archive?latitude=20.8256&longitude=78.6131&start_date=2025-11-01&end_date=2026-10-18&hourly=temperature_2m%2Crelative_humidity_2m%2Cprecipitation&timezone=UTC"
+    }
+  ],
+  "licence": "CC BY 4.0 (data). Free API: non-commercial use only (terms read 2026-10-24).",
+  "notes": "Owner confirmed non-commercial research use on 2026-10-25 (ADR-008). Attribution: 'Weather data by Open-Meteo.com'.",
+  "source": "open_meteo_archive",
+  "terms_url": "https://open-meteo.com/en/terms"
+}

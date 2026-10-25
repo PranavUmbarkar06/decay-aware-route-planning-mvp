@@ -1,0 +1,26 @@
+{
+  "need": "Weather replay (temperature, humidity, precipitation) for decay and delay modelling",
+  "source_name": "Open-Meteo historical weather archive API",
+  "status": "AVAILABLE",
+  "access": "HTTP GET JSON",
+  "auth": "none",
+  "licence": "CC BY 4.0 (data). Free API: non-commercial use only (terms read 2026-10-24).",
+  "coverage": "6/6 district points, hourly 2025-11-01..2026-10-18 UTC, vars ['temperature_2m', 'relative_humidity_2m', 'precipitation']; Bhandara: grid snap 3997 m, missing {\"precipitation\": 0, \"relative_humidity_2m\": 0, \"temperature_2m\": 0}; Chandrapur: grid snap 5550 m, missing {\"precipitation\": 0, \"relative_humidity_2m\": 0, \"temperature_2m\": 0}; Gadchiroli: grid snap 4772 m, missing {\"precipitation\": 0, \"relative_humidity_2m\": 0, \"temperature_2m\": 0}; Gondia: grid snap 4436 m, missing {\"precipitation\": 0, \"relative_humidity_2m\": 0, \"temperature_2m\": 0}; Nagpur: grid snap 3289 m, missing {\"precipitation\": 0, \"relative_humidity_2m\": 0, \"temperature_2m\": 0}; Wardha: grid snap 1991 m, missing {\"precipitation\": 0, \"relative_humidity_2m\": 0, \"temperature_2m\": 0}",
+  "tried": [
+    "GET https://archive-api.open-meteo.com/v1/archive per district point"
+  ],
+  "why_failed": "",
+  "fallback": "If missing: simulation runs with a constant-temperature ASSUMPTION and every output carries a warning.",
+  "urls": [
+    "https://archive-api.open-meteo.com/v1/archive",
+    "https://open-meteo.com/en/terms"
+  ],
+  "rate_limits": "free tier: <10,000/day, 5,000/hour, 600/min",
+  "freshness": "archive end date 2026-10-18 (run date minus 7 days)",
+  "known_problems": "Reanalysis grid values (not station observations). One point per district stands in for the whole district; road-level microclimate and in-truck temperature are not observed.",
+  "flags": [
+    "NON_COMMERCIAL_FREE_TIER",
+    "ATTRIBUTION_REQUIRED",
+    "OWNER_CONFIRMED_NON_COMMERCIAL_2026-10-25"
+  ]
+}

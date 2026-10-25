@@ -44,8 +44,15 @@ project brief (Section 4) and open to override by the project owner. Status valu
   modelled ASSUMPTION input and never shown as observed traffic.
 
 ## ADR-008 Weather (D8): Accepted
-- **Decision:** Open-Meteo historical archive replay for simulation; a forecast adapter interface with a
-  stub. The licence and terms were fetched in Phase 1; see DATA_SOURCES.md for what they say.
+- **Decision:** Open-Meteo historical archive replay (`archive-api.open-meteo.com/v1/archive`) for
+  simulation; a forecast adapter interface with a stub.
+- **Terms (read 2026-10-24 at https://open-meteo.com/en/terms):** the free API is for non-commercial use
+  only (limits: <10,000 calls/day, 5,000/hour, 600/min); data is licensed CC BY 4.0, so attribution is required.
+- **Owner confirmation (2026-10-25):** the project owner confirmed this is a non-commercial research
+  project, so the free API is used. Attribution "Weather data by Open-Meteo.com (CC BY 4.0)" is shown
+  wherever weather-derived values appear.
+- **Revisit trigger:** any commercial use (subscriptions, advertising, paid pilots) needs an Open-Meteo
+  paid plan or another source before launch.
 
 ## ADR-009 ML (D9): Accepted
 - **Decision:** rules/physics first (Q10-form decay). An optional gradient-boosted surrogate trained on
