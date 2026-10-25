@@ -1,0 +1,278 @@
+osm_id,category,name,tags,lat,lon,provenance,source_manifest_id
+node/10807047407,MarketplaceCandidate,Maharshi Vidya Mandir,amenity=school;name=Maharshi Vidya Mandir,20.691575,78.611405,REAL_FETCHED,geofabrik_india_western_zone:1c3d262031db
+node/10807063663,MarketplaceCandidate,Hanuman Mandir,amenity=place_of_worship;name=Hanuman Mandir,20.749927,78.592570,REAL_FETCHED,geofabrik_india_western_zone:1c3d262031db
+node/10807063664,MarketplaceCandidate,Hanuman Mandir,amenity=place_of_worship;name=Hanuman Mandir,20.749112,78.592018,REAL_FETCHED,geofabrik_india_western_zone:1c3d262031db
+node/10960922641,MarketplaceCandidate,Hanuman mandir,amenity=place_of_worship;name=Hanuman mandir,21.277037,79.379477,REAL_FETCHED,geofabrik_india_western_zone:1c3d262031db
+node/10960956875,MarketplaceCandidate,Hanuman mandir,amenity=place_of_worship;name=Hanuman mandir,21.265738,79.405030,REAL_FETCHED,geofabrik_india_western_zone:1c3d262031db
+node/11575936063,MarketplaceCandidate,Hanuman Mandir,addr:city=Nagpur;amenity=place_of_worship;name=Hanuman Mandir,21.183123,79.035211,REAL_FETCHED,geofabrik_india_western_zone:1c3d262031db
+node/11575989673,MarketplaceCandidate,Shri Navdurga Jagrut Mandir,addr:city=Nagpur;amenity=place_of_worship;name=Shri Navdurga Jagrut Mandir,21.177658,79.035843,REAL_FETCHED,geofabrik_india_western_zone:1c3d262031db
+node/11830210385,MarketplaceCandidate,Shiv Mandir,amenity=place_of_worship;name=Shiv Mandir,21.135019,79.105721,REAL_FETCHED,geofabrik_india_western_zone:1c3d262031db
+node/11911513290,MarketplaceCandidate,Hanuman Mandir,addr:city=Nagpur;amenity=place_of_worship;name=Hanuman Mandir,21.146914,79.098578,REAL_FETCHED,geofabrik_india_western_zone:1c3d262031db
+node/12017327354,MarketplaceCandidate,Hanuman Mandir,addr:city=Nagpur;addr:district=Nagpur;amenity=place_of_worship;name=Hanuman Mandir,21.088425,79.090456,REAL_FETCHED,geofabrik_india_western_zone:1c3d262031db
+node/12110274834,MarketplaceCandidate,Shri Chaityaneshwar Shiv Mandir,amenity=place_of_worship;name=Shri Chaityaneshwar Shiv Mandir,21.035918,79.610042,REAL_FETCHED,geofabrik_india_western_zone:1c3d262031db
+node/12270214058,MarketplaceCandidate,"Hanuman Mandir, Nehru Ward","addr:city=warthi;addr:district=Bhandara;amenity=place_of_worship;name=Hanuman Mandir, Nehru Ward",21.239793,79.646405,REAL_FETCHED,geofabrik_india_western_zone:1c3d262031db
+node/12545947528,MarketplaceCandidate,Nag mandir,name=Nag mandir,21.113063,79.114190,REAL_FETCHED,geofabrik_india_western_zone:1c3d262031db
+node/12595605892,MarketplaceCandidate,mahadev mandir,amenity=place_of_worship;name=mahadev mandir,20.742161,78.602153,REAL_FETCHED,geofabrik_india_western_zone:1c3d262031db
+node/12595766655,MarketplaceCandidate,Maruti Mandir,amenity=place_of_worship;name=Maruti Mandir,20.739136,78.601022,REAL_FETCHED,geofabrik_india_western_zone:1c3d262031db
+node/12596235603,MarketplaceCandidate,samajmandir,amenity=place_of_worship;name=samajmandir,21.184420,79.126096,REAL_FETCHED,geofabrik_india_western_zone:1c3d262031db
+node/12680148911,MarketplaceCandidate,Ram Mandir Devasthan - Wardha,addr:city=Wardha;addr:district=Wardha;amenity=place_of_worship;name=Ram Mandir Devasthan - Wardha,20.740697,78.601679,REAL_FETCHED,geofabrik_india_western_zone:1c3d262031db
+node/12680149825,MarketplaceCandidate,Nag Mandir,addr:city=Wardha;addr:district=Wardha;amenity=place_of_worship;name=Nag Mandir,20.740727,78.603133,REAL_FETCHED,geofabrik_india_western_zone:1c3d262031db
+node/13136484074,MarketplaceCandidate,Shītalā Mātā Mandir,amenity=place_of_worship;name=Shītalā Mātā Mandir,21.118967,79.036271,REAL_FETCHED,geofabrik_india_western_zone:1c3d262031db
+node/13136527335,MarketplaceCandidate,Hanumān Mandir,amenity=place_of_worship;name=Hanumān Mandir,21.119247,79.036714,REAL_FETCHED,geofabrik_india_western_zone:1c3d262031db
+node/13359212632,MarketplaceCandidate,Hanuman Mandir,amenity=place_of_worship;name=Hanuman Mandir,20.845628,78.832474,REAL_FETCHED,geofabrik_india_western_zone:1c3d262031db
+node/13508516678,MarketplaceCandidate,Gilgaon Bazar,addr:city=Gilgaon;addr:district=Gadchiroli;amenity=marketplace;building=retail;name=Gilgaon Bazar;name:mr=गिलगाव बाजार;operator=Nagesh Thakur,20.258015,80.151107,REAL_FETCHED,geofabrik_india_western_zone:1c3d262031db
+node/13686160362,MarketplaceCandidate,Hanuman Mandir,amenity=place_of_worship;name=Hanuman Mandir,21.235023,78.914605,REAL_FETCHED,geofabrik_india_western_zone:1c3d262031db
+node/13686160388,MarketplaceCandidate,Sunday Vegetable Market,amenity=marketplace;name=Sunday Vegetable Market,21.230851,78.922960,REAL_FETCHED,geofabrik_india_western_zone:1c3d262031db
+node/13686163503,MarketplaceCandidate,Shri Krushna Mandir,amenity=place_of_worship;name=Shri Krushna Mandir,21.261595,78.907317,REAL_FETCHED,geofabrik_india_western_zone:1c3d262031db
+node/13686163510,MarketplaceCandidate,Adasa Mandir Road,name=Adasa Mandir Road,21.311748,78.916813,REAL_FETCHED,geofabrik_india_western_zone:1c3d262031db
+node/2533242617,MarketplaceCandidate,Aychit Mandir,amenity=place_of_worship;name=Aychit Mandir,21.148567,79.110502,REAL_FETCHED,geofabrik_india_western_zone:1c3d262031db
+node/2533246647,MarketplaceCandidate,Aychit Mandir Bus Stop,name=Aychit Mandir Bus Stop,21.146849,79.112713,REAL_FETCHED,geofabrik_india_western_zone:1c3d262031db
+node/2533248063,MarketplaceCandidate,Kalyaneshwar Shiv Mandir,amenity=place_of_worship;name=Kalyaneshwar Shiv Mandir,21.144457,79.108157,REAL_FETCHED,geofabrik_india_western_zone:1c3d262031db
+node/2533465787,MarketplaceCandidate,Bhure Ganesh Mandir,amenity=place_of_worship;name=Bhure Ganesh Mandir;name:mr=भूरे गणपती मंदिर,21.146351,79.109981,REAL_FETCHED,geofabrik_india_western_zone:1c3d262031db
+node/2533487500,MarketplaceCandidate,Ganesh Mandir,amenity=place_of_worship;name=Ganesh Mandir,21.144807,79.101245,REAL_FETCHED,geofabrik_india_western_zone:1c3d262031db
+node/2533487502,MarketplaceCandidate,Datta Mandir,amenity=place_of_worship;name=Datta Mandir,21.144114,79.099606,REAL_FETCHED,geofabrik_india_western_zone:1c3d262031db
+node/2533487504,MarketplaceCandidate,Zulelal Mandir,amenity=place_of_worship;name=Zulelal Mandir,21.144383,79.099795,REAL_FETCHED,geofabrik_india_western_zone:1c3d262031db
+node/2533491221,MarketplaceCandidate,AgyaramDevi Mandir,amenity=place_of_worship;name=AgyaramDevi Mandir,21.143763,79.095533,REAL_FETCHED,geofabrik_india_western_zone:1c3d262031db
+node/2533505916,MarketplaceCandidate,Kalbhairav Mandir,amenity=place_of_worship;name=Kalbhairav Mandir,21.145917,79.108158,REAL_FETCHED,geofabrik_india_western_zone:1c3d262031db
+node/2533515564,MarketplaceCandidate,Renuka Devi Mandir,amenity=place_of_worship;name=Renuka Devi Mandir,21.149438,79.109758,REAL_FETCHED,geofabrik_india_western_zone:1c3d262031db
+node/2536745916,MarketplaceCandidate,Devi Mandir,amenity=place_of_worship;name=Devi Mandir,21.148004,79.108631,REAL_FETCHED,geofabrik_india_western_zone:1c3d262031db
+node/2565940430,MarketplaceCandidate,Shiv Mandir,amenity=place_of_worship;name=Shiv Mandir,21.109222,79.047399,REAL_FETCHED,geofabrik_india_western_zone:1c3d262031db
+node/2566007304,MarketplaceCandidate,Bal Mandir Secondary School (Paranjape School),addr:city=Nagpur;amenity=school;name=Bal Mandir Secondary School (Paranjape School),21.127589,79.061590,REAL_FETCHED,geofabrik_india_western_zone:1c3d262031db
+node/2593308386,MarketplaceCandidate,Hanuman Mandir,amenity=place_of_worship;name=Hanuman Mandir,21.111635,79.105931,REAL_FETCHED,geofabrik_india_western_zone:1c3d262031db
+node/2593309188,MarketplaceCandidate,Sai Mandir,amenity=place_of_worship;name=Sai Mandir,21.112232,79.108083,REAL_FETCHED,geofabrik_india_western_zone:1c3d262031db
+node/2593309194,MarketplaceCandidate,Durga Mandir,amenity=place_of_worship;name=Durga Mandir,21.111590,79.103149,REAL_FETCHED,geofabrik_india_western_zone:1c3d262031db
+node/2593309195,MarketplaceCandidate,Ladikar Ram Mandir,amenity=place_of_worship;name=Ladikar Ram Mandir,21.110869,79.104531,REAL_FETCHED,geofabrik_india_western_zone:1c3d262031db
+node/2593310014,MarketplaceCandidate,Hanuman Mandir,amenity=place_of_worship;name=Hanuman Mandir,21.119127,79.110419,REAL_FETCHED,geofabrik_india_western_zone:1c3d262031db
+node/2593310015,MarketplaceCandidate,Sri Krishna Mandir,amenity=place_of_worship;name=Sri Krishna Mandir,21.121020,79.111126,REAL_FETCHED,geofabrik_india_western_zone:1c3d262031db
+node/2951971406,MarketplaceCandidate,Gajanan Maharaj Mandir,amenity=place_of_worship;name=Gajanan Maharaj Mandir,21.111708,79.039891,REAL_FETCHED,geofabrik_india_western_zone:1c3d262031db
+node/3073142553,MarketplaceCandidate,Nyay Mandir,amenity=courthouse;name=Nyay Mandir,21.153433,79.074056,REAL_FETCHED,geofabrik_india_western_zone:1c3d262031db
+node/3148664957,MarketplaceCandidate,Bhavan's Bhagwandas Purohit Vidya Mandir,addr:city=Nagpur;addr:district=Nagpur;amenity=school;name=Bhavan's Bhagwandas Purohit Vidya Mandir,21.131399,79.134526,REAL_FETCHED,geofabrik_india_western_zone:1c3d262031db
+node/3153704604,MarketplaceCandidate,Telenkhedi Hanuman Mandir,addr:city=Nagpur;amenity=place_of_worship;name=Telenkhedi Hanuman Mandir,21.158444,79.048904,REAL_FETCHED,geofabrik_india_western_zone:1c3d262031db
+node/3158833234,MarketplaceCandidate,Shree Durga Mata Mandir,addr:city=Nagpur;amenity=place_of_worship;name=Shree Durga Mata Mandir,21.145306,79.088179,REAL_FETCHED,geofabrik_india_western_zone:1c3d262031db
+node/3158840162,MarketplaceCandidate,Tekdi Ganesh Mandir,addr:city=Nagpur;amenity=place_of_worship;name=Tekdi Ganesh Mandir,21.148203,79.087022,REAL_FETCHED,geofabrik_india_western_zone:1c3d262031db
+node/3354091715,MarketplaceCandidate,RAM MANDIR SASTI,name=RAM MANDIR SASTI,19.833491,79.332841,REAL_FETCHED,geofabrik_india_western_zone:1c3d262031db
+node/3354091716,MarketplaceCandidate,SHIV MANDIR,name=SHIV MANDIR,19.793222,79.348956,REAL_FETCHED,geofabrik_india_western_zone:1c3d262031db
+node/3660439205,MarketplaceCandidate,Vegitable Market,amenity=marketplace;name=Vegitable Market,20.735041,78.597535,REAL_FETCHED,geofabrik_india_western_zone:1c3d262031db
+node/3953376459,MarketplaceCandidate,Dhumreshwar Mandir,amenity=place_of_worship;name=Dhumreshwar Mandir,21.395887,79.331035,REAL_FETCHED,geofabrik_india_western_zone:1c3d262031db
+node/3968662060,MarketplaceCandidate,Kali Mata Mandir,amenity=place_of_worship;name=Kali Mata Mandir,21.131161,79.079496,REAL_FETCHED,geofabrik_india_western_zone:1c3d262031db
+node/3968821570,MarketplaceCandidate,Sarveshwar Mandir,amenity=place_of_worship;name=Sarveshwar Mandir,21.117456,79.113869,REAL_FETCHED,geofabrik_india_western_zone:1c3d262031db
+node/3993331271,MarketplaceCandidate,Shree Hanuman Shiv Panchayat Mandir,amenity=place_of_worship;name=Shree Hanuman Shiv Panchayat Mandir,21.225584,79.234080,REAL_FETCHED,geofabrik_india_western_zone:1c3d262031db
+node/4011498589,MarketplaceCandidate,Hanuman Mandir,amenity=place_of_worship;name=Hanuman Mandir,20.766282,78.596197,REAL_FETCHED,geofabrik_india_western_zone:1c3d262031db
+node/4011498590,MarketplaceCandidate,Shiv Mandir;Shree Ram Mandir,amenity=place_of_worship;name=Shiv Mandir;Shree Ram Mandir,20.766146,78.596039,REAL_FETCHED,geofabrik_india_western_zone:1c3d262031db
+node/4011498591,MarketplaceCandidate,Shree Durga Mata Mandir,amenity=place_of_worship;name=Shree Durga Mata Mandir,20.766206,78.596054,REAL_FETCHED,geofabrik_india_western_zone:1c3d262031db
+node/4036601900,MarketplaceCandidate,Shree Bharat-Ram Mandir,amenity=place_of_worship;name=Shree Bharat-Ram Mandir,20.786250,78.667314,REAL_FETCHED,geofabrik_india_western_zone:1c3d262031db
+node/4040158615,MarketplaceCandidate,Shwetambar Jain Mandir,amenity=place_of_worship;name=Shwetambar Jain Mandir,20.737630,78.601032,REAL_FETCHED,geofabrik_india_western_zone:1c3d262031db
+node/4347305597,MarketplaceCandidate,Maharshee vidya mandir,amenity=school;name=Maharshee vidya mandir,19.957786,79.269130,REAL_FETCHED,geofabrik_india_western_zone:1c3d262031db
+node/4353467889,MarketplaceCandidate,Shri Hanuman Mandir,amenity=place_of_worship;name=Shri Hanuman Mandir,21.123476,79.104607,REAL_FETCHED,geofabrik_india_western_zone:1c3d262031db
+node/4353877003,MarketplaceCandidate,Shri Nag Mandir,amenity=place_of_worship;name=Shri Nag Mandir,21.113276,79.114092,REAL_FETCHED,geofabrik_india_western_zone:1c3d262031db
+node/4367927561,MarketplaceCandidate,Jagannath Mandir,amenity=place_of_worship;name=Jagannath Mandir,21.011121,79.185983,REAL_FETCHED,geofabrik_india_western_zone:1c3d262031db
+node/4369777133,MarketplaceCandidate,Shitla Mata Mandir,amenity=place_of_worship;name=Shitla Mata Mandir,21.121897,79.121517,REAL_FETCHED,geofabrik_india_western_zone:1c3d262031db
+node/4376831325,MarketplaceCandidate,Maharshi Vidya Mandir,amenity=school;name=Maharshi Vidya Mandir,19.958866,79.265821,REAL_FETCHED,geofabrik_india_western_zone:1c3d262031db
+node/4376876132,MarketplaceCandidate,gajanan mandir,amenity=place_of_worship;name=gajanan mandir,19.979015,79.278165,REAL_FETCHED,geofabrik_india_western_zone:1c3d262031db
+node/4376876137,MarketplaceCandidate,Wholesale Mandi,addr:city=Chandrapur;name=Wholesale Mandi;operator=Government;shop=supermarket,19.962169,79.285407,REAL_FETCHED,geofabrik_india_western_zone:1c3d262031db
+node/4376877693,MarketplaceCandidate,Hanuman Mandir,amenity=place_of_worship;name=Hanuman Mandir,19.956374,79.322543,REAL_FETCHED,geofabrik_india_western_zone:1c3d262031db
+node/4376903099,MarketplaceCandidate,sabji mandi,name=sabji mandi;shop=supermarket,19.853439,79.344923,REAL_FETCHED,geofabrik_india_western_zone:1c3d262031db
+node/4376903693,MarketplaceCandidate,shani mandir,amenity=place_of_worship;name=shani mandir,19.942300,79.304153,REAL_FETCHED,geofabrik_india_western_zone:1c3d262031db
+node/4494244790,MarketplaceCandidate,Saraswati Shishu Mandir,amenity=school;name=Saraswati Shishu Mandir,21.215877,79.201801,REAL_FETCHED,geofabrik_india_western_zone:1c3d262031db
+node/4534783690,MarketplaceCandidate,,amenity=place_of_worship;name:en=Rajabaksha Hanuman Mandir,21.130613,79.095053,REAL_FETCHED,geofabrik_india_western_zone:1c3d262031db
+node/4573439765,MarketplaceCandidate,Hanuman Mandir,amenity=place_of_worship;name=Hanuman Mandir,20.607282,79.790683,REAL_FETCHED,geofabrik_india_western_zone:1c3d262031db
+node/4609647493,MarketplaceCandidate,,amenity=place_of_worship;name:en=Siddheshwar Hanuman Mandir,21.115643,79.111654,REAL_FETCHED,geofabrik_india_western_zone:1c3d262031db
+node/4708414204,MarketplaceCandidate,Gajanan Maharaj Mandir,amenity=place_of_worship;name=Gajanan Maharaj Mandir,21.124265,79.044158,REAL_FETCHED,geofabrik_india_western_zone:1c3d262031db
+node/4802949304,MarketplaceCandidate,Hanuman Mandir,amenity=place_of_worship;name=Hanuman Mandir,21.158499,79.637956,REAL_FETCHED,geofabrik_india_western_zone:1c3d262031db
+node/4803498174,MarketplaceCandidate,Hanuman Mandir,amenity=place_of_worship;name=Hanuman Mandir,21.163469,79.657404,REAL_FETCHED,geofabrik_india_western_zone:1c3d262031db
+node/4803499742,MarketplaceCandidate,Ram Mandir,amenity=place_of_worship;name=Ram Mandir,21.166315,79.656755,REAL_FETCHED,geofabrik_india_western_zone:1c3d262031db
+node/4803565825,MarketplaceCandidate,Nag Mandir,amenity=place_of_worship;name=Nag Mandir,21.183734,79.661948,REAL_FETCHED,geofabrik_india_western_zone:1c3d262031db
+node/4803608573,MarketplaceCandidate,Mahanubhav Mandir,amenity=place_of_worship;name=Mahanubhav Mandir,21.171287,79.649347,REAL_FETCHED,geofabrik_india_western_zone:1c3d262031db
+node/4803614222,MarketplaceCandidate,Ramdasi Mandir,amenity=place_of_worship;name=Ramdasi Mandir,21.171908,79.653408,REAL_FETCHED,geofabrik_india_western_zone:1c3d262031db
+node/4805630429,MarketplaceCandidate,Bahirangeshwar mandir,amenity=place_of_worship;name=Bahirangeshwar mandir;name:mr=बहिरंगेश्वर मंदिर,21.172585,79.650212,REAL_FETCHED,geofabrik_india_western_zone:1c3d262031db
+node/4805634607,MarketplaceCandidate,Ram Laxman Seeta Mandir,amenity=place_of_worship;name=Ram Laxman Seeta Mandir,21.172722,79.650499,REAL_FETCHED,geofabrik_india_western_zone:1c3d262031db
+node/4805721407,MarketplaceCandidate,Bhrushund Ganesh Mandir,amenity=place_of_worship;name=Bhrushund Ganesh Mandir,21.173650,79.662491,REAL_FETCHED,geofabrik_india_western_zone:1c3d262031db
+node/4805808486,MarketplaceCandidate,Hanuman Mandir,amenity=place_of_worship;name=Hanuman Mandir,20.710947,78.562437,REAL_FETCHED,geofabrik_india_western_zone:1c3d262031db
+node/4813592948,MarketplaceCandidate,Chakradhar Swami Mandir,amenity=place_of_worship;name=Chakradhar Swami Mandir,21.145693,79.390392,REAL_FETCHED,geofabrik_india_western_zone:1c3d262031db
+node/4822835661,MarketplaceCandidate,"SHREE DATTA MANDIR, PANCHKRISHNA NAGAR","amenity=place_of_worship;name=SHREE DATTA MANDIR, PANCHKRISHNA NAGAR",21.079214,79.075634,REAL_FETCHED,geofabrik_india_western_zone:1c3d262031db
+node/4822843828,MarketplaceCandidate,Shree Vithal Rukhmini Mandir,amenity=place_of_worship;name=Shree Vithal Rukhmini Mandir,21.074996,79.077188,REAL_FETCHED,geofabrik_india_western_zone:1c3d262031db
+node/4822844575,MarketplaceCandidate,Mahanubhav Mandir,amenity=place_of_worship;name=Mahanubhav Mandir,21.075026,79.075149,REAL_FETCHED,geofabrik_india_western_zone:1c3d262031db
+node/4822848722,MarketplaceCandidate,Sai Mandir,amenity=place_of_worship;name=Sai Mandir,21.073446,79.080850,REAL_FETCHED,geofabrik_india_western_zone:1c3d262031db
+node/4822858765,MarketplaceCandidate,Shree Hanuman Mandir,amenity=place_of_worship;name=Shree Hanuman Mandir,21.082014,79.079378,REAL_FETCHED,geofabrik_india_western_zone:1c3d262031db
+node/4822859968,MarketplaceCandidate,Shiv Mandir Besa ,amenity=place_of_worship;name=Shiv Mandir Besa ,21.081541,79.081971,REAL_FETCHED,geofabrik_india_western_zone:1c3d262031db
+node/4874961694,MarketplaceCandidate,Riddhi Siddhi Ganesh Mandir,amenity=place_of_worship;name=Riddhi Siddhi Ganesh Mandir,21.172457,79.652677,REAL_FETCHED,geofabrik_india_western_zone:1c3d262031db
+node/4959395121,MarketplaceCandidate,"Ganpati Mandir, Adasa","amenity=place_of_worship;name=Ganpati Mandir, Adasa",21.331830,78.940669,REAL_FETCHED,geofabrik_india_western_zone:1c3d262031db
+node/4976649964,MarketplaceCandidate,Sabzi Mandi,name=Sabzi Mandi;shop=supermarket,20.734950,78.597374,REAL_FETCHED,geofabrik_india_western_zone:1c3d262031db
+node/4976677221,MarketplaceCandidate,Hanuman mandir,amenity=place_of_worship;name=Hanuman mandir,20.737152,78.589853,REAL_FETCHED,geofabrik_india_western_zone:1c3d262031db
+node/4976707646,MarketplaceCandidate,Ganesh mandir,amenity=place_of_worship;name=Ganesh mandir,20.738307,78.588646,REAL_FETCHED,geofabrik_india_western_zone:1c3d262031db
+node/4976737881,MarketplaceCandidate,Hunuman mandir,amenity=place_of_worship;name=Hunuman mandir,20.735074,78.585299,REAL_FETCHED,geofabrik_india_western_zone:1c3d262031db
+node/4977387463,MarketplaceCandidate,hanuman mandir,amenity=place_of_worship;name=hanuman mandir,20.740727,78.577974,REAL_FETCHED,geofabrik_india_western_zone:1c3d262031db
+node/4982427100,MarketplaceCandidate,Shiv Mandir,amenity=place_of_worship;name=Shiv Mandir,20.744819,78.618406,REAL_FETCHED,geofabrik_india_western_zone:1c3d262031db
+node/4982569346,MarketplaceCandidate,Gandhi gyan mandir,name=Gandhi gyan mandir,20.739689,78.608060,REAL_FETCHED,geofabrik_india_western_zone:1c3d262031db
+node/5048712599,MarketplaceCandidate,Gajanan Maharaj Mandir,amenity=place_of_worship;name=Gajanan Maharaj Mandir,20.863303,79.301618,REAL_FETCHED,geofabrik_india_western_zone:1c3d262031db
+node/5064490410,MarketplaceCandidate,Kalyaneshwar Mandir,addr:city=Nagpur;amenity=place_of_worship;name=Kalyaneshwar Mandir,21.156437,79.049099,REAL_FETCHED,geofabrik_india_western_zone:1c3d262031db
+node/5251551848,MarketplaceCandidate,Shree Jagrut Hanuman Mandir Trust,amenity=place_of_worship;name=Shree Jagrut Hanuman Mandir Trust,21.146167,79.125794,REAL_FETCHED,geofabrik_india_western_zone:1c3d262031db
+node/5262078699,MarketplaceCandidate,Hanuman Mandir,amenity=place_of_worship;name=Hanuman Mandir,21.195255,79.143974,REAL_FETCHED,geofabrik_india_western_zone:1c3d262031db
+node/5280172882,MarketplaceCandidate,Jain Mandir,amenity=place_of_worship;name=Jain Mandir,21.124103,79.133281,REAL_FETCHED,geofabrik_india_western_zone:1c3d262031db
+node/5280172883,MarketplaceCandidate,Jain Mandir Park,name=Jain Mandir Park,21.124070,79.133424,REAL_FETCHED,geofabrik_india_western_zone:1c3d262031db
+node/5850245524,MarketplaceCandidate,APMC Chamorshi,amenity=marketplace;name=APMC Chamorshi,19.942758,79.895167,REAL_FETCHED,geofabrik_india_western_zone:1c3d262031db
+node/5909038885,MarketplaceCandidate,Hanuman Mandir,amenity=place_of_worship;name=Hanuman Mandir,19.931880,79.888627,REAL_FETCHED,geofabrik_india_western_zone:1c3d262031db
+node/6132857803,MarketplaceCandidate,Hanuman Mandir,amenity=place_of_worship;name=Hanuman Mandir,21.169775,79.036276,REAL_FETCHED,geofabrik_india_western_zone:1c3d262031db
+node/6132857804,MarketplaceCandidate,Sharda Mandir,amenity=place_of_worship;name=Sharda Mandir,21.168399,79.036183,REAL_FETCHED,geofabrik_india_western_zone:1c3d262031db
+node/6192668857,MarketplaceCandidate,Tulasa Mata Mandir,amenity=place_of_worship;name=Tulasa Mata Mandir,21.198787,79.138981,REAL_FETCHED,geofabrik_india_western_zone:1c3d262031db
+node/6207454694,MarketplaceCandidate,Hanuman Mandir (Sleeping),amenity=place_of_worship;name=Hanuman Mandir (Sleeping),21.333177,78.942061,REAL_FETCHED,geofabrik_india_western_zone:1c3d262031db
+node/6210243123,MarketplaceCandidate,Pataleshwar Mandir,amenity=place_of_worship;name=Pataleshwar Mandir,21.332138,78.941290,REAL_FETCHED,geofabrik_india_western_zone:1c3d262031db
+node/6210243177,MarketplaceCandidate,Manohargiri Samadhi Mandir,amenity=place_of_worship;name=Manohargiri Samadhi Mandir,21.331850,78.941311,REAL_FETCHED,geofabrik_india_western_zone:1c3d262031db
+node/6210243178,MarketplaceCandidate,Shiv Mandir,amenity=place_of_worship;name=Shiv Mandir,21.331847,78.942014,REAL_FETCHED,geofabrik_india_western_zone:1c3d262031db
+node/6210243179,MarketplaceCandidate,Durga Mata Mandir,amenity=place_of_worship;name=Durga Mata Mandir,21.331785,78.941593,REAL_FETCHED,geofabrik_india_western_zone:1c3d262031db
+node/6210243180,MarketplaceCandidate,Tryambakeshwar Mandir,amenity=place_of_worship;name=Tryambakeshwar Mandir,21.331950,78.941826,REAL_FETCHED,geofabrik_india_western_zone:1c3d262031db
+node/6210243181,MarketplaceCandidate,Kalbhairav Mandir,amenity=place_of_worship;name=Kalbhairav Mandir,21.331792,78.941720,REAL_FETCHED,geofabrik_india_western_zone:1c3d262031db
+node/6210485199,MarketplaceCandidate,Vitthal Rukmini Mandir,amenity=place_of_worship;name=Vitthal Rukmini Mandir,21.338873,78.993589,REAL_FETCHED,geofabrik_india_western_zone:1c3d262031db
+node/6227308980,MarketplaceCandidate,Shrikrishna Mandir,amenity=place_of_worship;name=Shrikrishna Mandir,19.994846,79.796346,REAL_FETCHED,geofabrik_india_western_zone:1c3d262031db
+node/6227444201,MarketplaceCandidate,Maa Durga Mata Mandir,amenity=place_of_worship;name=Maa Durga Mata Mandir,21.197172,79.134681,REAL_FETCHED,geofabrik_india_western_zone:1c3d262031db
+node/6249168295,MarketplaceCandidate,Sai Mandir,amenity=place_of_worship;name=Sai Mandir,21.188788,79.123114,REAL_FETCHED,geofabrik_india_western_zone:1c3d262031db
+node/6732403821,MarketplaceCandidate,Sai Mandir,amenity=place_of_worship;name=Sai Mandir,19.966645,79.256765,REAL_FETCHED,geofabrik_india_western_zone:1c3d262031db
+node/6813443189,MarketplaceCandidate,Sai Mandir,amenity=place_of_worship;name=Sai Mandir,21.102407,79.115076,REAL_FETCHED,geofabrik_india_western_zone:1c3d262031db
+node/6813463861,MarketplaceCandidate,Durga Mandir,amenity=place_of_worship;name=Durga Mandir,21.103301,79.114633,REAL_FETCHED,geofabrik_india_western_zone:1c3d262031db
+node/6817964373,MarketplaceCandidate,Ram Mandir,amenity=place_of_worship;name=Ram Mandir,19.968671,79.305387,REAL_FETCHED,geofabrik_india_western_zone:1c3d262031db
+node/6854565585,MarketplaceCandidate,Bhole Baba Mandir,amenity=place_of_worship;name=Bhole Baba Mandir,21.104592,79.115543,REAL_FETCHED,geofabrik_india_western_zone:1c3d262031db
+node/6854565785,MarketplaceCandidate,Shri Ram Mandir,amenity=place_of_worship;name=Shri Ram Mandir,21.112748,79.110601,REAL_FETCHED,geofabrik_india_western_zone:1c3d262031db
+node/6854616701,MarketplaceCandidate,Hanuman Mandir,amenity=place_of_worship;name=Hanuman Mandir,21.103857,79.114716,REAL_FETCHED,geofabrik_india_western_zone:1c3d262031db
+node/6877708788,MarketplaceCandidate,Chakatkari Durga Mata Mandir,amenity=place_of_worship;name=Chakatkari Durga Mata Mandir,21.116308,79.117438,REAL_FETCHED,geofabrik_india_western_zone:1c3d262031db
+node/6900524324,MarketplaceCandidate,Babulkheda Hanuman Mandir,amenity=place_of_worship;name=Babulkheda Hanuman Mandir,21.309660,79.016522,REAL_FETCHED,geofabrik_india_western_zone:1c3d262031db
+node/6955417387,MarketplaceCandidate,Ancient Vishnu Mandir,amenity=place_of_worship;name=Ancient Vishnu Mandir;name:mr=पुरातन विष्णू मंदिर,19.994193,79.417867,REAL_FETCHED,geofabrik_india_western_zone:1c3d262031db
+node/6955642245,MarketplaceCandidate,Zopla Maruti Mandir,amenity=place_of_worship;name=Zopla Maruti Mandir;name:mr=झोपला मारुती मंदिर,20.001206,79.525095,REAL_FETCHED,geofabrik_india_western_zone:1c3d262031db
+node/6961282690,MarketplaceCandidate,Ganesh Mandir,amenity=place_of_worship;name=Ganesh Mandir,21.103555,79.123060,REAL_FETCHED,geofabrik_india_western_zone:1c3d262031db
+node/6961282692,MarketplaceCandidate,Durga Mata Mandir,amenity=place_of_worship;name=Durga Mata Mandir,21.105710,79.122268,REAL_FETCHED,geofabrik_india_western_zone:1c3d262031db
+node/6961282789,MarketplaceCandidate,Kulswamini Shree Tuljabhawani Mandir,amenity=place_of_worship;name=Kulswamini Shree Tuljabhawani Mandir,21.107275,79.122656,REAL_FETCHED,geofabrik_india_western_zone:1c3d262031db
+node/6969443486,MarketplaceCandidate,Durga Mandir,amenity=place_of_worship;name=Durga Mandir,21.095915,79.100754,REAL_FETCHED,geofabrik_india_western_zone:1c3d262031db
+node/7095481985,MarketplaceCandidate,Gajanan Maharaj Mandir,amenity=place_of_worship;name=Gajanan Maharaj Mandir,21.123857,79.125094,REAL_FETCHED,geofabrik_india_western_zone:1c3d262031db
+node/7392465277,MarketplaceCandidate,sai mandir,amenity=place_of_worship;name=sai mandir,21.150299,79.397753,REAL_FETCHED,geofabrik_india_western_zone:1c3d262031db
+node/7392503845,MarketplaceCandidate,sai mandir,amenity=place_of_worship;name=sai mandir,21.149625,79.397289,REAL_FETCHED,geofabrik_india_western_zone:1c3d262031db
+node/7392526097,MarketplaceCandidate,mata mandir,amenity=place_of_worship;name=mata mandir,21.145969,79.395519,REAL_FETCHED,geofabrik_india_western_zone:1c3d262031db
+node/7792821386,MarketplaceCandidate,Jain Shwetambar Chandraprabhu Mandir,amenity=place_of_worship;name=Jain Shwetambar Chandraprabhu Mandir,20.229231,79.001651,REAL_FETCHED,geofabrik_india_western_zone:1c3d262031db
+node/7834313586,MarketplaceCandidate,Panchaleshwar Hanuman Mandir,amenity=place_of_worship;name=Panchaleshwar Hanuman Mandir,21.098702,79.111956,REAL_FETCHED,geofabrik_india_western_zone:1c3d262031db
+node/7834313588,MarketplaceCandidate,Sarvajanik Hanuman Mandir,addr:city=Nagpur;amenity=place_of_worship;name=Sarvajanik Hanuman Mandir,21.101586,79.114969,REAL_FETCHED,geofabrik_india_western_zone:1c3d262031db
+node/7908231904,MarketplaceCandidate,Shiv Mandir,amenity=place_of_worship;name=Shiv Mandir,21.137118,79.121453,REAL_FETCHED,geofabrik_india_western_zone:1c3d262031db
+node/7908692585,MarketplaceCandidate,Old Mahadev Mandir,amenity=place_of_worship;name=Old Mahadev Mandir,20.040856,79.740298,REAL_FETCHED,geofabrik_india_western_zone:1c3d262031db
+node/8785141839,MarketplaceCandidate,Kamtheshwar Mahadev Mandir,amenity=place_of_worship;name=Kamtheshwar Mahadev Mandir,21.248052,79.183010,REAL_FETCHED,geofabrik_india_western_zone:1c3d262031db
+node/8913989943,MarketplaceCandidate,Ganpati Mandir,amenity=place_of_worship;name=Ganpati Mandir,21.115833,79.063720,REAL_FETCHED,geofabrik_india_western_zone:1c3d262031db
+node/8913989986,MarketplaceCandidate,Durga Mandir,amenity=place_of_worship;name=Durga Mandir,21.116585,79.056599,REAL_FETCHED,geofabrik_india_western_zone:1c3d262031db
+node/9326352017,MarketplaceCandidate,Ganesh Mandir,amenity=place_of_worship;name=Ganesh Mandir,20.242565,78.980925,REAL_FETCHED,geofabrik_india_western_zone:1c3d262031db
+node/9483538017,MarketplaceCandidate,Mothe Vitthal Mandir,amenity=place_of_worship;name=Mothe Vitthal Mandir,20.228919,79.001815,REAL_FETCHED,geofabrik_india_western_zone:1c3d262031db
+node/9694575315,MarketplaceCandidate,Hanuman mandir Khaparkheda kirad,amenity=place_of_worship;name=Hanuman mandir Khaparkheda kirad,21.272234,79.397461,REAL_FETCHED,geofabrik_india_western_zone:1c3d262031db
+node/9883271366,MarketplaceCandidate,Mandiyatola,name=Mandiyatola,21.586793,80.154962,REAL_FETCHED,geofabrik_india_western_zone:1c3d262031db
+node/9888000361,MarketplaceCandidate,Manditola,name=Manditola,21.054706,80.208521,REAL_FETCHED,geofabrik_india_western_zone:1c3d262031db
+way/1000260257,MarketplaceCandidate,Mata Mandir,landuse=religious;name=Mata Mandir,20.555413,78.844312,REAL_FETCHED,geofabrik_india_western_zone:1c3d262031db
+way/1000260269,MarketplaceCandidate,APMC Hinganghat,amenity=marketplace;name=APMC Hinganghat,20.533790,78.832520,REAL_FETCHED,geofabrik_india_western_zone:1c3d262031db
+way/1002701436,MarketplaceCandidate,Santoshi Maa Mandir,amenity=place_of_worship;name=Santoshi Maa Mandir,20.455742,79.976940,REAL_FETCHED,geofabrik_india_western_zone:1c3d262031db
+way/1119416857,MarketplaceCandidate,Ramdeobaba mandir,amenity=place_of_worship;building=yes;name=Ramdeobaba mandir,21.176105,79.060188,REAL_FETCHED,geofabrik_india_western_zone:1c3d262031db
+way/1119416869,MarketplaceCandidate,Ramdeobaba mandir garden,name=Ramdeobaba mandir garden,21.176016,79.060030,REAL_FETCHED,geofabrik_india_western_zone:1c3d262031db
+way/1153723686,MarketplaceCandidate,,amenity=marketplace,21.240955,79.079584,REAL_FETCHED,geofabrik_india_western_zone:1c3d262031db
+way/1153724117,MarketplaceCandidate,Vidya Mandir High school,building=school;name=Vidya Mandir High school,21.241547,79.083038,REAL_FETCHED,geofabrik_india_western_zone:1c3d262031db
+way/1162000200,MarketplaceCandidate,Maharshi Vidya Mandir,amenity=school;building=school;name=Maharshi Vidya Mandir,20.691766,78.611792,REAL_FETCHED,geofabrik_india_western_zone:1c3d262031db
+way/1162011179,MarketplaceCandidate,Hanuman Mandir,amenity=place_of_worship;building=yes;name=Hanuman Mandir,20.749894,78.592537,REAL_FETCHED,geofabrik_india_western_zone:1c3d262031db
+way/1162012430,MarketplaceCandidate,Ram Mandir,addr:city=Nakoda;amenity=place_of_worship;building=yes;name=Ram Mandir,19.914604,79.105226,REAL_FETCHED,geofabrik_india_western_zone:1c3d262031db
+way/1162024305,MarketplaceCandidate,Weekly Market,addr:city=Nakoda;amenity=marketplace;name=Weekly Market,19.921603,79.108721,REAL_FETCHED,geofabrik_india_western_zone:1c3d262031db
+way/1173076467,MarketplaceCandidate,Shiv Mandir,amenity=place_of_worship;building=yes;name=Shiv Mandir,21.111982,79.110307,REAL_FETCHED,geofabrik_india_western_zone:1c3d262031db
+way/1186159464,MarketplaceCandidate,Ghogara Mandir,name=Ghogara Mandir,21.385480,79.162308,REAL_FETCHED,geofabrik_india_western_zone:1c3d262031db
+way/1220665764,MarketplaceCandidate,Devi Mandir,amenity=place_of_worship;name=Devi Mandir,21.254020,79.098400,REAL_FETCHED,geofabrik_india_western_zone:1c3d262031db
+way/1283841357,MarketplaceCandidate,Shri 1008 Bh.Chandraprabh Digambar Jain Mandir,building=temple;name=Shri 1008 Bh.Chandraprabh Digambar Jain Mandir,21.148426,79.110414,REAL_FETCHED,geofabrik_india_western_zone:1c3d262031db
+way/1288389120,MarketplaceCandidate,Bhandara Animal Market,amenity=marketplace;name=Bhandara Animal Market;name:mr=भंडारा पशू बाजार,21.154863,79.666146,REAL_FETCHED,geofabrik_india_western_zone:1c3d262031db
+way/1288389139,MarketplaceCandidate,Sai Mandir Campus Wall,name=Sai Mandir Campus Wall,21.153181,79.665503,REAL_FETCHED,geofabrik_india_western_zone:1c3d262031db
+way/1288389140,MarketplaceCandidate,Sai Mandir Campus Wall,name=Sai Mandir Campus Wall,21.153506,79.665305,REAL_FETCHED,geofabrik_india_western_zone:1c3d262031db
+way/1288389141,MarketplaceCandidate,Sai Mandir Campus Wall,name=Sai Mandir Campus Wall,21.153422,79.665730,REAL_FETCHED,geofabrik_india_western_zone:1c3d262031db
+way/1360413613,MarketplaceCandidate,gajanan maharaj mandir,amenity=place_of_worship;building=yes;name=gajanan maharaj mandir,21.102078,79.065981,REAL_FETCHED,geofabrik_india_western_zone:1c3d262031db
+way/1360622961,MarketplaceCandidate,shiv mandir,amenity=place_of_worship;building=yes;name=shiv mandir,20.726632,78.595019,REAL_FETCHED,geofabrik_india_western_zone:1c3d262031db
+way/1360622963,MarketplaceCandidate,ram mandir,amenity=place_of_worship;building=yes;name=ram mandir,20.726975,78.595703,REAL_FETCHED,geofabrik_india_western_zone:1c3d262031db
+way/1360622964,MarketplaceCandidate,hanuman mandir,amenity=place_of_worship;building=yes;name=hanuman mandir,20.727662,78.595003,REAL_FETCHED,geofabrik_india_western_zone:1c3d262031db
+way/1360627885,MarketplaceCandidate,hanuman mandir,amenity=place_of_worship;building=yes;name=hanuman mandir,21.103818,79.067393,REAL_FETCHED,geofabrik_india_western_zone:1c3d262031db
+way/262841333,MarketplaceCandidate,Ram Mandir,amenity=place_of_worship;name=Ram Mandir,21.109358,79.048304,REAL_FETCHED,geofabrik_india_western_zone:1c3d262031db
+way/360091463,MarketplaceCandidate,Gitai Mandir (Gupuri),landuse=religious;name=Gitai Mandir (Gupuri),20.749466,78.618897,REAL_FETCHED,geofabrik_india_western_zone:1c3d262031db
+way/387371895,MarketplaceCandidate,Budhwar Bazaar,amenity=marketplace;name=Budhwar Bazaar,21.128170,79.108141,REAL_FETCHED,geofabrik_india_western_zone:1c3d262031db
+way/388919875,MarketplaceCandidate,Sai Mandir Road,name=Sai Mandir Road,20.614128,79.858264,REAL_FETCHED,geofabrik_india_western_zone:1c3d262031db
+way/388919876,MarketplaceCandidate,Sai Mandir,amenity=place_of_worship;name=Sai Mandir,20.614935,79.858194,REAL_FETCHED,geofabrik_india_western_zone:1c3d262031db
+way/389041528,MarketplaceCandidate,Market,amenity=marketplace;name=Market,20.609441,79.858685,REAL_FETCHED,geofabrik_india_western_zone:1c3d262031db
+way/389401299,MarketplaceCandidate,Durga Mandir,amenity=place_of_worship;name=Durga Mandir,21.335644,79.386450,REAL_FETCHED,geofabrik_india_western_zone:1c3d262031db
+way/390559764,MarketplaceCandidate,Adarsh Vidya Mandir,amenity=school;name=Adarsh Vidya Mandir,21.118346,79.107298,REAL_FETCHED,geofabrik_india_western_zone:1c3d262031db
+way/390559765,MarketplaceCandidate,Shri Gajanan Maharaj Mandir,amenity=place_of_worship;name=Shri Gajanan Maharaj Mandir,21.118504,79.108732,REAL_FETCHED,geofabrik_india_western_zone:1c3d262031db
+way/390601880,MarketplaceCandidate,Shree Markandeya Mandir Sabhagruha,amenity=community_centre;name=Shree Markandeya Mandir Sabhagruha,21.120532,79.104466,REAL_FETCHED,geofabrik_india_western_zone:1c3d262031db
+way/391858944,MarketplaceCandidate,,amenity=marketplace,21.117166,79.111206,REAL_FETCHED,geofabrik_india_western_zone:1c3d262031db
+way/391931220,MarketplaceCandidate,Nagarjun Tekdi Mandir,amenity=place_of_worship;name=Nagarjun Tekdi Mandir,21.386143,79.365825,REAL_FETCHED,geofabrik_india_western_zone:1c3d262031db
+way/392073880,MarketplaceCandidate,Shantinath Jain Mandir,amenity=place_of_worship;name=Shantinath Jain Mandir,21.405583,79.329784,REAL_FETCHED,geofabrik_india_western_zone:1c3d262031db
+way/392073881,MarketplaceCandidate,Kalanka Mandir,amenity=place_of_worship;name=Kalanka Mandir,21.406240,79.328072,REAL_FETCHED,geofabrik_india_western_zone:1c3d262031db
+way/392102212,MarketplaceCandidate,Krushi Utpann Bazar Samiti,landuse=commercial;name=Krushi Utpann Bazar Samiti,21.395707,79.306220,REAL_FETCHED,geofabrik_india_western_zone:1c3d262031db
+way/392273469,MarketplaceCandidate,Varah Mandir,amenity=place_of_worship;name=Varah Mandir,21.398417,79.333833,REAL_FETCHED,geofabrik_india_western_zone:1c3d262031db
+way/395048515,MarketplaceCandidate,Shree Ganesh-Hanuman Mandir,amenity=place_of_worship;landuse=religious;name=Shree Ganesh-Hanuman Mandir,21.113711,79.104327,REAL_FETCHED,geofabrik_india_western_zone:1c3d262031db
+way/398162843,MarketplaceCandidate,Shitala Mata Mandir,amenity=place_of_worship;name=Shitala Mata Mandir,20.743438,78.591282,REAL_FETCHED,geofabrik_india_western_zone:1c3d262031db
+way/399618807,MarketplaceCandidate,Gitai Mandir,name=Gitai Mandir,20.750087,78.618418,REAL_FETCHED,geofabrik_india_western_zone:1c3d262031db
+way/399618812,MarketplaceCandidate,Gitai Mandir,amenity=place_of_worship;name=Gitai Mandir,20.750038,78.618312,REAL_FETCHED,geofabrik_india_western_zone:1c3d262031db
+way/402331478,MarketplaceCandidate,Saraswati Vidya Mandir,amenity=school;name=Saraswati Vidya Mandir,20.748901,78.601813,REAL_FETCHED,geofabrik_india_western_zone:1c3d262031db
+way/404664337,MarketplaceCandidate,Nazeer Haat,amenity=marketplace;name=Nazeer Haat,20.767717,78.584480,REAL_FETCHED,geofabrik_india_western_zone:1c3d262031db
+way/481076573,MarketplaceCandidate,Swaminarayan Mandir,addr:city=Nagpur;amenity=place_of_worship;building=yes;name=Swaminarayan Mandir,21.137369,79.145642,REAL_FETCHED,geofabrik_india_western_zone:1c3d262031db
+way/484607908,MarketplaceCandidate,Samaj Mandir,amenity=community_centre;building=yes;name=Samaj Mandir,20.737298,79.554541,REAL_FETCHED,geofabrik_india_western_zone:1c3d262031db
+way/505214376,MarketplaceCandidate,Bhavan's BP Vidya Mandir,building=yes;name=Bhavan's BP Vidya Mandir,21.114221,79.036913,REAL_FETCHED,geofabrik_india_western_zone:1c3d262031db
+way/506753695,MarketplaceCandidate,Adasa Ganapati Mandir,landuse=religious;name=Adasa Ganapati Mandir,21.332705,78.941764,REAL_FETCHED,geofabrik_india_western_zone:1c3d262031db
+way/506753703,MarketplaceCandidate,Vitthal Rukmini Mandir,addr:city=Dhapewada;amenity=place_of_worship;building=yes;name=Vitthal Rukmini Mandir,21.301139,78.913940,REAL_FETCHED,geofabrik_india_western_zone:1c3d262031db
+way/525508487,MarketplaceCandidate,Hanuman Mandir,addr:city=nagpur;amenity=place_of_worship;building=shed;name=Hanuman Mandir,21.132836,79.059232,REAL_FETCHED,geofabrik_india_western_zone:1c3d262031db
+way/546410368,MarketplaceCandidate,Sai-Hanuman Mandir,amenity=place_of_worship;building=yes;name=Sai-Hanuman Mandir,21.125827,79.133682,REAL_FETCHED,geofabrik_india_western_zone:1c3d262031db
+way/546410370,MarketplaceCandidate,Maata Mandir,amenity=place_of_worship;building=yes;name=Maata Mandir,21.125952,79.132687,REAL_FETCHED,geofabrik_india_western_zone:1c3d262031db
+way/546410372,MarketplaceCandidate,Siddheshwar Mandir,amenity=place_of_worship;building=yes;name=Siddheshwar Mandir,21.127054,79.131300,REAL_FETCHED,geofabrik_india_western_zone:1c3d262031db
+way/546410374,MarketplaceCandidate,Ramna Maruti Mandir,amenity=place_of_worship;building=yes;name=Ramna Maruti Mandir,21.125141,79.127432,REAL_FETCHED,geofabrik_india_western_zone:1c3d262031db
+way/602971311,MarketplaceCandidate,Hanuman Mandir,addr:city=Chandrapur;amenity=place_of_worship;building=yes;name=Hanuman Mandir,19.964176,79.288020,REAL_FETCHED,geofabrik_india_western_zone:1c3d262031db
+way/609015156,MarketplaceCandidate,Hanuman Mandir,addr:city=Sumitra Nagar;amenity=place_of_worship;building=yes;name=Hanuman Mandir,19.985964,79.302051,REAL_FETCHED,geofabrik_india_western_zone:1c3d262031db
+way/652240815,MarketplaceCandidate,Sai Mandir,addr:city=Wardha;amenity=place_of_worship;building=temple;name=Sai Mandir,20.738773,78.596744,REAL_FETCHED,geofabrik_india_western_zone:1c3d262031db
+way/652241205,MarketplaceCandidate,Gajanan Mandir,addr:city=Wardha;amenity=place_of_worship;building=temple;name=Gajanan Mandir,20.738999,78.596769,REAL_FETCHED,geofabrik_india_western_zone:1c3d262031db
+way/656624011,MarketplaceCandidate,Sai Mandir,amenity=place_of_worship;building=yes;name=Sai Mandir,19.947449,79.899130,REAL_FETCHED,geofabrik_india_western_zone:1c3d262031db
+way/658048551,MarketplaceCandidate,Gayatri Mandir,amenity=place_of_worship;building=yes;name=Gayatri Mandir,21.139035,79.118861,REAL_FETCHED,geofabrik_india_western_zone:1c3d262031db
+way/658461554,MarketplaceCandidate,APMC Complex,building=commercial;name=APMC Complex,19.942612,79.895531,REAL_FETCHED,geofabrik_india_western_zone:1c3d262031db
+way/659701709,MarketplaceCandidate,Datt Mandir,amenity=place_of_worship;building=yes;name=Datt Mandir,19.937165,79.905568,REAL_FETCHED,geofabrik_india_western_zone:1c3d262031db
+way/665849224,MarketplaceCandidate,,amenity=marketplace,19.730385,79.169687,REAL_FETCHED,geofabrik_india_western_zone:1c3d262031db
+way/767606123,MarketplaceCandidate,,amenity=marketplace,20.188154,80.002753,REAL_FETCHED,geofabrik_india_western_zone:1c3d262031db
+way/767720356,MarketplaceCandidate,,amenity=marketplace,20.188951,79.997407,REAL_FETCHED,geofabrik_india_western_zone:1c3d262031db
+way/790762250,MarketplaceCandidate,sai mandir,amenity=place_of_worship;building=yes;name=sai mandir,21.150325,79.397724,REAL_FETCHED,geofabrik_india_western_zone:1c3d262031db
+way/790763620,MarketplaceCandidate,sai mandir,amenity=place_of_worship;building=yes;name=sai mandir,21.149680,79.397204,REAL_FETCHED,geofabrik_india_western_zone:1c3d262031db
+way/798626638,MarketplaceCandidate,Shahapur Weekly Market,amenity=marketplace;name=Shahapur Weekly Market;name:mr=शहापूर आठवडी बाजार,21.154479,79.566717,REAL_FETCHED,geofabrik_india_western_zone:1c3d262031db
+way/816758740,MarketplaceCandidate,Jawaharnagar Market Area,amenity=marketplace;name=Jawaharnagar Market Area,21.113676,79.545927,REAL_FETCHED,geofabrik_india_western_zone:1c3d262031db
+way/833094665,MarketplaceCandidate,Om Shri Laxminarayan Vidya Mandir,building=school;name=Om Shri Laxminarayan Vidya Mandir,21.074039,79.127100,REAL_FETCHED,geofabrik_india_western_zone:1c3d262031db
+way/926714188,MarketplaceCandidate,Gayatri Mandir,building=yes;name=Gayatri Mandir,21.123654,79.541444,REAL_FETCHED,geofabrik_india_western_zone:1c3d262031db
+way/926714189,MarketplaceCandidate,Ram Mandir,amenity=place_of_worship;building=yes;name=Ram Mandir,21.119226,79.542145,REAL_FETCHED,geofabrik_india_western_zone:1c3d262031db
+way/968096684,MarketplaceCandidate,Prachin Shiv Mandir,amenity=place_of_worship;building=yes;name=Prachin Shiv Mandir,20.857409,79.319619,REAL_FETCHED,geofabrik_india_western_zone:1c3d262031db
+node/11240515861,NGOSink,Gram Seva Mandal,name=Gram Seva Mandal;office=ngo,20.752535,78.616796,REAL_FETCHED,geofabrik_india_western_zone:1c3d262031db
+node/6123737151,NGOSink,Krantijyoti Savitribai Phule Bahuddeshiya Sanstha,name=Krantijyoti Savitribai Phule Bahuddeshiya Sanstha;office=ngo,19.934323,79.893186,REAL_FETCHED,geofabrik_india_western_zone:1c3d262031db
+node/6180977760,ProcessingSink,Gandhi Rice & Agro Industries,man_made=works;name=Gandhi Rice & Agro Industries,19.936748,79.887640,REAL_FETCHED,geofabrik_india_western_zone:1c3d262031db
+node/9470355517,ProcessingSink,Paras Agro Industries,man_made=works;name=Paras Agro Industries,20.231248,78.975165,REAL_FETCHED,geofabrik_india_western_zone:1c3d262031db
+way/396521130,ProcessingSink,ADM Agro Industries (I) Pvt. Ltd.,landuse=industrial;name=ADM Agro Industries (I) Pvt. Ltd.,21.316458,79.230674,REAL_FETCHED,geofabrik_india_western_zone:1c3d262031db
+node/3978018119,TransitStorageNode,NBHC Cecure Warehouse,building=warehouse;name=NBHC Cecure Warehouse,20.545361,79.908078,REAL_FETCHED,geofabrik_india_western_zone:1c3d262031db
+way/1274059985,TransitStorageNode,,building=warehouse,21.144812,79.112138,REAL_FETCHED,geofabrik_india_western_zone:1c3d262031db
+way/1436611519,TransitStorageNode,"Central Stores, WesternCoalfields Limited","industrial=warehouse;landuse=industrial;name=Central Stores, WesternCoalfields Limited",20.042228,79.194830,REAL_FETCHED,geofabrik_india_western_zone:1c3d262031db
+way/27259793,TransitStorageNode,Cotton Market,amenity=marketplace;building=warehouse;name=Cotton Market,21.145972,79.090503,REAL_FETCHED,geofabrik_india_western_zone:1c3d262031db
+way/402331485,TransitStorageNode,,building=warehouse,20.756033,78.594522,REAL_FETCHED,geofabrik_india_western_zone:1c3d262031db
+way/475491536,TransitStorageNode,,building=warehouse,20.619276,79.849576,REAL_FETCHED,geofabrik_india_western_zone:1c3d262031db
+way/475898637,TransitStorageNode,,building=warehouse,20.619294,79.849054,REAL_FETCHED,geofabrik_india_western_zone:1c3d262031db
+way/475898638,TransitStorageNode,,building=warehouse,20.619576,79.849190,REAL_FETCHED,geofabrik_india_western_zone:1c3d262031db
+way/486817790,TransitStorageNode,,building=warehouse,21.075948,79.162423,REAL_FETCHED,geofabrik_india_western_zone:1c3d262031db
+way/539423021,TransitStorageNode,,building=warehouse,20.576287,79.882974,REAL_FETCHED,geofabrik_india_western_zone:1c3d262031db
+way/539425359,TransitStorageNode,,building=warehouse,20.478911,79.895287,REAL_FETCHED,geofabrik_india_western_zone:1c3d262031db
+way/625902673,TransitStorageNode,,building=warehouse,19.937416,79.890964,REAL_FETCHED,geofabrik_india_western_zone:1c3d262031db
+way/655289040,TransitStorageNode,,building=warehouse,19.959137,79.887170,REAL_FETCHED,geofabrik_india_western_zone:1c3d262031db
+way/655289041,TransitStorageNode,,building=warehouse,19.958556,79.887316,REAL_FETCHED,geofabrik_india_western_zone:1c3d262031db
+way/655289042,TransitStorageNode,,building=warehouse,19.957957,79.887418,REAL_FETCHED,geofabrik_india_western_zone:1c3d262031db
+way/655356279,TransitStorageNode,,building=warehouse,19.938165,79.892716,REAL_FETCHED,geofabrik_india_western_zone:1c3d262031db
+way/655356280,TransitStorageNode,,building=warehouse,19.938501,79.892816,REAL_FETCHED,geofabrik_india_western_zone:1c3d262031db
+way/764584057,TransitStorageNode,,building=warehouse,20.185306,80.003263,REAL_FETCHED,geofabrik_india_western_zone:1c3d262031db
+way/764615568,TransitStorageNode,,building=warehouse,20.186411,80.007017,REAL_FETCHED,geofabrik_india_western_zone:1c3d262031db
+way/764615569,TransitStorageNode,,building=warehouse,20.186499,80.007931,REAL_FETCHED,geofabrik_india_western_zone:1c3d262031db
+way/764615581,TransitStorageNode,,building=warehouse,20.186617,80.007245,REAL_FETCHED,geofabrik_india_western_zone:1c3d262031db
+way/764615617,TransitStorageNode,,building=warehouse,20.187766,79.999498,REAL_FETCHED,geofabrik_india_western_zone:1c3d262031db
+way/765158741,TransitStorageNode,,building=warehouse,20.184384,80.012211,REAL_FETCHED,geofabrik_india_western_zone:1c3d262031db
+way/765158742,TransitStorageNode,,building=warehouse,20.184586,80.012280,REAL_FETCHED,geofabrik_india_western_zone:1c3d262031db
+way/765158743,TransitStorageNode,,building=warehouse,20.184852,80.012352,REAL_FETCHED,geofabrik_india_western_zone:1c3d262031db
+way/765265136,TransitStorageNode,,building=warehouse,20.191975,80.005445,REAL_FETCHED,geofabrik_india_western_zone:1c3d262031db
+way/765532338,TransitStorageNode,,building=warehouse,20.178223,80.000108,REAL_FETCHED,geofabrik_india_western_zone:1c3d262031db
+way/765532339,TransitStorageNode,,building=warehouse,20.178374,79.999786,REAL_FETCHED,geofabrik_india_western_zone:1c3d262031db
+way/765532340,TransitStorageNode,,building=warehouse,20.178526,79.999518,REAL_FETCHED,geofabrik_india_western_zone:1c3d262031db
+way/765532341,TransitStorageNode,,building=warehouse,20.178756,79.998906,REAL_FETCHED,geofabrik_india_western_zone:1c3d262031db
+way/765532342,TransitStorageNode,,building=warehouse,20.178567,79.998642,REAL_FETCHED,geofabrik_india_western_zone:1c3d262031db
+way/767828080,TransitStorageNode,,building=warehouse,20.188442,79.994229,REAL_FETCHED,geofabrik_india_western_zone:1c3d262031db
+way/768383401,TransitStorageNode,,building=warehouse,20.199015,80.009217,REAL_FETCHED,geofabrik_india_western_zone:1c3d262031db
+way/768476140,TransitStorageNode,,building=warehouse,20.181159,79.989702,REAL_FETCHED,geofabrik_india_western_zone:1c3d262031db
+way/769113227,TransitStorageNode,,building=warehouse,20.180210,79.990134,REAL_FETCHED,geofabrik_india_western_zone:1c3d262031db
+way/770013360,TransitStorageNode,,building=warehouse,20.169403,79.985070,REAL_FETCHED,geofabrik_india_western_zone:1c3d262031db
+way/770013361,TransitStorageNode,,building=warehouse,20.169544,79.985058,REAL_FETCHED,geofabrik_india_western_zone:1c3d262031db
+way/770074798,TransitStorageNode,,building=warehouse,20.175716,79.980653,REAL_FETCHED,geofabrik_india_western_zone:1c3d262031db

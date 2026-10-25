@@ -86,7 +86,11 @@ def data_audit() -> None:
 
 
 def graph() -> None:
+    """OSM extract (cache-first) → road graph, nodes.csv, edges.csv, OD matrix, GeoJSON, graph_report.html."""
+    if "--synthetic" not in sys.argv:
+        py("-m", "pipelines.osm_extract", *[a for a in sys.argv[2:] if a == "--refresh"])
     py("-m", "pipelines.build_graph", *sys.argv[2:])
+    py("-m", "pipelines.audit")
 
 
 def graph_apply_review() -> None:

@@ -1,24 +1,30 @@
 {
   "need": "Warehouse / cold-storage / NGO / processing locations",
-  "source_name": "OpenStreetMap via Overpass",
-  "status": "UNVERIFIED",
-  "access": "Overpass API",
+  "source_name": "OpenStreetMap (Geofabrik Western Zone extract)",
+  "status": "PARTIAL",
+  "access": "Bulk .osm.pbf download, filtered locally with pyosmium",
   "auth": "none",
-  "licence": "ODbL 1.0",
-  "coverage": "not yet fetched (Phase 2)",
+  "licence": "ODbL 1.0 (OpenStreetMap). Attribution '© OpenStreetMap contributors'; share-alike applies to derived databases (nodes.csv/edges.csv).",
+  "coverage": "inside division polygon: {'MarketplaceCandidate': 234, 'TransitStorageNode': 38, 'ProcessingSink': 3, 'NGOSink': 2}; place nodes for geocoding: 9285",
   "tried": [
-    "https://overpass-api.de/api/status → unreachable (https://overpass-api.de/api/status: ReadTimeout(ReadTimeoutE)",
-    "https://overpass.kumi.systems/api/status → unreachable (https://overpass.kumi.systems/api/status: ReadTimeout(ReadTi)",
-    "https://overpass.private.coffee/api/status → unreachable (https://overpass.private.coffee/api/status: ReadTimeout(Read)"
+    "Overpass instances at capacity / timing out (2026-10-25)",
+    "GET https://download.geofabrik.de/asia/india/western-zone-latest.osm.pbf",
+    "TransitStorageNode: industrial=cold_storage | name~cold storage/शीतगृह | building=warehouse | industrial=warehouse",
+    "NGOSink: office=ngo | office=charity | social_facility=food_bank|soup_kitchen | amenity=food_bank",
+    "ProcessingSink: industrial=food_industry|food | man_made=works + product~food | name~food processing/agro industries",
+    "MarketplaceCandidate: amenity=marketplace | name~APMC/Krishi Utpanna/Bazar Samiti/market yard/mandi"
   ],
-  "why_failed": "",
-  "fallback": "Fictional 'Demo … DEMO' nodes tagged SYNTHETIC_DEMO for the demo only.",
-  "urls": [],
+  "why_failed": "OSM coverage of warehouses/NGOs/processing units in this region is sparse (see counts)",
+  "fallback": "Fictional 'Demo … DEMO' nodes (SYNTHETIC_DEMO) where a category has too few real nodes for the demo; excluded from any metric labelled real.",
+  "urls": [
+    "https://download.geofabrik.de/asia/india/western-zone-latest.osm.pbf"
+  ],
   "rate_limits": "",
-  "freshness": "",
-  "known_problems": "",
+  "freshness": "extract timestamp in MANIFEST (Geofabrik 'latest' at fetch time)",
+  "known_problems": "Tag-based classification; many warehouses are unnamed; NGO tagging is rare in India OSM.",
   "flags": [
     "ATTRIBUTION_REQUIRED",
+    "SHARE_ALIKE_ODbL",
     "EXPECT_SPARSE_COVERAGE"
   ]
 }

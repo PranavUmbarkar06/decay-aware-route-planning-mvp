@@ -1,0 +1,131 @@
+{
+  "synthetic": false,
+  "banner": null,
+  "osmnx_version": "2.1.1",
+  "networkx_version": "3.6.1",
+  "source_manifest_id": "geofabrik_india_western_zone:1c3d262031db",
+  "counts": {
+    "raw_nodes": 456420,
+    "raw_edges": 871774,
+    "ways": 15596,
+    "simplified_nodes": 11182,
+    "simplified_edges": 25950,
+    "final_nodes": 9677,
+    "final_edges": 22644,
+    "business_nodes": "{('AssemblyMandi', 'REAL_FETCHED'): 48, ('FarmGatherPoint', 'ASSUMPTION'): 69, ('NGOSink', 'REAL_FETCHED'): 2, ('NGOSink', 'SYNTHETIC_DEMO'): 1, ('ProcessingSink', 'REAL_FETCHED'): 3, ('ReceivingMarket', 'REAL_FETCHED'): 9, ('TransitStorageNode', 'REAL_FETCHED'): 38}",
+    "needs_review": 24
+  },
+  "drops": [
+    {
+      "step": "clip to division polygon + 5.0 km buffer",
+      "nodes_dropped": 1229,
+      "edges_dropped": 2909,
+      "why": "outside pilot geography"
+    },
+    {
+      "step": "remove self-loops",
+      "nodes_dropped": 0,
+      "edges_dropped": 6,
+      "why": "closed ways (e.g. loops) collapse to self-loops after simplification; not routable"
+    },
+    {
+      "step": "remove zero-length edges",
+      "nodes_dropped": 0,
+      "edges_dropped": 0,
+      "why": "duplicate coordinates"
+    },
+    {
+      "step": "keep largest strongly connected component",
+      "nodes_dropped": 276,
+      "edges_dropped": 391,
+      "why": "fragments unreachable in both directions (cut at the extract/state edge, isolated service stubs, one-way dead ends)"
+    }
+  ],
+  "checks": [
+    {
+      "check": "graph is one strongly connected component",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "check": "no isolated graph nodes",
+      "pass": true,
+      "detail": "0 isolates"
+    },
+    {
+      "check": "no duplicate node_id",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "check": "no duplicate edge_id",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "check": "no zero/negative lengths",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "check": "no self-loops",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "check": "speeds within plausible range (flagged, not clipped)",
+      "pass": true,
+      "detail": "0 edges flagged OUT_OF_PLAUSIBLE_RANGE"
+    },
+    {
+      "check": "every nodes row has provenance + source_manifest_id",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "check": "every edges row has provenance + source_manifest_id",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "check": "every reviewed business node reaches ≥1 receiving market",
+      "pass": true,
+      "detail": "unreachable: []"
+    },
+    {
+      "check": "every reviewed business node reaches ≥1 NGO/processing sink",
+      "pass": true,
+      "detail": "unreachable: []; real (non-demo) sinks available: 5"
+    }
+  ],
+  "speed_source": {
+    "class_default_ASSUMPTION": 21210,
+    "osm_maxspeed": 1204,
+    "mixed:class_default_ASSUMPTION;osm_maxspeed": 230
+  },
+  "highway_class": {
+    "tertiary": 11465,
+    "trunk": 3751,
+    "secondary": 3152,
+    "primary": 2553,
+    "trunk_link": 943,
+    "tertiary_link": 290,
+    "secondary_link": 179,
+    "primary_link": 176,
+    "secondary;tertiary": 36,
+    "motorway": 18,
+    "motorway_link": 17,
+    "primary;secondary": 14,
+    "primary;trunk": 13,
+    "trunk;trunk_link": 8,
+    "primary;tertiary": 8,
+    "tertiary;tertiary_link": 6,
+    "tertiary;trunk_link": 4,
+    "tertiary;trunk": 4,
+    "primary_link;secondary": 2,
+    "primary;trunk_link": 2,
+    "primary;trunk;trunk_link": 2,
+    "motorway_link;tertiary": 1
+  },
+  "od_pairs": 21170
+}

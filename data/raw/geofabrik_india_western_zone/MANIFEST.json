@@ -1,0 +1,32 @@
+{
+  "entries": [
+    {
+      "bytes": 221564118,
+      "fetched_at_utc": "2026-10-25T06:44:03Z",
+      "file": "western-zone-latest.osm.pbf",
+      "http_status": 200,
+      "manifest_id": "geofabrik_india_western_zone:1c3d262031db",
+      "method": "GET",
+      "params": {},
+      "retrieval": "pipeline_http",
+      "sha256": "1c3d262031dbb02fc55b20d0c530467dc277007c68097297952753662e860996",
+      "url": "https://download.geofabrik.de/asia/india/western-zone-latest.osm.pbf"
+    },
+    {
+      "bytes": 8571,
+      "fetched_at_utc": "2026-10-25T06:41:30Z",
+      "file": "western-zone.poly",
+      "http_status": 200,
+      "manifest_id": "geofabrik_india_western_zone:81b1d5f02124",
+      "method": "GET",
+      "params": {},
+      "retrieval": "pipeline_http",
+      "sha256": "81b1d5f0212494c973e2f6cd7bb3b6472d9da63fe5f2a6a90e10096d21bd144b",
+      "url": "https://download.geofabrik.de/asia/india/western-zone.poly"
+    }
+  ],
+  "licence": "ODbL 1.0 (OpenStreetMap). Attribution '© OpenStreetMap contributors'; share-alike applies to derived databases (nodes.csv/edges.csv).",
+  "notes": "Geofabrik daily extract of OSM for India Western Zone (Maharashtra, Gujarat, Goa, DNH&DD).",
+  "source": "geofabrik_india_western_zone",
+  "terms_url": "https://download.geofabrik.de/asia/india/western-zone.html"
+}

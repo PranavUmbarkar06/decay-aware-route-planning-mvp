@@ -2,7 +2,7 @@
   "entries": [
     {
       "bytes": 374,
-      "fetched_at_utc": "2026-10-25T06:32:33Z",
+      "fetched_at_utc": "2026-10-25T07:10:27Z",
       "file": "Daily Price Arrival Report-25-10-2026 to 25-10-2026 for Maharashtra.csv",
       "http_status": null,
       "manifest_id": "agmarknet_manual_exports:b58dae521eec",
@@ -15,7 +15,7 @@
     },
     {
       "bytes": 189264,
-      "fetched_at_utc": "2026-10-25T06:32:33Z",
+      "fetched_at_utc": "2026-10-25T07:10:27Z",
       "file": "onion.csv",
       "http_status": null,
       "manifest_id": "agmarknet_manual_exports:3f9f69e7580d",
@@ -28,7 +28,7 @@
     },
     {
       "bytes": 32585,
-      "fetched_at_utc": "2026-10-25T06:32:33Z",
+      "fetched_at_utc": "2026-10-25T07:10:27Z",
       "file": "orange.csv",
       "http_status": null,
       "manifest_id": "agmarknet_manual_exports:c2d26f9fb98a",
@@ -41,7 +41,7 @@
     },
     {
       "bytes": 159843,
-      "fetched_at_utc": "2026-10-25T06:32:33Z",
+      "fetched_at_utc": "2026-10-25T07:10:27Z",
       "file": "potato.csv",
       "http_status": null,
       "manifest_id": "agmarknet_manual_exports:a73ea08bd29a",
@@ -54,7 +54,7 @@
     },
     {
       "bytes": 236548,
-      "fetched_at_utc": "2026-10-25T06:32:33Z",
+      "fetched_at_utc": "2026-10-25T07:10:27Z",
       "file": "tomato.csv",
       "http_status": null,
       "manifest_id": "agmarknet_manual_exports:f18dfb5890c1",

@@ -123,4 +123,18 @@ project brief (Section 4) and open to override by the project owner. Status valu
 - The weather archive window is pinned (2025-11-01 → 2026-10-18) in code instead of "today minus N", so
   `python tasks.py data` is reproducible. Extending it is a deliberate edit plus `--refresh`.
 
+## ADR-021 OSM via Geofabrik extract instead of Overpass: Accepted
+- **Context:** on 2026-10-25 three public Overpass instances timed out / returned 502–504; one answered a tiny
+  query in 80 s with data dated 2026-07-28. overpass-api.de asks automated/high-volume users to self-host.
+- **Options:** keep retrying Overpass; run a local Overpass; download a Geofabrik regional extract.
+- **Decision:** Geofabrik `india/western-zone` .osm.pbf (211 MB, data to 2026-10-24), filtered locally with
+  pyosmium in one pass (1 min 42 s), then OSMnx for simplification and cleaning. Fresher data and no load on shared
+  services. **Cost:** ~95% buffer coverage (neighbouring-state strip missing); large raw file kept out of git
+  (manifest + checksum committed).
+
+## ADR-022 Market geocoding by rule, review-gated: Accepted
+- Agmarknet provides no coordinates. Markets are matched to OSM features/places in their own district by documented
+  rules with a confidence score (GRAPH_BUILD.md). Below 0.6 or a snap distance over 2 km → `needs_review` and
+  excluded from routing until the owner reviews. Town centroids stand in for market yards (documented per node).
+
 (Further ADRs are appended per phase.)

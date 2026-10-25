@@ -1,24 +1,21 @@
 {
   "need": "Road network (drivable graph)",
-  "source_name": "OpenStreetMap via OSMnx/Overpass",
-  "status": "UNVERIFIED",
-  "access": "Overpass API (OSMnx)",
+  "source_name": "OpenStreetMap (Geofabrik Western Zone extract) → OSMnx",
+  "status": "AVAILABLE",
+  "access": "Bulk .osm.pbf download; pyosmium filter; OSMnx simplify/truncate",
   "auth": "none",
   "licence": "ODbL 1.0: attribution + share-alike for derived databases",
-  "coverage": "not yet fetched (Phase 2)",
+  "coverage": "9677 nodes / 22644 directed edges after cleaning; classes ['motorway', 'motorway_link', 'trunk', 'trunk_link', 'primary', 'primary_link', 'secondary', 'secondary_link', 'tertiary', 'tertiary_link']",
   "tried": [
-    "https://overpass-api.de/api/status → unreachable (https://overpass-api.de/api/status: ReadTimeout(ReadTimeoutE)",
-    "https://overpass.kumi.systems/api/status → unreachable (https://overpass.kumi.systems/api/status: ReadTimeout(ReadTi)",
-    "https://overpass.private.coffee/api/status → unreachable (https://overpass.private.coffee/api/status: ReadTimeout(Read)"
+    "Overpass instances timed out / at capacity (2026-10-25)",
+    "Geofabrik western-zone-latest.osm.pbf"
   ],
   "why_failed": "",
-  "fallback": "Labelled SYNTHETIC_DEMO grid graph if OSM cannot be fetched (§9 step 9).",
-  "urls": [
-    "https://wiki.openstreetmap.org/wiki/Overpass_API"
-  ],
-  "rate_limits": "Public Overpass instances are shared; main instance asks automated users to back off / self-host",
+  "fallback": "SYNTHETIC_DEMO grid if the extract is unavailable",
+  "urls": [],
+  "rate_limits": "",
   "freshness": "",
-  "known_problems": "",
+  "known_problems": "Western Zone extract covers ~95% of the 5 km buffer (edges in MP/Chhattisgarh/Telangana missing); most edges use class-default speeds (ASSUMPTION); no traffic.",
   "flags": [
     "ATTRIBUTION_REQUIRED",
     "SHARE_ALIKE_ODbL"

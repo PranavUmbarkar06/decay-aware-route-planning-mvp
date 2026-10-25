@@ -149,7 +149,8 @@ def polite_get(url: str, *, params: dict | None = None, min_interval_s: float = 
 
 def fetch_cached(meta: SourceMeta, filename: str, url: str, *, params: dict | None = None,
                  refresh: bool = False, min_interval_s: float = 1.0, accept_status: tuple[int, ...] = (200,),
-                 method: str = "GET", data: Any = None, headers: dict | None = None) -> tuple[Path | None, str]:
+                 method: str = "GET", data: Any = None, headers: dict | None = None,
+                 timeout: float = 120) -> tuple[Path | None, str]:
     """Return (path, status) where status ∈ {cached, fetched, http_<code>, offline}. Cache-first."""
     path = RAW / meta.source / filename
     if path.exists() and not refresh:
@@ -157,7 +158,7 @@ def fetch_cached(meta: SourceMeta, filename: str, url: str, *, params: dict | No
         return path, "cached"
     try:
         r = polite_get(url, params=params, min_interval_s=min_interval_s, method=method, data=data,
-                       headers=headers)
+                       headers=headers, timeout=timeout)
     except ConnectionError as e:
         REFRESH_LOG.append({"source": meta.source, "file": filename, "status": f"offline: {e}"})
         return (path if path.exists() else None), "offline"
