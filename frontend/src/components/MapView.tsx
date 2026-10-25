@@ -5,6 +5,8 @@ import { useSession } from "../lib/session";
 export type MapPoint = { id: string; lat: number; lon: number; label: string; kind: string; provenance?: string; review?: boolean };
 export type MapLine = { id: string; coords: [number, number][]; color: "series-1" | "series-2" | "brand" | "muted"; width?: number; dashed?: boolean };
 export type MapDot = { lat: number; lon: number; color: "series-1" | "series-2"; label?: string };
+/** A straight line from a truck to its destination: shows direction of flow, not the road path. */
+export type MapFlow = { from: [number, number]; to: [number, number]; color: "series-1" | "series-2" };
 
 const KIND_COLOR: Record<string, string> = {
   ReceivingMarket: "#0f8b8d", AssemblyMandi: "#2a78d6", TransitStorageNode: "#6250d6", NGOSink: "#e87ba4",
@@ -24,9 +26,9 @@ function webglOk(): boolean {
   }
 }
 
-export function MapView({ points = [], lines = [], dots = [], height = 360, fitTo, onPick, showRoads = false }: {
-  points?: MapPoint[]; lines?: MapLine[]; dots?: MapDot[]; height?: number; fitTo?: [number, number][];
-  onPick?: (id: string) => void; showRoads?: boolean;
+export function MapView({ points = [], lines = [], dots = [], flows = [], height = 360, fitTo, onPick, showRoads = false, cluster = true }: {
+  points?: MapPoint[]; lines?: MapLine[]; dots?: MapDot[]; flows?: MapFlow[]; height?: number; fitTo?: [number, number][];
+  onPick?: (id: string) => void; showRoads?: boolean; cluster?: boolean;
 }) {
   const el = useRef<HTMLDivElement>(null);
   const map = useRef<MLMap | null>(null);
@@ -59,10 +61,13 @@ export function MapView({ points = [], lines = [], dots = [], height = 360, fitT
           m.addSource("roads", { type: "geojson", data: "/geo/edges_simplified.geojson" });
           m.addLayer({ id: "roads", type: "line", source: "roads", paint: { "line-color": "#8a98a6", "line-opacity": 0.35, "line-width": 0.8 } });
         }
+        m.addSource("flows", { type: "geojson", data: { type: "FeatureCollection", features: [] } });
+        m.addLayer({ id: "flows", type: "line", source: "flows", layout: { "line-cap": "round" },
+          paint: { "line-color": ["get", "color"], "line-width": 1.2, "line-opacity": 0.45 } });
         m.addSource("lines", { type: "geojson", data: { type: "FeatureCollection", features: [] } });
         m.addLayer({ id: "lines", type: "line", source: "lines", layout: { "line-cap": "round", "line-join": "round" },
           paint: { "line-color": ["get", "color"], "line-width": ["get", "width"], "line-dasharray": [1, 0] } });
-        m.addSource("points", { type: "geojson", data: { type: "FeatureCollection", features: [] }, cluster: true, clusterRadius: 36, clusterMaxZoom: 9 });
+        m.addSource("points", { type: "geojson", data: { type: "FeatureCollection", features: [] }, cluster, clusterRadius: 36, clusterMaxZoom: 9 });
         m.addLayer({ id: "clusters", type: "circle", source: "points", filter: ["has", "point_count"],
           paint: { "circle-color": "#5e6e7e", "circle-radius": 16, "circle-stroke-color": "#fff", "circle-stroke-width": 2 } });
         m.addLayer({ id: "cluster-count", type: "symbol", source: "points", filter: ["has", "point_count"],
@@ -91,7 +96,7 @@ export function MapView({ points = [], lines = [], dots = [], height = 360, fitT
       map.current?.remove();
       map.current = null;
     };
-  }, [ok, meta, onPick, showRoads]);
+  }, [ok, meta, onPick, showRoads, cluster]);
 
   useEffect(() => {
     const m = map.current;
@@ -107,7 +112,11 @@ export function MapView({ points = [], lines = [], dots = [], height = 360, fitT
     (m.getSource("dots") as GeoJSONSource).setData({ type: "FeatureCollection", features: dots.map((d) => ({
       type: "Feature", geometry: { type: "Point", coordinates: [d.lon, d.lat] }, properties: { color: cssVar(d.color) },
     })) });
-  }, [ready, points, lines, dots]);
+    (m.getSource("flows") as GeoJSONSource).setData({ type: "FeatureCollection", features: flows.map((f) => ({
+      type: "Feature", geometry: { type: "LineString", coordinates: [[f.from[1], f.from[0]], [f.to[1], f.to[0]]] },
+      properties: { color: cssVar(f.color) },
+    })) });
+  }, [ready, points, lines, dots, flows]);
 
   useEffect(() => {
     const m = map.current;

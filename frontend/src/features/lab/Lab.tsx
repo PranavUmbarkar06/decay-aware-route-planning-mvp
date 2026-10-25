@@ -3,7 +3,7 @@ import { useTranslation } from "react-i18next";
 import { api, streamEvents } from "../../lib/api";
 import { useSession } from "../../lib/session";
 import { hours, pct, weight } from "../../lib/format";
-import { MapView, type MapDot } from "../../components/MapView";
+import { MapView, type MapDot, type MapFlow } from "../../components/MapView";
 import { Button, Card, ErrorBox, Field, HowCalculated, inputCls, Loading, PageTitle, ProvenanceBadge, Stat } from "../../components/ui";
 import { DotPlot, LineChart } from "./Charts";
 import { useNodes } from "../lots/Lots";
@@ -153,40 +153,117 @@ function Results() {
   );
 }
 
+type Sink = { node_id: string; node_type: string; name: string; lat: number | null; lon: number | null; provenance: string };
+const POLICY_COLOR = { StaticShortestPath: "series-1", QualityAwareDynamic: "series-2" } as const;
+
+/** Markets, NGOs and processing units the simulation routes to (real nodes only; demo nodes are never simulated). */
+function useSinks() {
+  const [sinks, setSinks] = useState<Sink[]>([]);
+  useEffect(() => {
+    void api<Sink[]>("/nodes?type=ReceivingMarket,NGOSink,ProcessingSink")
+      .then((n) => setSinks(n.filter((x) => x.lat != null && x.provenance !== "SYNTHETIC_DEMO")))
+      .catch(() => setSinks([]));
+  }, []);
+  const byId = useMemo(() => Object.fromEntries(sinks.map((x) => [x.node_id, x])), [sinks]);
+  const points = useMemo(() => sinks.map((x) => ({ id: x.node_id, lat: x.lat as number, lon: x.lon as number, label: x.name,
+    kind: x.node_type, provenance: x.provenance })), [sinks]);
+  return { byId, points };
+}
+
+function FlowLegend() {
+  return (
+    <ul className="flex flex-wrap gap-x-4 gap-y-1 text-xs text-ink-2" aria-label="Map legend">
+      <li className="flex items-center gap-1.5"><span className="inline-block size-3 rounded-full" style={{ background: "var(--series-1)" }} />Baseline truck (static shortest path)</li>
+      <li className="flex items-center gap-1.5"><span className="inline-block size-3 rounded-full" style={{ background: "var(--series-2)" }} />Proposed truck (quality-aware)</li>
+      <li className="flex items-center gap-1.5"><span className="inline-block h-0.5 w-5" style={{ background: "var(--muted)" }} />Line to its destination (direction only, not the road)</li>
+      <li className="flex items-center gap-1.5"><span className="inline-block size-3 rounded-full" style={{ background: "#0f8b8d" }} />Market</li>
+      <li className="flex items-center gap-1.5"><span className="inline-block size-3 rounded-full" style={{ background: "#e87ba4" }} />NGO</li>
+      <li className="flex items-center gap-1.5"><span className="inline-block size-3 rounded-full" style={{ background: "#eda100" }} />Processing unit</li>
+    </ul>
+  );
+}
+
+const POLS = ["StaticShortestPath", "QualityAwareDynamic"] as const;
+const POL_LABEL = { StaticShortestPath: "Baseline", QualityAwareDynamic: "Proposed" } as const;
+
 function Replay() {
-  const [policy, setPolicy] = useState<"StaticShortestPath" | "QualityAwareDynamic">("QualityAwareDynamic");
+  const [show, setShow] = useState({ StaticShortestPath: true, QualityAwareDynamic: true });
   const [data, setData] = useState<Record<string, any>>({});
   const [tick, setTick] = useState(0);
   const [playing, setPlaying] = useState(false);
+  const [speed, setSpeed] = useState(250);
   const [err, setErr] = useState<unknown>(null);
+  const { byId, points } = useSinks();
   useEffect(() => {
-    for (const p of ["StaticShortestPath", "QualityAwareDynamic"]) {
+    for (const p of POLS) {
       api(`/sim/replay/replay__summer__101__${p}.json`).then((d) => setData((x) => ({ ...x, [p]: d }))).catch(setErr);
     }
   }, []);
-  const cur = data[policy];
-  const n = cur?.ticks.length ?? 0;
+  const n = Math.min(data.StaticShortestPath?.ticks.length ?? 0, data.QualityAwareDynamic?.ticks.length ?? 0);
   useEffect(() => {
     if (!playing || !n) return;
-    const i = setInterval(() => setTick((t) => (t + 1) % n), 250);
+    const i = setInterval(() => setTick((t) => (t + 1) % n), speed);
     return () => clearInterval(i);
-  }, [playing, n]);
+  }, [playing, n, speed]);
   if (err) return <ErrorBox error={err} />;
-  if (!cur) return <Loading />;
-  const row = cur.ticks[Math.min(tick, n - 1)];
-  const dots: MapDot[] = row.slice(1).filter((x: any) => x[3] === "transit").map((x: any) => ({ lat: x[1], lon: x[2], color: policy === "StaticShortestPath" ? "series-1" : "series-2" }));
-  const atMarket = row.slice(1).filter((x: any) => x[3] === "market").length;
+  if (!n) return <Loading />;
+  const dots: MapDot[] = [];
+  const flows: MapFlow[] = [];
+  const stats: Record<string, { moving: number; waiting: number; byDest: Record<string, number> }> = {};
+  for (const pol of POLS) {
+    const row = data[pol].ticks[Math.min(tick, n - 1)];
+    const st = { moving: 0, waiting: 0, byDest: {} as Record<string, number> };
+    for (const x of row.slice(1)) {
+      const lat = x[1], lon = x[2], status = x[3], dest = x[4];
+      if (status === "transit") {
+        st.moving += 1;
+        if (dest) st.byDest[dest] = (st.byDest[dest] ?? 0) + 1;
+        if (show[pol]) {
+          dots.push({ lat, lon, color: POLICY_COLOR[pol] });
+          const d = dest ? byId[dest] : null;
+          if (d) flows.push({ from: [lat, lon], to: [d.lat as number, d.lon as number], color: POLICY_COLOR[pol] });
+        }
+      } else if (status === "market") st.waiting += 1;
+    }
+    stats[pol] = st;
+  }
+  const start = data.StaticShortestPath.start as string;
+  const when = new Date(new Date(`${start}T00:00:00Z`).getTime() + tick * 3600e3);
+  const top = (pol: string) => Object.entries(stats[pol].byDest).sort((a, b) => b[1] - a[1]).slice(0, 3)
+    .map(([id, c]) => `${byId[id]?.name ?? id} (${c})`).join(", ") || "none";
   return (
     <div className="space-y-3">
-      <p className="text-sm">Registered run: summer 2026, seed 101. <ProvenanceBadge p="SYNTHETIC_DEMO" /> lots on real roads and weather. {SIM_LABEL}.</p>
-      <div className="flex flex-wrap gap-2">
-        <Button variant={policy === "StaticShortestPath" ? "primary" : "secondary"} onClick={() => setPolicy("StaticShortestPath")}>Baseline</Button>
-        <Button variant={policy === "QualityAwareDynamic" ? "primary" : "secondary"} onClick={() => setPolicy("QualityAwareDynamic")}>Proposed</Button>
-        <Button variant="secondary" onClick={() => setPlaying(!playing)}>{playing ? "⏸ Pause" : "▶ Play"}</Button>
+      <p className="text-sm">Registered run: summer 2026, seed 101. <ProvenanceBadge p="SYNTHETIC_DEMO" /> lots on real roads and replayed
+        weather; both policies get exactly the same lots. {SIM_LABEL}.</p>
+      <div className="flex flex-wrap items-center gap-2">
+        {POLS.map((pol) => (
+          <label key={pol} className="tap flex cursor-pointer items-center gap-2 rounded-xl border border-line px-3 text-sm font-semibold">
+            <input type="checkbox" className="size-5" checked={show[pol]} onChange={(e) => setShow({ ...show, [pol]: e.target.checked })} />
+            <span className="inline-block size-3 rounded-full" style={{ background: `var(--${POLICY_COLOR[pol]})` }} />
+            {POL_LABEL[pol]}
+          </label>
+        ))}
+        <Button variant="secondary" onClick={() => setPlaying(!playing)} data-testid="replay-play">{playing ? "⏸ Pause" : "▶ Play"}</Button>
+        <select aria-label="Playback speed" className="tap rounded-xl border border-line bg-surface-2 px-2 text-sm" value={speed}
+          onChange={(e) => setSpeed(+e.target.value)}>
+          <option value={500}>Slow</option><option value={250}>Normal</option><option value={80}>Fast</option>
+        </select>
       </div>
-      <MapView height={380} dots={dots} showRoads />
-      <label className="block text-sm font-semibold" htmlFor="scrub">Time: hour {tick} of {n - 1} ({dots.length} trucks moving, {atMarket} lots waiting at markets)</label>
+      <MapView height={420} dots={dots} flows={flows} points={points} cluster={false} showRoads />
+      <FlowLegend />
+      <label className="block text-sm font-semibold" htmlFor="scrub">
+        {when.toLocaleString("en-IN", { timeZone: "Asia/Kolkata", weekday: "short", day: "numeric", month: "short", hour: "2-digit", minute: "2-digit" })} IST
+        {" "}· hour {tick} of {n - 1}
+      </label>
       <input id="scrub" type="range" className="big" min={0} max={n - 1} value={tick} onChange={(e) => setTick(+e.target.value)} />
+      <div className="grid gap-2 sm:grid-cols-2" aria-live="polite" data-testid="replay-stats">
+        {POLS.map((pol) => (
+          <div key={pol} className="card border-l-4 p-3 text-sm" style={{ borderLeftColor: `var(--${POLICY_COLOR[pol]})` }}>
+            <b>{POL_LABEL[pol]}</b>: {stats[pol].moving} trucks moving · {stats[pol].waiting} lots waiting at markets
+            <div className="text-muted">Busiest destinations now: {top(pol)}</div>
+          </div>
+        ))}
+      </div>
     </div>
   );
 }
@@ -225,10 +302,20 @@ function Live() {
     { key: "b", label: "Baseline: static", color: "series-1" as const, points: ticks.map((t) => ({ x: t.tick, y: t.baseline.unmet_demand_rate })) },
     { key: "p", label: "Proposed: quality-aware", color: "series-2" as const, points: ticks.map((t) => ({ x: t.tick, y: t.proposed.unmet_demand_rate })) },
   ], [ticks]);
+  const { byId, points } = useSinks();
   const dots: MapDot[] = last ? [
     ...last.baseline_trucks.map((x: any) => ({ lat: x[0], lon: x[1], color: "series-1" as const })),
     ...last.proposed_trucks.map((x: any) => ({ lat: x[0], lon: x[1], color: "series-2" as const })),
   ] : [];
+  const flows: MapFlow[] = [];
+  if (last) {
+    for (const [k, c] of [["baseline_trucks", "series-1"], ["proposed_trucks", "series-2"]] as const) {
+      for (const x of last[k]) {
+        const d = x[4] ? byId[x[4]] : null;
+        if (d) flows.push({ from: [x[0], x[1]], to: [d.lat as number, d.lon as number], color: c });
+      }
+    }
+  }
   void serverNow;
   return (
     <div className="space-y-3">
@@ -255,7 +342,8 @@ function Live() {
           </div>
           <Card><LineChart title="Cumulative wastage rate (wasted ÷ dispatched)" series={series} xLabel="hour" /></Card>
           <Card><LineChart title="Unmet-demand rate (closed market days)" series={unmet} xLabel="hour" /></Card>
-          <MapView height={340} dots={dots} showRoads />
+          <MapView height={420} dots={dots} flows={flows} points={points} cluster={false} showRoads />
+          <FlowLegend />
           <p className="text-xs text-muted">Hour {last.tick} of {head?.ticks}. Blue = baseline trucks, orange = proposed trucks. Mass balance error this hour: {Math.abs(last.baseline.balance_error_kg).toExponential(1)} / {Math.abs(last.proposed.balance_error_kg).toExponential(1)} kg. {SIM_LABEL}.</p>
         </>
       ) : running ? <Loading /> : null}

@@ -324,12 +324,13 @@ def sim_live(start: date = Query(date(2026, 5, 1)), days: int = Query(3, ge=2, l
                 "volumes. Not the pre-registered experiment. Not field-validated.", "notes": sc.notes}
         yield f"data: {json.dumps(head)}\n\n"
         for t in range(sc.ticks):
-            payload = {"type": "tick", "tick": t, "time_utc": (pd.Timestamp(start) + pd.Timedelta(hours=t)).isoformat()}
+            payload = {"type": "tick", "tick": t, "time_utc": (pd.Timestamp(start) + pd.Timedelta(hours=t)).isoformat(),
+                       "fields": ["lat", "lon", "commodity", "quality", "dest"]}
             for k, e in engines.items():
                 e.step(t)
                 payload[k] = e.snapshot(t)
                 payload[k + "_trucks"] = [[round(float(net.y[ls.cur_node]), 4), round(float(net.x[ls.cur_node]), 4),
-                                           ls.lot.commodity, round(e.quality(ls), 2)]
+                                           ls.lot.commodity, round(e.quality(ls), 2), ls.dest]
                                           for ls in e.active if ls.status == "transit"][:300]
             yield f"data: {json.dumps(payload, default=float)}\n\n"
             if pace_ms:
