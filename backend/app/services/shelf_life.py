@@ -36,6 +36,17 @@ def _monthly_mean() -> dict[tuple[str, int], float]:
     return w.groupby(["district", "m"])["temperature_2m"].mean().to_dict()
 
 
+@lru_cache
+def _month_mean_all() -> dict[int, float]:
+    w = _weather().reset_index()
+    return w.groupby(w["time_utc"].dt.month)["temperature_2m"].mean().to_dict()
+
+
+@lru_cache
+def _overall_mean() -> float:
+    return float(_weather()["temperature_2m"].mean())
+
+
 def temperatures(district: str | None, start: datetime, hours: int) -> tuple[list[float], str]:
     """Hourly temperatures and their provenance for [start, start + hours)."""
     district = district or "Nagpur"
@@ -48,7 +59,7 @@ def temperatures(district: str | None, start: datetime, hours: int) -> tuple[lis
     prov = Provenance.REAL_FETCHED
     if s.isna().any():
         mm = _monthly_mean()
-        fill = pd.Series([mm.get((district, t.month), 27.0) for t in idx], index=idx)
+        fill = pd.Series([mm.get((district, t.month), _month_mean_all().get(t.month, _overall_mean())) for t in idx], index=idx)
         prov = Provenance.ASSUMPTION if s.isna().all() else Provenance.REAL_DERIVED
         s = s.fillna(fill)
     return s.tolist(), prov

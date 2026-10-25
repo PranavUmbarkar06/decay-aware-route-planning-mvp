@@ -254,3 +254,25 @@ def speeds() -> Speeds:
 @lru_cache
 def geography() -> GeographyConfig:
     return GeographyConfig.model_validate(_load("geography.yaml"))
+
+
+@lru_cache
+def division_bounds() -> tuple[float, float, float, float] | None:
+    """(min_lon, min_lat, max_lon, max_lat) of the pilot division, from data/processed/division_boundary.geojson
+    (REAL_DERIVED from OSM). None if the boundary has not been fetched. Never hand-typed."""
+    import json as _json
+    p = ROOT / "data" / "processed" / "division_boundary.geojson"
+    if not p.exists():
+        return None
+    coords: list[tuple[float, float]] = []
+
+    def walk(c):
+        if isinstance(c[0], (int, float)):
+            coords.append((float(c[0]), float(c[1])))
+        else:
+            for x in c:
+                walk(x)
+    for f in _json.loads(p.read_text(encoding="utf-8"))["features"]:
+        walk(f["geometry"]["coordinates"])
+    xs, ys = [c[0] for c in coords], [c[1] for c in coords]
+    return (min(xs), min(ys), max(xs), max(ys))

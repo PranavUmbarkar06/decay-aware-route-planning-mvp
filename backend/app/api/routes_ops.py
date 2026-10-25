@@ -11,7 +11,7 @@ from sqlalchemy import or_, select
 from sqlalchemy.orm import Session
 
 from app.core.clock import is_demo_clock, now
-from app.core.config import ROOT, app_config, commodities_config
+from app.core.config import ROOT, app_config, commodities_config, division_bounds
 from app.core.db import get_db
 from app.core.provenance import Provenance
 from app.core.security import ANY_ROLE, Role, require
@@ -442,7 +442,8 @@ def import_nodes(body: dict, commit: bool = False, admin: User = Depends(require
         lat = lon = 0.0
         try:
             lat, lon = float(r.get("lat") or ""), float(r.get("lon") or "")
-            if not (18.0 <= lat <= 22.5 and 77.5 <= lon <= 81.5):
+            b = division_bounds()
+            if b and not (b[1] - 0.1 <= lat <= b[3] + 0.1 and b[0] - 0.1 <= lon <= b[2] + 0.1):
                 e.append("coordinates are outside the pilot geography (Nagpur Division)")
         except ValueError:
             e.append("lat/lon must be numbers")

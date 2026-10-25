@@ -49,8 +49,8 @@ export function MapView({ points = [], lines = [], dots = [], height = 360, fitT
           sources: { base: { type: "raster", tiles: [meta.map.tile_url], tileSize: 256, attribution: meta.map.attribution } },
           layers: [{ id: "base", type: "raster", source: "base" }],
         },
-        center: [79.09, 21.15],
-        zoom: 7,
+        // initial view = pilot division bounds served by the API (derived from OSM polygons, never hand-typed)
+        ...(meta.map.bounds ? { bounds: [[meta.map.bounds[0], meta.map.bounds[1]], [meta.map.bounds[2], meta.map.bounds[3]]] as [[number, number], [number, number]] } : { center: [0, 0] as [number, number], zoom: 1 }),
         attributionControl: { compact: false },
       });
       m.addControl(new maplibregl.NavigationControl({ showCompass: false }), "top-right");

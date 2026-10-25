@@ -9,7 +9,7 @@ from sqlalchemy import or_, select
 from sqlalchemy.orm import Session
 
 from app.api import schemas as s
-from app.core.config import app_config, commodities_config
+from app.core.config import app_config, commodities_config, division_bounds
 from app.core.db import get_db
 from app.core.ratelimit import enforce
 from app.core.security import (
@@ -37,7 +37,8 @@ def meta() -> dict:
     cfg = app_config()
     return {"product_name": cfg.product_name, "version": cfg.version, "demo_mode": cfg.runtime.demo_mode,
             "auth_mode": cfg.auth.mode, "logo_path": cfg.logo_path,
-            "map": {"tile_url": cfg.map.tile_url, "attribution": cfg.map.attribution},
+            "map": {"tile_url": cfg.map.tile_url, "attribution": cfg.map.attribution,
+                    "bounds": division_bounds(), "bounds_provenance": "REAL_DERIVED (OSM district polygons)"},
             "attributions": ["Road data © OpenStreetMap contributors (ODbL)", "Weather data by Open-Meteo.com (CC BY 4.0)",
                              "Market master list and arrivals: Agmarknet 2.0 (DMI, MoA&FW)"],
             "commodities": {k: c.label for k, c in commodities_config().commodities.items()},

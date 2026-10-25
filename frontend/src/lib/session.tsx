@@ -5,7 +5,7 @@ import { onQueueChange, syncNow } from "./offline";
 export type User = { id: string; phone: string; role: string; name: string | null; language: string; district: string | null;
   home_node_id: string | null; provenance: string };
 export type Meta = { product_name: string; version: string; demo_mode: boolean; auth_mode: string; logo_path: string;
-  map: { tile_url: string; attribution: string }; attributions: string[]; commodities: Record<string, string>;
+  map: { tile_url: string; attribution: string; bounds: [number, number, number, number] | null }; attributions: string[]; commodities: Record<string, string>;
   provenance_legend: Record<string, string>; units: string[] };
 
 type Ctx = {

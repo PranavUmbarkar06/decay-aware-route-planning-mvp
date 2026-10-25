@@ -132,3 +132,10 @@ Each phase ends with: tests run → commit → this file updated → gate report
   tests pass against the clone's server; `python tasks.py test` in the clone found one real issue (audit treated the
   un-committed 211 MB OSM extract as a mismatch), fixed and re-verified with the extract removed.
 - **Gate:** `make demo` works from a clean clone ✔; README steps verified by running them ✔. **PASS.**
+
+## Phase 8: final audit (2026-10-25)
+- Sweep for invented-looking values found three hand-typed numbers in code (map centre, CSV import bounding box, a 27 °C
+  fallback temperature); all replaced with values derived from data (OSM division bounds; replayed monthly means).
+- Honest-claims check 0; provenance lint passes; LIMITATIONS and FINAL_REPORT written; full battery re-run
+  (`reports/final/test_results.txt`): pytest 105, vitest 6, Playwright 10, all lint/type/audit clean.
+- **Gate: PASS.** See docs/FINAL_REPORT.md.
