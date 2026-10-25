@@ -35,3 +35,4 @@ data/cache/**
 # OS
 Thumbs.db
 .DS_Store
+reports/sim/*/runs/

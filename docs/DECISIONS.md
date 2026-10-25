@@ -137,4 +137,17 @@ project brief (Section 4) and open to override by the project owner. Status valu
   rules with a confidence score (GRAPH_BUILD.md). Below 0.6 or a snap distance over 2 km → `needs_review` and
   excluded from routing until the owner reviews. Town centroids stand in for market yards (documented per node).
 
+## ADR-023 Post-hoc exploratory simulation variants (deviation log): Accepted
+- **When:** 2026-10-25, after engineering runs on the dev seed (seed 1, March window; outside the registered seeds/seasons)
+  and **before any registered experiment run**.
+- **Observation:** on the dev window the pre-registered QualityAwareDynamic policy was worse than the baseline. Diagnosis
+  found no accounting bug, but two properties of the registered design: (1) planned destinations are drawn from each
+  day's *realised* arrival shares (A24), so the baseline implicitly knows the day's demand; (2) the registered policy
+  persists the current temperature into the future, so afternoon heat makes it over-predict overnight decay.
+- **Decision:** the primary comparison runs **unchanged, as pre-registered**, and is reported as it comes out. Three
+  variants are run as `EXPLORATORY_POSTHOC` and never enter the decision rule: plans drawn from forecast shares; a
+  diurnal temperature forecast (yesterday's same-hour temperatures); both.
+- **Also fixed before registered runs (engineering bug, not a design change):** the demand forecast had no history before
+  the window; it now sees the 14 days of real Agmarknet arrivals before the window (as a crowd meter would).
+
 (Further ADRs are appended per phase.)
