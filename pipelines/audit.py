@@ -18,6 +18,7 @@ LICENCE_FLAGS = {"NON_COMMERCIAL_FREE_TIER", "ATTRIBUTION_REQUIRED", "SHARE_ALIK
                  "LICENCE_UNVERIFIED"}
 # Processed files that are derived geometry/reference tables without row-level provenance columns.
 PROVENANCE_EXEMPT: set[str] = set()
+NOT_COMMITTED_SUFFIXES = {".pbf", ".graphml", ".osm"}   # mirrors .gitignore
 
 
 def load_records() -> dict[str, dict]:
@@ -30,6 +31,12 @@ def verify_manifests() -> tuple[list[dict], list[str]]:
         man = json.loads(m.read_text(encoding="utf-8"))
         for e in man["entries"]:
             f = m.parent / e["file"]
+            if not f.exists() and f.suffix in NOT_COMMITTED_SUFFIXES:
+                # Large raw downloads are kept out of git (.gitignore); a clean clone simply has not fetched them yet.
+                rows.append({"source": man["source"], "licence": man.get("licence", ""), "file": e["file"],
+                             "manifest_id": e["manifest_id"], "url": e["url"], "fetched_at_utc": e["fetched_at_utc"],
+                             "bytes": e["bytes"], "retrieval": e.get("retrieval", ""), "verified": None})
+                continue
             ok = f.exists() and sha256_file(f) == e["sha256"]
             if not ok:
                 errors.append(f"checksum/file mismatch: {f.relative_to(ROOT)}")
@@ -95,7 +102,7 @@ def write_sources(recs: dict[str, dict], manifest_rows: list[dict], processed_ro
               "| Source | File | Manifest id | Retrieved (UTC) | Bytes | Method | Checksum verified |", "|---|---|---|---|---|---|---|"]
     for m in manifest_rows:
         lines.append(f"| {m['source']} | `{md_escape(m['file'])}` | `{m['manifest_id']}` | {m['fetched_at_utc']} | "
-                     f"{m['bytes']:,} | {m['retrieval']} | {'yes' if m['verified'] else '**NO**'} |")
+                     f"{m['bytes']:,} | {m['retrieval']} | {'yes' if m['verified'] else ('not cached (large, re-fetch with `make graph`)' if m['verified'] is None else '**NO**')} |")
     lines += ["", "## Processed tables", "", "| File | Rows | Provenance mix |", "|---|---|---|"]
     for p in processed_rows:
         lines.append(f"| `{p['file']}` | {p['rows']:,} | {p['provenance']} |")

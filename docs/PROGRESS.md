@@ -117,3 +117,18 @@ Each phase ends with: tests run → commit → this file updated → gate report
   exactly one wins, offline handover queued and synced with real scan time, full guided demo, evidence statement.
   Vitest 6/6 (incl. provenance lint: DEMO records always badged). Backend 105 pass. tsc, eslint, ruff, mypy clean;
   npm audit 0 vulnerabilities; honest-check 0. **PASS.**
+
+## Phase 7: demo mode, docs, security, performance, README (2026-10-25)
+- Runtime made clean-clone ready: `make graph` now also writes committed `graph_nodes.csv` and `od_matrix.csv`; the app
+  and simulation no longer need the 27 MB GraphML (registered runs still reproduce bit-for-bit).
+- Security: CSP and other headers, gzip, pip-audit (0 known vulnerabilities), npm audit (0), rate limits configurable
+  (demo 20/min OTP; test-only multiplier documented as never-in-deployment).
+- Performance (Lighthouse 12.8.2, mobile, localhost, measured): welcome Perf 65 → 82, A11y 100, BP 82 (HTTP only),
+  SEO 83 → 100; evidence Perf 76 (CLS 0.14 when the table loads). Lighthouse 12 has no PWA category.
+- Docs: README, ARCHITECTURE, LIMITATIONS, COMPLIANCE_TODO, INTEGRATIONS_TODO, DEMO_SCRIPT, data pack README, CHANGELOG,
+  issue templates; ASSUMPTIONS A17–A29; `.env.example`; Dockerfile + docker-compose (**untested**, no Docker here).
+- **Clean-clone verification (actually run):** `git clone` → `python tasks.py setup` (3.5 min, exit 0) →
+  `python tasks.py demo` → `/readyz` ready (171 nodes), pages and report served; Playwright guided demo + evidence
+  tests pass against the clone's server; `python tasks.py test` in the clone found one real issue (audit treated the
+  un-committed 211 MB OSM extract as a mismatch), fixed and re-verified with the extract removed.
+- **Gate:** `make demo` works from a clean clone ✔; README steps verified by running them ✔. **PASS.**
