@@ -145,9 +145,28 @@ class DecayModel:
     def age_after(self, age_ref_h: float, temps_c: Sequence[float], dt_h: float = 1.0) -> float:
         return age_ref_h + float(np.sum(self._v(np.asarray(temps_c, float)))) * dt_h / float(self._v(self.profile.ref_temp_c))
 
+    def _target_age(self) -> float:
+        return self.profile.life_ref_h * math.exp(self.sigma * _phi_inv(self.traffic_quantile))
+
     def remaining_life_h(self, age_ref_h: float, temp_c: float) -> float:
-        target = self.profile.life_ref_h * math.exp(self.sigma * _phi_inv(self.traffic_quantile))
-        return max(0.0, (target - age_ref_h) / self.accel(temp_c))
+        """Hours from now until the traffic quantile is reached, at a constant temperature."""
+        return max(0.0, (self._target_age() - age_ref_h) / self.accel(temp_c))
+
+    def hours_until_expiry(self, age_ref_h: float, temps_c: Sequence[float], dt_h: float = 1.0) -> float:
+        """Hours from *now* until expiry, integrating the forecast temperatures hour by hour and continuing at the last
+        forecast temperature beyond the horizon."""
+        target = self._target_age()
+        if age_ref_h >= target:
+            return 0.0
+        a, h = age_ref_h, 0.0
+        ref_v = float(self._v(self.profile.ref_temp_c))
+        for t in temps_c:
+            step = float(self._v(t)) / ref_v * dt_h
+            if a + step >= target:
+                return h + (target - a) / step * dt_h
+            a, h = a + step, h + dt_h
+        last = temps_c[-1] if len(temps_c) else self.profile.ref_temp_c
+        return h + (target - a) / self.accel(last)
 
     # ---- §6 TransitStorageNode.predict_loss
     def predict_loss(self, qty_kg: float, quality_now: float, temps_c: Sequence[float], *, dt_h: float = 1.0,
@@ -157,13 +176,12 @@ class DecayModel:
         f0, f1 = self.spoiled_fraction(a0), self.spoiled_fraction(a1)
         heat_loss = qty_kg * (f1 - f0) / max(1e-9, 1 - f0)
         handling = qty_kg * self.profile.handling_per_100km * distance_km / 100.0
-        temp_last = float(temps_c[-1]) if len(temps_c) else self.profile.ref_temp_c
         mean_t = float(np.mean(temps_c)) if len(temps_c) else self.profile.ref_temp_c
-        rem = self.remaining_life_h(a1, temp_last)
+        rem = self.hours_until_expiry(a0, temps_c, dt_h)        # from now, not from the end of the horizon
         sens = {}
         for q in (2.0, 3.0):
             alt = DecayModel(self.profile, "q10", q, self.sigma, self.traffic_quantile)
-            sens[f"remaining_life_h_q10_{q:g}"] = round(alt.remaining_life_h(alt.age_after(a0, temps_c, dt_h), temp_last), 1)
+            sens[f"remaining_life_h_q10_{q:g}"] = round(alt.hours_until_expiry(a0, temps_c, dt_h), 1)
         drivers = [
             Driver("temperature", round(mean_t, 1), "°C mean over horizon", str(temp_provenance),
                    f"At {mean_t:.0f} °C produce ages {self.accel(mean_t):.1f}× faster than at the reference "

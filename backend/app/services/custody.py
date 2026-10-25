@@ -19,9 +19,10 @@ from sqlalchemy import select, update
 from sqlalchemy.engine import CursorResult
 from sqlalchemy.orm import Session
 
+from app.core.clock import now as utcnow
 from app.core.config import app_config, commodities_config
 from app.core.provenance import Provenance
-from app.core.security import Role, request_id_var, utcnow
+from app.core.security import Role, request_id_var
 from app.domain import hashchain
 from app.domain import pin as pinlib
 from app.models.orm import AuditLog, Consignment, CustodyEvent, Handover, Node, QualityEvent, User
@@ -166,7 +167,7 @@ def start_handover(db: Session, user: User, c: Consignment, *, to_node_id: str, 
     _append_event(db, c, {"event_type": "RELEASE", "from_node": c.at_node_id, "to_node": to_node_id,
                           "actor_release": user.id, "weight_released_kg": weight_kg, "condition_released": condition,
                           "lat": src.lat if src else None, "lon": src.lon if src else None},
-                  scan_time=scan_time, client_event_id=client_event_id)
+                  scan_time=scan_time, client_event_id=client_event_id, provenance=c.provenance)
     c.status, c.at_node_id, c.in_transit_to = "IN_TRANSIT", None, to_node_id
     if c.dispatch_time is None:
         c.dispatch_time = scan_time or utcnow()
@@ -209,7 +210,7 @@ def confirm_handover(db: Session, user: User, handover_id: str, *, weight_kg: fl
                           "actor_receive": user.id, "weight_received_kg": weight_kg, "condition_received": condition,
                           "lat": dst.lat if dst else None, "lon": dst.lon if dst else None,
                           "note": f"difference {diff:.2f} kg vs declared" if disputed else None},
-                  scan_time=scan_time, client_event_id=client_event_id)
+                  scan_time=scan_time, client_event_id=client_event_id, provenance=c.provenance)
     # The weight difference is surfaced as unreconciled, never auto-booked as wastage.
     shrink = c.current_qty_kg - weight_kg
     c.current_qty_kg = weight_kg
@@ -218,10 +219,48 @@ def confirm_handover(db: Session, user: User, handover_id: str, *, weight_kg: fl
     db.add(QualityEvent(consignment_id=c.id, timestamp=utcnow(), qty_kg=c.current_qty_kg, quality=c.quality_score,
                         event_type="HANDOVER", reason_code=None, amount_kg=0.0, actor_id=user.id,
                         provenance=Provenance.USER_ENTERED))
+    # Receipt at a sink is a disposition: NGO → DONATED (never wastage), processing unit → PROCESSED.
+    if dst is not None and dst.node_type in ("NGOSink", "ProcessingSink") and not disputed:
+        kind = "DONATED" if dst.node_type == "NGOSink" else "PROCESSED"
+        _close_as(db, user, c, kind)
+        if kind == "DONATED":
+            from app.services import rescue
+            rescue.on_received_by_ngo(db, c, dst.node_id, h.id)
     audit(db, user, "handover.confirm", "handover", h.id, {"status": new_status, "difference_kg": diff})
     db.commit()
     db.refresh(h)
     return h
+
+
+def _close_as(db: Session, user: User, c: Consignment, kind: str, kg: float | None = None) -> None:
+    kg = c.current_qty_kg if kg is None else kg
+    if kg > c.current_qty_kg + 1e-9 or kg <= 0:
+        raise ServiceError(422, "Quantity must be between 0 and what is left in the lot", "bad_qty")
+    c.current_qty_kg -= kg
+    if kind == "DONATED":
+        c.donated_kg += kg
+    elif kind == "PROCESSED":
+        c.processed_kg += kg
+    elif kind == "SOLD":
+        c.sold_kg += kg
+    db.add(QualityEvent(consignment_id=c.id, timestamp=utcnow(), qty_kg=c.current_qty_kg, quality=c.quality_score,
+                        event_type="DISPOSITION", reason_code=kind, amount_kg=kg, actor_id=user.id,
+                        provenance=Provenance.USER_ENTERED))
+    if c.current_qty_kg <= 1e-9:
+        c.current_qty_kg = 0.0
+        c.status, c.at_node_id, c.in_transit_to = "CLOSED", None, None
+
+
+def record_sale(db: Session, user: User, c: Consignment, kg: float) -> Consignment:
+    """Lot (or part of it) sold at the market where it sits."""
+    if c.status not in ("AT_NODE", "DISPUTED_WEIGHT"):
+        raise ServiceError(409, "Only lots at a location can be sold", "bad_state")
+    if user.role != Role.ADMIN and user.home_node_id != c.at_node_id:
+        raise ServiceError(403, "Only someone at this location can record a sale", "not_holder")
+    _close_as(db, user, c, "SOLD", kg)
+    audit(db, user, "consignment.sold", "consignment", c.id, {"kg": kg})
+    db.commit()
+    return c
 
 
 def transit_scan(db: Session, user: User, c: Consignment, *, lat: float | None, lon: float | None,

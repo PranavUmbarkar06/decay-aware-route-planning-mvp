@@ -17,7 +17,17 @@ from app.core.db import Base, engine, session
 from app.core.provenance import Provenance
 from app.core.security import Role, utcnow
 from app.models import orm  # noqa: F401  (registers tables)
-from app.models.orm import Consignment, CustodyEvent, Handover, Node, QualityEvent, User
+from app.models.orm import (
+    Consignment,
+    CustodyEvent,
+    Handover,
+    NgoProfile,
+    Node,
+    QualityEvent,
+    RescueBroadcast,
+    RescueOffer,
+    User,
+)
 
 PROCESSED = ROOT / "data" / "processed"
 
@@ -100,12 +110,19 @@ def seed_demo(db: Session) -> dict:
             db.add(u)
         users[handle] = u
     db.flush()
+    if demo_ngo is not None and db.get(NgoProfile, demo_ngo.node_id) is None:
+        db.add(NgoProfile(node_id=demo_ngo.node_id, user_id=users["demo-ngo"].id, accepted_commodities="onion,orange,tomato",
+                          daily_capacity_kg=2000, pickup_start_ist=7, pickup_end_ist=20, can_collect=True,
+                          provenance=Provenance.SYNTHETIC_DEMO, updated_at=utcnow()))
+    db.flush()
     return {"users": len(users), "cold_store": cold.node_id}
 
 
 def reset_demo(db: Session) -> None:
     demo_ids = [c.id for c in db.scalars(select(Consignment).where(Consignment.provenance == Provenance.SYNTHETIC_DEMO))]
     if demo_ids:
+        db.execute(delete(RescueOffer).where(RescueOffer.consignment_id.in_(demo_ids)))
+        db.execute(delete(RescueBroadcast).where(RescueBroadcast.consignment_id.in_(demo_ids)))
         db.execute(delete(QualityEvent).where(QualityEvent.consignment_id.in_(demo_ids)))
         db.execute(delete(CustodyEvent).where(CustodyEvent.consignment_id.in_(demo_ids)))
         db.execute(delete(Handover).where(Handover.consignment_id.in_(demo_ids)))

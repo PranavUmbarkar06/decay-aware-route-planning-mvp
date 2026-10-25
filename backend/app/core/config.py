@@ -22,6 +22,7 @@ class Runtime(_Strict):
     database_url: str
     timezone_display: str
     cors_origins: list[str]
+    demo_clock_utc: str | None = None
 
 
 class Auth(_Strict):
@@ -53,6 +54,7 @@ class Rescue(_Strict):
     offer_ttl_s: int = Field(gt=0)
     safety_margin_frac: float = Field(gt=0, le=1)
     max_road_time_h: float = Field(gt=0)
+    wave_size: int = Field(gt=0)
 
 
 class Matching(_Strict):

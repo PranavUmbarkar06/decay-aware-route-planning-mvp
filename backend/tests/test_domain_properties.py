@@ -138,3 +138,22 @@ def test_custody_events_are_append_only_in_application_code():
         if re.search(r"(update|delete)\(\s*CustodyEvent", txt) or re.search(r"custody_events.*(UPDATE|DELETE)", txt, re.I):
             offenders.append(str(f))
     assert offenders == []
+
+
+def test_remaining_life_is_measured_from_now_not_from_horizon_end():
+    """Regression: a lot with ~19 h left under a hot forecast must not report 0 h because the 24 h horizon is hot."""
+    m = DecayModel(CommodityProfile.load("tomato"))
+    age = 60.0
+    hot = [40.0] * 24
+    rem = m.predict_loss(800, m.quality(age), hot).remaining_life_h
+    assert rem == pytest.approx(m.remaining_life_h(age, 40.0), rel=1e-3) and rem > 0
+    # integrating a changing forecast lies between the constant-temperature extremes
+    mixed = m.hours_until_expiry(age, [20.0] * 6 + [40.0] * 30)
+    assert m.remaining_life_h(age, 40.0) < mixed < m.remaining_life_h(age, 20.0)
+
+
+def test_hash_is_type_stable_for_numbers():
+    """Regression: an int weight (service call) and the float read back from the DB must hash identically."""
+    a = {"event_type": "CREATED", "weight_received_kg": 800, "lat": 21, "scan_time_utc": "x"}
+    b = {"event_type": "CREATED", "weight_received_kg": 800.0, "lat": 21.0, "scan_time_utc": "x"}
+    assert hashchain.event_hash(a, "p") == hashchain.event_hash(b, "p")

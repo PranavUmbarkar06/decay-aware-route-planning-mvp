@@ -78,3 +78,20 @@ Each phase ends with: tests run → commit → this file updated → gate report
 - `reports/simulation_report.html` (charts + table view + verdicts + failures + plausibility + limitations).
 - **Gate:** baseline bit-for-bit reproducible ✔; mass balance ✔; pre-registration committed before first run ✔. **PASS.**
   (The deck's 4th checkpoint, "proposed beats baseline", is **not met**, and is reported as such.)
+
+## Phase 5: M3–M7 services + explanations (2026-10-25)
+- Business clock (ADR-024 below): demo clock starts inside the weather replay and advances in real time.
+- M3 shelf life: traffic light (contiguous bands), FEFO, full explanation payload (inputs + provenance, drivers,
+  parameters + sources, thresholds marked ASSUMPTION, warnings, safety disclaimer), Q10 2/3 bounds.
+- M4 crowd meter: arrivals ÷ trailing 14-day median (definition shown verbatim; never "% of capacity"), stale/no-data
+  states, alternates within road-time radius (OD matrix); `forecast_demand`, `compute_gap`.
+- M5 rescue: wave broadcast → atomic claim (conditional UPDATE on broadcast) → claim timer → cascade on expiry →
+  pickup handshake books DONATED (never wastage); in-app notifications; SMS/WhatsApp left as stubs.
+- M6 matching: score = road time + life margin + capacity fit, with per-component breakdown (weights ASSUMPTION A13).
+- M7 advisor: static vs quality-aware recommendation with reasons, alerts, Q10 bounds, geometry; recommends only.
+  Simulation Lab API: results, replays, and a live SSE stream running both policies tick by tick.
+- Bugs found by Phase-5 tests and fixed with regression tests: remaining life was measured at the end of the forecast
+  horizon instead of from now; hash canonicalisation differed for int vs float weights.
+- **Gate:** 102 tests pass incl. threshold boundaries, two NGOs claiming simultaneously → exactly one wins, claim
+  expiry cascade logged, DONATED booking with mass balance + chain intact, explanation payloads, live stream mass
+  balance per tick. ruff + mypy clean; honest-check 0. **PASS.**

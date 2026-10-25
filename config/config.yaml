@@ -8,6 +8,9 @@ runtime:
   database_url: "sqlite:///./data/cache/phl_demo.sqlite"
   timezone_display: "Asia/Kolkata"   # storage is always UTC
   cors_origins: ["http://localhost:5173", "http://localhost:8000"]
+  # Demo clock (UTC). There is no live weather feed (ADR-008), so in demo mode "now" is pinned inside the weather
+  # replay window and every temperature the app uses is replayed real data. null = use the real clock.
+  demo_clock_utc: "2026-05-04T06:00:00"
 
 auth:
   mode: "dev_stub"           # dev_stub | provider (provider adapter not implemented; see INTEGRATIONS_TODO)
@@ -34,6 +37,7 @@ rescue:
   offer_ttl_s: 1800          # how long an unclaimed broadcast stays with one NGO before cascading
   safety_margin_frac: 0.5    # ASSUMPTION: show only 50% of model remaining life as the "safe window"
   max_road_time_h: 3.0
+  wave_size: 3               # broadcast goes to the nearest N eligible NGOs at once; first claim wins
 
 matching:
   weights: {road_time: 0.4, life_margin: 0.4, capacity_fit: 0.2}   # ASSUMPTION

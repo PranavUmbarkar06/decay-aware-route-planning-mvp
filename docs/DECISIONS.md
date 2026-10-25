@@ -150,4 +150,17 @@ project brief (Section 4) and open to override by the project owner. Status valu
 - **Also fixed before registered runs (engineering bug, not a design change):** the demand forecast had no history before
   the window; it now sees the 14 days of real Agmarknet arrivals before the window (as a crowd meter would).
 
+## ADR-024 Business clock vs security clock: Accepted
+- There is no live weather feed (ADR-008). In demo mode the **business clock** starts at
+  `runtime.demo_clock_utc` (inside the Open-Meteo replay window) and advances in real time, so shelf-life uses replayed
+  real temperatures and countdowns behave normally. JWT/OTP expiry always use the real clock. Outside demo mode the
+  business clock is the real clock and temperatures outside the replay fall back to district monthly means
+  (ASSUMPTION, flagged on every prediction). The UI shows a "Demo clock" indicator.
+
+## ADR-025 Rescue broadcast in waves with a single atomic claim: Accepted
+- A broadcast is offered to the nearest `rescue.wave_size` eligible NGOs at once; the first claim wins through a
+  conditional UPDATE on the broadcast row (works identically on SQLite and Postgres). Unclaimed waves and expired claim
+  timers cascade to the next wave. Real NGOs' capabilities are never invented: only NGOs that enter a profile (or
+  fictional demo NGOs) are eligible, so with no profiles the broadcast is EXHAUSTED and says so.
+
 (Further ADRs are appended per phase.)

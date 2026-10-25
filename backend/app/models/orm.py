@@ -191,3 +191,76 @@ class AuditLog(Base):
     entity: Mapped[str] = mapped_column(String(40))
     entity_id: Mapped[str] = mapped_column(String(64))
     detail: Mapped[str | None] = mapped_column(Text)
+
+
+class NgoProfile(Base):
+    """M5/M6: what an NGO / community kitchen can take. Real NGOs enter their own profile (USER_ENTERED);
+    demo profiles are SYNTHETIC_DEMO and attached to fictional demo nodes only."""
+    __tablename__ = "ngo_profiles"
+    node_id: Mapped[str] = mapped_column(ForeignKey("nodes.node_id"), primary_key=True)
+    user_id: Mapped[str | None] = mapped_column(ForeignKey("users.id"))
+    accepted_commodities: Mapped[str] = mapped_column(String(200))          # comma-separated keys
+    daily_capacity_kg: Mapped[float] = mapped_column(Float)
+    pickup_start_ist: Mapped[int] = mapped_column(Integer, default=8)
+    pickup_end_ist: Mapped[int] = mapped_column(Integer, default=18)
+    can_collect: Mapped[bool] = mapped_column(Boolean, default=True)
+    provenance: Mapped[str] = mapped_column(String(20))
+    updated_at: Mapped[datetime] = mapped_column(DateTime)
+
+
+class RescueOffer(Base):
+    """M5 broadcast. One row per (lot, NGO) offer; cascades to the next-nearest NGO on expiry.
+    status: OFFERED → CLAIMED → COMPLETED | (OFFERED → EXPIRED) | (CLAIMED → CLAIM_EXPIRED) | CANCELLED"""
+    __tablename__ = "rescue_offers"
+    __table_args__ = (Index("ix_ro_status", "status"), Index("ix_ro_cons", "consignment_id"))
+    id: Mapped[str] = mapped_column(String(36), primary_key=True)
+    broadcast_id: Mapped[str] = mapped_column(String(36), index=True)
+    consignment_id: Mapped[str] = mapped_column(ForeignKey("consignments.id"))
+    ngo_node_id: Mapped[str] = mapped_column(ForeignKey("nodes.node_id"))
+    rank: Mapped[int] = mapped_column(Integer)
+    qty_kg: Mapped[float] = mapped_column(Float)
+    trigger: Mapped[str] = mapped_column(String(20))          # YELLOW | RED | UNSOLD | SURPLUS_MATCH
+    road_time_h: Mapped[float | None] = mapped_column(Float)
+    safe_window_h: Mapped[float | None] = mapped_column(Float)
+    score: Mapped[float | None] = mapped_column(Float)
+    score_breakdown: Mapped[str | None] = mapped_column(Text)
+    status: Mapped[str] = mapped_column(String(20))
+    offered_at: Mapped[datetime] = mapped_column(DateTime)
+    offer_expires_at: Mapped[datetime] = mapped_column(DateTime)
+    claimed_by: Mapped[str | None] = mapped_column(ForeignKey("users.id"))
+    claimed_at: Mapped[datetime | None] = mapped_column(DateTime)
+    claim_expires_at: Mapped[datetime | None] = mapped_column(DateTime)
+    completed_at: Mapped[datetime | None] = mapped_column(DateTime)
+    handover_id: Mapped[str | None] = mapped_column(ForeignKey("handovers.id"))
+    provenance: Mapped[str] = mapped_column(String(20))
+
+
+class RescueBroadcast(Base):
+    """The unit of atomicity for claims: exactly one claim can move a broadcast from OPEN to CLAIMED."""
+    __tablename__ = "rescue_broadcasts"
+    id: Mapped[str] = mapped_column(String(36), primary_key=True)
+    consignment_id: Mapped[str] = mapped_column(ForeignKey("consignments.id"), index=True)
+    from_node_id: Mapped[str] = mapped_column(ForeignKey("nodes.node_id"))
+    trigger: Mapped[str] = mapped_column(String(20))
+    qty_kg: Mapped[float] = mapped_column(Float)
+    status: Mapped[str] = mapped_column(String(20), index=True)     # OPEN | CLAIMED | COMPLETED | EXHAUSTED | CANCELLED
+    wave: Mapped[int] = mapped_column(Integer, default=0)
+    claimed_offer_id: Mapped[str | None] = mapped_column(String(36))
+    created_by: Mapped[str] = mapped_column(ForeignKey("users.id"))
+    created_at: Mapped[datetime] = mapped_column(DateTime)
+    safety_note: Mapped[str] = mapped_column(Text)
+    provenance: Mapped[str] = mapped_column(String(20))
+
+
+class Notification(Base):
+    """In-app notifications (the only delivery channel implemented; SMS/WhatsApp are stubs, INTEGRATIONS_TODO)."""
+    __tablename__ = "notifications"
+    id: Mapped[int] = mapped_column(Integer, primary_key=True, autoincrement=True)
+    user_id: Mapped[str | None] = mapped_column(ForeignKey("users.id"), index=True)
+    node_id: Mapped[str | None] = mapped_column(ForeignKey("nodes.node_id"), index=True)
+    kind: Mapped[str] = mapped_column(String(40))
+    title: Mapped[str] = mapped_column(String(200))
+    body: Mapped[str] = mapped_column(Text)
+    ref: Mapped[str | None] = mapped_column(String(64))
+    created_at: Mapped[datetime] = mapped_column(DateTime)
+    read_at: Mapped[datetime | None] = mapped_column(DateTime)

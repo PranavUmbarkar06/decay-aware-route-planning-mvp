@@ -19,11 +19,17 @@ def genesis_hash(consignment_id: str) -> str:
     return hashlib.sha256(f"genesis:{consignment_id}".encode()).hexdigest()
 
 
+FLOAT_FIELDS = ("weight_released_kg", "weight_received_kg", "lat", "lon")
+
+
 def _canonical(event: Mapping[str, Any]) -> str:
     payload = {k: event.get(k) for k in HASHED_FIELDS}
-    for k, v in payload.items():   # floats are hashed at fixed precision so DB round-trips do not break the chain
-        if isinstance(v, float):
-            payload[k] = f"{v:.6f}"
+    # Numeric fields are normalised by *name* (not Python type) at fixed precision, so 800, 800.0 and a DB round-trip
+    # all hash identically.
+    for k in FLOAT_FIELDS:
+        v = payload[k]
+        if v is not None:
+            payload[k] = f"{float(v):.6f}"
     return json.dumps(payload, sort_keys=True, separators=(",", ":"), ensure_ascii=False, default=str)
 
 

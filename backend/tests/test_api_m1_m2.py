@@ -1,16 +1,23 @@
 """M1 (traceability + QR handshake) and M2 (wastage logger) through the HTTP API."""
 import threading
-from datetime import UTC, datetime, timedelta
+from datetime import timedelta
 
 import pytest
 from sqlalchemy import text
+
+
+def _clock_now():
+    from app.core.clock import now
+    return now()
+
 
 PH = {"farmer": "+910000000001", "supervisor": "+910000000002", "warehouse": "+910000000003",
       "dispatcher": "+910000000004", "ngo": "+910000000005", "driver": "+910000000006", "admin": "+910000000007"}
 
 
 def _now_minus(h):
-    return (datetime.now(UTC) - timedelta(hours=h)).isoformat()
+    from app.core.clock import now
+    return (now() - timedelta(hours=h)).isoformat()
 
 
 @pytest.fixture(scope="module")
@@ -156,7 +163,7 @@ def test_concurrent_confirmations_have_exactly_one_winner(app_db):
         farmer = s.query(User).filter_by(phone=PH["farmer"]).one()
         sup = s.query(User).filter_by(phone=PH["supervisor"]).one()
         made = custody.create_consignment(s, farmer, commodity="tomato", grade="A", qty_kg=200,
-                                          harvest_time=datetime.now(UTC).replace(tzinfo=None) - timedelta(hours=1),
+                                          harvest_time=_clock_now() - timedelta(hours=1),
                                           origin_node_id=farmer.home_node_id)
         h = custody.start_handover(s, farmer, made.consignment, to_node_id=sup.home_node_id, weight_kg=200, condition="GOOD")
         hid, sup_id = h.id, sup.id

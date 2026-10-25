@@ -144,7 +144,9 @@ def create(body: s.ConsignmentCreate,
            db: Session = Depends(get_db)) -> s.ConsignmentCreated:
     r = custody.create_consignment(db, user, commodity=body.commodity, grade=body.grade, qty_kg=body.qty_kg,
                                    harvest_time=body.harvest_time.replace(tzinfo=None), origin_node_id=body.origin_node_id,
-                                   client_event_id=body.client_event_id)
+                                   client_event_id=body.client_event_id,
+                                   # demo personas create demo data: it must carry the DEMO badge everywhere
+                                   provenance="SYNTHETIC_DEMO" if user.provenance == "SYNTHETIC_DEMO" else "USER_ENTERED")
     return s.ConsignmentCreated(consignment=s.ConsignmentOut.model_validate(r.consignment), pin=r.pin,
                                 qr_payload=r.qr_payload, qr_png=r.qr_png)
 

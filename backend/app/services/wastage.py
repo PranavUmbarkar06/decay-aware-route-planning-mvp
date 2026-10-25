@@ -13,9 +13,10 @@ from datetime import timedelta
 from sqlalchemy import select
 from sqlalchemy.orm import Session
 
+from app.core.clock import now as utcnow
 from app.core.config import app_config
 from app.core.provenance import Provenance
-from app.core.security import Role, utcnow
+from app.core.security import Role
 from app.domain.model import ReasonCode
 from app.models.orm import Consignment, QualityEvent, User
 from app.services.custody import ServiceError, audit
@@ -48,7 +49,8 @@ def record_wastage(db: Session, user: User, c: Consignment, *, amount_kg: float,
     c.wasted_kg += amount_kg
     e = QualityEvent(consignment_id=c.id, timestamp=utcnow(), qty_kg=c.current_qty_kg, quality=c.quality_score,
                      event_type="WASTAGE", reason_code=reason, amount_kg=amount_kg, actor_id=user.id,
-                     client_event_id=client_event_id, provenance=Provenance.USER_ENTERED)
+                     client_event_id=client_event_id,
+                     provenance=Provenance.SYNTHETIC_DEMO if c.provenance == Provenance.SYNTHETIC_DEMO else Provenance.USER_ENTERED)
     db.add(e)
     audit(db, user, "wastage.record", "consignment", c.id, {"amount_kg": amount_kg, "reason": reason})
     db.commit()
