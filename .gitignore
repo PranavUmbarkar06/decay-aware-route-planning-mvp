@@ -36,3 +36,4 @@ data/cache/**
 Thumbs.db
 .DS_Store
 reports/sim/*/runs/
+frontend/*.tsbuildinfo

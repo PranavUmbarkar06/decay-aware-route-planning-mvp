@@ -1,0 +1,17 @@
+# Postgres/PostGIS deployment path (ADR-004). UNTESTED on the build machine (no Docker installed).
+# Same SQLAlchemy models as the SQLite demo; no PostGIS-specific SQL is used yet.
+services:
+  db:
+    image: postgis/postgis:16-3.4
+    environment: { POSTGRES_USER: phl, POSTGRES_PASSWORD: phl, POSTGRES_DB: phl }
+    volumes: [pgdata:/var/lib/postgresql/data]
+    healthcheck: { test: ["CMD-SHELL", "pg_isready -U phl"], interval: 5s, retries: 20 }
+  api:
+    build: .
+    env_file: .env
+    environment:
+      PHL_DATABASE_URL: postgresql+psycopg://phl:phl@db:5432/phl
+    depends_on: { db: { condition: service_healthy } }
+    ports: ["8000:8000"]
+volumes:
+  pgdata: {}

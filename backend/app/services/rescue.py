@@ -35,10 +35,10 @@ SAFETY_NOTE = ("Safe window = model estimate × {m:.0%} margin, not a food-safet
 
 @lru_cache
 def _od() -> pd.DataFrame:
-    p = ROOT / "data" / "cache" / "od_matrix.parquet"
+    p = ROOT / "data" / "processed" / "od_matrix.csv"
     if not p.exists():
         return pd.DataFrame(columns=["origin", "dest", "time_s", "dist_m"]).set_index(["origin", "dest"])
-    return pd.read_parquet(p).set_index(["origin", "dest"])
+    return pd.read_csv(p, usecols=["origin", "dest", "time_s", "dist_m"]).set_index(["origin", "dest"])
 
 
 def road_time_h(a: str, b: str) -> float | None:

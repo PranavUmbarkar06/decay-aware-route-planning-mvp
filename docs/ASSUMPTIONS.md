@@ -22,6 +22,19 @@ needs-validation flag. All of them need validation; none is taken from a source.
 | A14 | Quality thresholds: saleable ≥ 0.5, processing ≥ 0.25 | `thresholds.yaml: quality` | Placeholder mapping of the 0–1 score | Grade outcomes at sale |
 | A15 | One weather point per district represents the whole district | `weather_points.csv` | Archive is gridded; trucks cross districts | Higher-resolution sampling along routes |
 | A16 | Demand proxy (see DATA_GAPS: consumption norms MISSING) | Phase 4 | No cited per-capita norm | Field data / cited norm |
+| A17 | Within-lot unit shelf-life spread: lognormal σ | 0.25 (`simulation.yaml: decay.unit_variation_sigma`) | Turns one reference life into a gradual spoiled fraction | Lot-level loss logs over time (M2) |
+| A18 | In-truck temperature = ambient + offset | +0 °C (sensitivity +5 °C) | No source for non-reefer truck heat gain | Temperature loggers in trucks |
+| A19 | Supply enters at routable assembly mandis, origin chosen uniformly | `simulation.yaml: network.origins` | No origin data | Dispatch records from the app |
+| A20 | Supply volume = 1.0 × market arrivals that day | `supply.supply_ratio` (sensitivity 1.2) | Arrivals proxy for flows into the division's markets | Field flow counts |
+| A21 | Lot size lognormal, median 3 t, σ 0.5, 0.5–10 t | `supply.lot_size_kg` | Typical truck-load range, unsourced | Handover weights (M1) |
+| A22 | Harvest to dispatch 6–36 h | `supply.harvest_to_dispatch_h` | Unsourced | Farmer/supervisor timestamps |
+| A23 | Dispatch 16:00–23:00 IST | `supply.dispatch_hour_ist` | To reach the morning market (WRI: trade mostly mornings) | Scan timestamps |
+| A24 | Planned destination ∝ that day's realised arrivals share | scenario generator | Gives the baseline implicit demand knowledge (ADR-023) | Dispatcher interviews |
+| A25 | Market trade window 04:00–12:00 IST | `market.trade_window_ist` | WRI documents morning trading qualitatively; hours chosen | Market observation |
+| A26 | Unsold lots wait at most 2 days at market | `market.max_wait_days` | No storage at market (WRI, documented); duration chosen | Market observation |
+| A27 | NGO capacity 2,000 kg/day in simulation | `sinks.ngo_capacity_kg_day` | Capacity data MISSING | NGO profiles (M5) |
+| A28 | Reroute only if expected value improves ≥10% | `policies.QualityAwareDynamic.reroute_margin` | Avoid flapping | Dispatcher interviews |
+| A29 | Relative value of outcomes: market 1.0, NGO 0.9, processing 0.6 | `simulation/policies.py: VALUE_WEIGHT` | Placeholder; drives the waste-vs-unmet-demand trade-off seen in results | Prices and stakeholder priorities |
 
 ## Wastage reasons with no simulation driver (M2)
 

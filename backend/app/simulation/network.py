@@ -93,12 +93,17 @@ def load_network(include_demo: bool = False) -> Network:
     pos = {int(g): i for i, g in enumerate(ids)}
     eu = np.array([pos[int(u)] for u in e["u"]], dtype=np.int32)
     ev = np.array([pos[int(v)] for v in e["v"]], dtype=np.int32)
-    G = nx.read_graphml(CACHE / "graph.graphml") if (CACHE / "graph.graphml").exists() else None
-    if G is not None:
+    gn_path = PROCESSED / "graph_nodes.csv"
+    if gn_path.exists():
+        gn = pd.read_csv(gn_path).set_index("graph_node")
+        xs = gn.loc[ids, "lon"].to_numpy(float)
+        ys = gn.loc[ids, "lat"].to_numpy(float)
+    elif (CACHE / "graph.graphml").exists():
+        G = nx.read_graphml(CACHE / "graph.graphml")
         xs = np.array([float(G.nodes[str(g)]["x"]) for g in ids])
         ys = np.array([float(G.nodes[str(g)]["y"]) for g in ids])
-    else:  # pragma: no cover - graphml missing: approximate coordinates from nodes are unavailable
-        raise RuntimeError("data/cache/graph.graphml missing: run `python tasks.py graph`")
+    else:  # pragma: no cover
+        raise RuntimeError("graph_nodes.csv missing: run `python tasks.py graph`")
     dist = gpd.read_file(PROCESSED / "district_boundaries.geojson")[["district", "geometry"]].sort_values("district")
     districts = dist["district"].tolist()
     pts = gpd.GeoDataFrame({"i": np.arange(len(ids))}, geometry=gpd.points_from_xy(xs, ys), crs=4326)

@@ -5,9 +5,22 @@ import { Layout } from "./components/Layout";
 import { Loading } from "./components/ui";
 import Onboarding from "./features/onboarding/Onboarding";
 import Tour from "./features/onboarding/Tour";
-import { LotDetail, LotList, NewLot, Scan } from "./features/lots/Lots";
-import { Crowd, Rescue, Storage } from "./features/ops/Ops";
-import { Admin, Evidence, Help, Home, ReportProblem } from "./features/pages/Pages";
+import { Help, Home } from "./features/pages/Pages";
+
+// Route-level code splitting: only the shell, onboarding and home load up front.
+const lots = () => import("./features/lots/Lots");
+const ops = () => import("./features/ops/Ops");
+const pages = () => import("./features/pages/Pages");
+const LotDetail = lazy(() => lots().then((m) => ({ default: m.LotDetail })));
+const LotList = lazy(() => lots().then((m) => ({ default: m.LotList })));
+const NewLot = lazy(() => lots().then((m) => ({ default: m.NewLot })));
+const Scan = lazy(() => lots().then((m) => ({ default: m.Scan })));
+const Crowd = lazy(() => ops().then((m) => ({ default: m.Crowd })));
+const Rescue = lazy(() => ops().then((m) => ({ default: m.Rescue })));
+const Storage = lazy(() => ops().then((m) => ({ default: m.Storage })));
+const Admin = lazy(() => pages().then((m) => ({ default: m.Admin })));
+const Evidence = lazy(() => pages().then((m) => ({ default: m.Evidence })));
+const ReportProblem = lazy(() => pages().then((m) => ({ default: m.ReportProblem })));
 
 const Lab = lazy(() => import("./features/lab/Lab").then((m) => ({ default: m.Lab })));
 const Advisor = lazy(() => import("./features/lab/Lab").then((m) => ({ default: m.Advisor })));

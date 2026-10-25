@@ -10,6 +10,7 @@ import uuid
 
 from fastapi import FastAPI, Request
 from fastapi.middleware.cors import CORSMiddleware
+from fastapi.middleware.gzip import GZipMiddleware
 from fastapi.responses import FileResponse, JSONResponse
 from fastapi.staticfiles import StaticFiles
 from sqlalchemy import text
@@ -41,12 +42,27 @@ mimetypes.add_type("text/javascript", ".mjs")
 mimetypes.add_type("application/manifest+json", ".webmanifest")
 
 
+# Map tiles come from the configured tile host (OSM in dev/demo); the API docs page loads Swagger UI from jsdelivr.
+SECURITY_HEADERS = {
+    "X-Content-Type-Options": "nosniff",
+    "X-Frame-Options": "DENY",
+    "Referrer-Policy": "strict-origin-when-cross-origin",
+    "Permissions-Policy": "camera=(self), geolocation=(self), microphone=()",
+    "Content-Security-Policy": (
+        "default-src 'self'; img-src 'self' data: blob: https://tile.openstreetmap.org https://fastapi.tiangolo.com; "
+        "script-src 'self' 'unsafe-inline' https://cdn.jsdelivr.net https://unpkg.com; "
+        "style-src 'self' 'unsafe-inline' https://cdn.jsdelivr.net https://unpkg.com; "
+        "connect-src 'self' https://tile.openstreetmap.org; worker-src 'self' blob:; frame-ancestors 'none'; base-uri 'self'"),
+}
+
+
 def create_app() -> FastAPI:
     _setup_logging()
     cfg = app_config()
     app = FastAPI(title=cfg.product_name, version=cfg.version, docs_url="/api/docs", redoc_url=None,
                   openapi_url="/api/openapi.json",
                   description="Prototype API. Simulation outputs are not field-validated. See /api/v1/meta.")
+    app.add_middleware(GZipMiddleware, minimum_size=1024)
     app.add_middleware(CORSMiddleware, allow_origins=cfg.runtime.cors_origins, allow_methods=["*"], allow_headers=["*"])
     log = logging.getLogger("phl.http")
 
@@ -58,6 +74,8 @@ def create_app() -> FastAPI:
         try:
             response = await call_next(request)
             response.headers["X-Request-ID"] = rid
+            for k, v in SECURITY_HEADERS.items():
+                response.headers.setdefault(k, v)
             if request.url.path.startswith("/api"):
                 log.info("%s %s %s %.0fms", request.method, request.url.path, response.status_code,
                          (time.perf_counter() - t0) * 1000)
@@ -101,6 +119,9 @@ def create_app() -> FastAPI:
     geo = ROOT / "data" / "processed" / "geo"
     if geo.exists():
         app.mount("/geo", StaticFiles(directory=geo), name="geo")
+    reports = ROOT / "reports"
+    if reports.exists():
+        app.mount("/reports", StaticFiles(directory=reports, html=True), name="reports")
     if (dist / "index.html").exists():
         app.mount("/assets", StaticFiles(directory=dist / "assets"), name="assets")
 

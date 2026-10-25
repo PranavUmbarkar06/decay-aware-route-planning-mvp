@@ -540,6 +540,14 @@ def run(force_synthetic: bool = False) -> int:
     write_csv_deterministic(nodes[nodes["needs_review"]], REPORTS / "nodes_needing_review.csv", ["node_type", "name"])
     CACHE.mkdir(parents=True, exist_ok=True)
     od.sort_values(["origin", "dest"]).reset_index(drop=True).to_parquet(CACHE / "od_matrix.parquet", index=False)
+    # Small committed runtime inputs, so the app and simulation run from a clean clone without the 27 MB GraphML:
+    gn = pd.DataFrame({"graph_node": list(G.nodes), "lat": [G.nodes[n]["y"] for n in G.nodes], "lon": [G.nodes[n]["x"] for n in G.nodes]})
+    gn["provenance"] = "SYNTHETIC_DEMO" if synthetic else "REAL_DERIVED"
+    gn["source_manifest_id"] = mid
+    write_csv_deterministic(gn, PROCESSED / "graph_nodes.csv", ["graph_node"])
+    od2 = od.copy()
+    od2["source_manifest_id"] = mid
+    write_csv_deterministic(od2, PROCESSED / "od_matrix.csv", ["origin", "dest"])
     ox.save_graphml(G, CACHE / "graph.graphml")
     export_geo(G, nodes, edges, synthetic)
     meta = {"synthetic": synthetic, "banner": "Synthetic network: not real roads" if synthetic else None,
