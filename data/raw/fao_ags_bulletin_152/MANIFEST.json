@@ -1,0 +1,20 @@
+{
+  "entries": [
+    {
+      "bytes": 32240,
+      "fetched_at_utc": "2026-10-25T06:26:07Z",
+      "file": "y5431e04.htm",
+      "http_status": 200,
+      "manifest_id": "fao_ags_bulletin_152:38438c607e64",
+      "method": "GET",
+      "params": {},
+      "retrieval": "pipeline_http",
+      "sha256": "38438c607e642609d53f75083854e00e19e712418a256c293e055c621387281c",
+      "url": "https://www.fao.org/4/y5431e/y5431e04.htm"
+    }
+  ],
+  "licence": "UNVERIFIED: FAO copyright; FAO permits reproduction for non-commercial/educational use with acknowledgement (check page footer)",
+  "notes": "Kader & Rolle (2004) FAO AGS Bulletin 152, chapter 3",
+  "source": "fao_ags_bulletin_152",
+  "terms_url": "https://www.fao.org/contact-us/terms/en/"
+}

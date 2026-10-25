@@ -1,0 +1,20 @@
+{
+  "entries": [
+    {
+      "bytes": 1096269,
+      "fetched_at_utc": "2026-10-25T06:27:12Z",
+      "file": "PRID_2151371.html",
+      "http_status": 200,
+      "manifest_id": "pib_2151371:9dd009c77bca",
+      "method": "GET",
+      "params": {},
+      "retrieval": "pipeline_http",
+      "sha256": "9dd009c77bca9859a9048546889957bafd7543d5cb2fa025888e4eef4ea8e9e1",
+      "url": "https://www.pib.gov.in/PressReleasePage.aspx?PRID=2151371"
+    }
+  ],
+  "licence": "Government of India press release (PIB). UNVERIFIED reuse terms; cited with attribution.",
+  "notes": "NABCONS 2022 study for MoFPI as tabled in Rajya Sabha, 1 Aug 2025",
+  "source": "pib_2151371",
+  "terms_url": "https://www.pib.gov.in/"
+}

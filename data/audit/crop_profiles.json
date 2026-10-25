@@ -1,0 +1,30 @@
+{
+  "need": "Crop profiles: reference shelf life, temperature sensitivity (decay model M3/simulation)",
+  "source_name": "FAO AGS Bulletin 152; USDA ARS Agriculture Handbook 66 (2016); UC Davis PREC Produce Facts (tomato)",
+  "status": "PARTIAL",
+  "access": "HTTP GET (FAO HTML, HB66 PDF); browser read (UC Davis, citation only)",
+  "auth": "none",
+  "licence": "FAO: see page terms; HB66: US Gov work (UNVERIFIED); UC Davis: personal/educational use only, no copying, commercial use forbidden. Values cited, not reproduced.",
+  "coverage": "Temperature curve: FAO Table 1 (0–40 °C). Reference lives: tomato 8 d @10 °C (UC Davis), onion 6 mo @0 °C (HB66), orange 12 wk @1 °C (HB66, 'up to' → optimistic).",
+  "tried": [
+    "GET https://www.fao.org/4/y5431e/y5431e04.htm",
+    "GET https://ageconsearch.umn.edu/record/348552/files/ah66rev.pdf",
+    "Browser read https://postharvest.ucdavis.edu/produce-facts-sheets/tomato (WebFetch returned 403)",
+    "ICAR/KVK crop profiles: not searched systematically; no machine-readable source identified"
+  ],
+  "why_failed": "No source gives ambient (25–40 °C) transit shelf life for these crops in Indian conditions; harvest-maturity profiles from ICAR/KVK not located.",
+  "fallback": "Reference life × FAO Table 1 relative velocity (log-linear interpolation); Q10=2 and Q10=3 run as sensitivity bounds. Every decay output carries the extrapolation warning.",
+  "urls": [
+    "https://www.fao.org/4/y5431e/y5431e04.htm",
+    "https://ageconsearch.umn.edu/record/348552/files/ah66rev.pdf",
+    "https://postharvest.ucdavis.edu/produce-facts-sheets/tomato"
+  ],
+  "rate_limits": "",
+  "freshness": "",
+  "known_problems": "Cold-storage reference lives extrapolated over 25–40 °C; Nagpur orange cultivar not specifically covered (HB66 'Orange' is US-grown sweet orange); tomato value is from a 1997 fact sheet.",
+  "flags": [
+    "EXTRAPOLATION_ASSUMPTION",
+    "UCDAVIS_NO_COPY",
+    "ORANGE_VALUE_OPTIMISTIC"
+  ]
+}

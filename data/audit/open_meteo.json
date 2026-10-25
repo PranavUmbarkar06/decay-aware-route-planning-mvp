@@ -16,7 +16,7 @@
     "https://open-meteo.com/en/terms"
   ],
   "rate_limits": "free tier: <10,000/day, 5,000/hour, 600/min",
-  "freshness": "archive end date 2026-10-18 (run date minus 7 days)",
+  "freshness": "archive window 2025-11-01..2026-10-18 (pinned in pipelines/fetch_weather.py)",
   "known_problems": "Reanalysis grid values (not station observations). One point per district stands in for the whole district; road-level microclimate and in-truck temperature are not observed.",
   "flags": [
     "NON_COMMERCIAL_FREE_TIER",

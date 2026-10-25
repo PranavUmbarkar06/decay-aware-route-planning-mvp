@@ -1,0 +1,32 @@
+{
+  "entries": [
+    {
+      "bytes": 93184,
+      "fetched_at_utc": "2026-10-25T06:28:19Z",
+      "file": "download_47055.bin",
+      "http_status": 200,
+      "manifest_id": "census_2011_a02:402d19e3df0b",
+      "method": "GET",
+      "params": {},
+      "retrieval": "pipeline_http",
+      "sha256": "402d19e3df0bea4a9ff8e921c2e0ae5ada1cc68195c2ba7e414ee63a5da559e4",
+      "url": "https://censusindia.gov.in/nada/index.php/catalog/43360/download/47055"
+    },
+    {
+      "bytes": 62561,
+      "fetched_at_utc": "2026-10-25T06:28:42Z",
+      "file": "download_47056.bin",
+      "http_status": 200,
+      "manifest_id": "census_2011_a02:1a22cd2d3da0",
+      "method": "GET",
+      "params": {},
+      "retrieval": "pipeline_http",
+      "sha256": "1a22cd2d3da00e28cf3df05fb1b9a3258a1f0606b48bce5e10b63b48879f9812",
+      "url": "https://censusindia.gov.in/nada/index.php/catalog/43360/download/47056"
+    }
+  ],
+  "licence": "UNVERIFIED: Census of India (ORGI) publication; reuse terms not stated on catalog page",
+  "notes": "Census 2011 Table A-02 Decadal variation in population 1901-2011, Maharashtra",
+  "source": "census_2011_a02",
+  "terms_url": "https://censusindia.gov.in/nada/index.php/catalog/43360"
+}

@@ -1,0 +1,21 @@
+{
+  "need": "Per-capita consumption norms (demand)",
+  "source_name": "Not identified",
+  "status": "MISSING",
+  "access": "n/a",
+  "auth": "n/a",
+  "licence": "n/a",
+  "coverage": "none",
+  "tried": [
+    "Not located in a machine-readable, citable form during Phase 1"
+  ],
+  "why_failed": "No verified source fetched.",
+  "fallback": "Simulation demand = scaled Agmarknet arrivals (REAL_DERIVED where exports exist) or an explicit ASSUMPTION per-capita figure, flagged in every output.",
+  "urls": [],
+  "rate_limits": "",
+  "freshness": "",
+  "known_problems": "",
+  "flags": [
+    "MISSING"
+  ]
+}

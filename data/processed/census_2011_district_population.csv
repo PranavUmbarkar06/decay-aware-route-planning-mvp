@@ -1,0 +1,7 @@
+district,census_name,census_district_code,census_year,population,males,females,provenance,source_manifest_id
+Bhandara,Bhandara,506,2011,1200334,605520,594814,REAL_FETCHED,census_2011_a02:402d19e3df0b
+Chandrapur,Chandrapur,509,2011,2204307,1123834,1080473,REAL_FETCHED,census_2011_a02:402d19e3df0b
+Gadchiroli,Gadchiroli,508,2011,1072942,541328,531614,REAL_FETCHED,census_2011_a02:402d19e3df0b
+Gondia,Gondiya,507,2011,1322507,661554,660953,REAL_FETCHED,census_2011_a02:402d19e3df0b
+Nagpur,Nagpur,505,2011,4653570,2384975,2268595,REAL_FETCHED,census_2011_a02:402d19e3df0b
+Wardha,Wardha,504,2011,1300774,668385,632389,REAL_FETCHED,census_2011_a02:402d19e3df0b

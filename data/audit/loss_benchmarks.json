@@ -1,0 +1,23 @@
+{
+  "need": "Loss benchmarks for calibration/plausibility and the Evidence page",
+  "source_name": "NABCONS 2022 for MoFPI, via PIB release 2151371 (Annexure-II)",
+  "status": "AVAILABLE",
+  "access": "HTTP GET HTML; tables parsed by code",
+  "auth": "none",
+  "licence": "Government of India press release (PIB). UNVERIFIED reuse terms; cited with attribution.",
+  "coverage": "54 crop rows; tomato 3.25%, onion 1.96%, citrus 2.18% market-level (checked by assertion)",
+  "tried": [
+    "GET https://www.pib.gov.in/PressReleasePage.aspx?PRID=2151371"
+  ],
+  "why_failed": "",
+  "fallback": "",
+  "urls": [
+    "https://www.pib.gov.in/PressReleasePage.aspx?PRID=2151371"
+  ],
+  "rate_limits": "",
+  "freshness": "",
+  "known_problems": "Market level ≠ transit loss. 'Citrus' ≠ Nagpur orange. National, not Nagpur-specific. WRI India 2024, RBI WPS 08/2024, NCCD 2015 are cited in the brief but not fetched here.",
+  "flags": [
+    "PLAUSIBILITY_ONLY"
+  ]
+}

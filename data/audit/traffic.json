@@ -1,0 +1,21 @@
+{
+  "need": "Congestion / disruption",
+  "source_name": "No real-time or historical traffic source",
+  "status": "MISSING",
+  "access": "n/a",
+  "auth": "n/a",
+  "licence": "n/a",
+  "coverage": "none",
+  "tried": [
+    "No free, licensable traffic feed for the region identified"
+  ],
+  "why_failed": "",
+  "fallback": "Seeded stochastic delay multipliers by road class and time of day (ASSUMPTION); never shown as observed traffic.",
+  "urls": [],
+  "rate_limits": "",
+  "freshness": "",
+  "known_problems": "",
+  "flags": [
+    "MODELLED_NOT_OBSERVED"
+  ]
+}

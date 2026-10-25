@@ -1,0 +1,6 @@
+temp_c,assumed_q10,relative_velocity,relative_life,loss_per_day_pct,provenance,source_manifest_id,source_detail
+0.000000,,1.000000,100.000000,1.000000,REAL_FETCHED,fao_ags_bulletin_152:38438c607e64,FAO AGS Bulletin 152 §3.2 Table 1 (generic non-chilling-sensitive commodity)
+10.000000,3.000000,3.000000,33.000000,3.000000,REAL_FETCHED,fao_ags_bulletin_152:38438c607e64,FAO AGS Bulletin 152 §3.2 Table 1 (generic non-chilling-sensitive commodity)
+20.000000,2.500000,7.500000,13.000000,8.000000,REAL_FETCHED,fao_ags_bulletin_152:38438c607e64,FAO AGS Bulletin 152 §3.2 Table 1 (generic non-chilling-sensitive commodity)
+30.000000,2.000000,15.000000,7.000000,14.000000,REAL_FETCHED,fao_ags_bulletin_152:38438c607e64,FAO AGS Bulletin 152 §3.2 Table 1 (generic non-chilling-sensitive commodity)
+40.000000,1.500000,22.500000,4.000000,25.000000,REAL_FETCHED,fao_ags_bulletin_152:38438c607e64,FAO AGS Bulletin 152 §3.2 Table 1 (generic non-chilling-sensitive commodity)

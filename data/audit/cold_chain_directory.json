@@ -1,0 +1,25 @@
+{
+  "need": "Hub / cold-storage capacity",
+  "source_name": "Cold-chain directory (named in the deck, dataset unspecified)",
+  "status": "MISSING",
+  "access": "n/a",
+  "auth": "n/a",
+  "licence": "n/a",
+  "coverage": "none",
+  "tried": [
+    "Web search 2026-10-24: NHB 'CISS' sanctioned-projects PDF (scanned table, old sanctions)",
+    "Parliament answers: district counts 2018-21 (PDF), state totals only for 2025",
+    "data.gov.in: state-wise cold storage counts (not district-level; needs key for API)"
+  ],
+  "why_failed": "No machine-readable, current, facility-level list with capacities for the pilot districts.",
+  "fallback": "capacity_kg left empty on nodes (never invented). Demo cold stores are fictional and labelled DEMO.",
+  "urls": [
+    "https://www.nhb.gov.in/doc/CISS12.pdf"
+  ],
+  "rate_limits": "",
+  "freshness": "",
+  "known_problems": "",
+  "flags": [
+    "MISSING"
+  ]
+}

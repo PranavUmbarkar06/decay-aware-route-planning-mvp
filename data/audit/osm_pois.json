@@ -1,0 +1,24 @@
+{
+  "need": "Warehouse / cold-storage / NGO / processing locations",
+  "source_name": "OpenStreetMap via Overpass",
+  "status": "UNVERIFIED",
+  "access": "Overpass API",
+  "auth": "none",
+  "licence": "ODbL 1.0",
+  "coverage": "not yet fetched (Phase 2)",
+  "tried": [
+    "https://overpass-api.de/api/status → unreachable (https://overpass-api.de/api/status: ReadTimeout(ReadTimeoutE)",
+    "https://overpass.kumi.systems/api/status → unreachable (https://overpass.kumi.systems/api/status: ReadTimeout(ReadTi)",
+    "https://overpass.private.coffee/api/status → unreachable (https://overpass.private.coffee/api/status: ReadTimeout(Read)"
+  ],
+  "why_failed": "",
+  "fallback": "Fictional 'Demo … DEMO' nodes tagged SYNTHETIC_DEMO for the demo only.",
+  "urls": [],
+  "rate_limits": "",
+  "freshness": "",
+  "known_problems": "",
+  "flags": [
+    "ATTRIBUTION_REQUIRED",
+    "EXPECT_SPARSE_COVERAGE"
+  ]
+}

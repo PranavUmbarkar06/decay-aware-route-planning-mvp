@@ -1,0 +1,26 @@
+{
+  "need": "Road network (drivable graph)",
+  "source_name": "OpenStreetMap via OSMnx/Overpass",
+  "status": "UNVERIFIED",
+  "access": "Overpass API (OSMnx)",
+  "auth": "none",
+  "licence": "ODbL 1.0: attribution + share-alike for derived databases",
+  "coverage": "not yet fetched (Phase 2)",
+  "tried": [
+    "https://overpass-api.de/api/status → unreachable (https://overpass-api.de/api/status: ReadTimeout(ReadTimeoutE)",
+    "https://overpass.kumi.systems/api/status → unreachable (https://overpass.kumi.systems/api/status: ReadTimeout(ReadTi)",
+    "https://overpass.private.coffee/api/status → unreachable (https://overpass.private.coffee/api/status: ReadTimeout(Read)"
+  ],
+  "why_failed": "",
+  "fallback": "Labelled SYNTHETIC_DEMO grid graph if OSM cannot be fetched (§9 step 9).",
+  "urls": [
+    "https://wiki.openstreetmap.org/wiki/Overpass_API"
+  ],
+  "rate_limits": "Public Overpass instances are shared; main instance asks automated users to back off / self-host",
+  "freshness": "",
+  "known_problems": "",
+  "flags": [
+    "ATTRIBUTION_REQUIRED",
+    "SHARE_ALIKE_ODbL"
+  ]
+}

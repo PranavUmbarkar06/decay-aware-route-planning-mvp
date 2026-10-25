@@ -5,17 +5,18 @@
   "access": "Public web report gated by captcha; owner downloads CSVs by hand; pipeline ingests them",
   "auth": "captcha (human)",
   "licence": "UNVERIFIED: no explicit data licence found on agmarknet.gov.in; Government of India portal. robots.txt (fetched) allows '/', disallows auth/admin paths. Treat as attribution-required.",
-  "coverage": "4211 report rows → 3748 market-commodity-days. tomato/Nagpur: 6 market(s), 1292 market-days, 2025-11-07..2026-10-25 | tomato/Chandrapur: 2 market(s), 201 market-days, 2025-11-07..2026-10-24 | onion/Nagpur: 4 market(s), 890 market-days, 2025-11-07..2026-10-24 | onion/Chandrapur: 2 market(s), 221 market-days, 2025-11-07..2026-10-24. Portal limits: price+arrival ('Both') only from 2025-11-07; ≤1-year span per query.",
+  "coverage": "4452 report rows → 3989 market-commodity-days. tomato/Nagpur: 6 market(s), 1292 market-days, 2025-11-07..2026-10-25 | tomato/Chandrapur: 2 market(s), 201 market-days, 2025-11-07..2026-10-24 | orange/Nagpur: 4 market(s), 238 market-days, 2025-11-07..2026-10-24 | orange/Chandrapur: 1 market(s), 3 market-days, 2026-09-28..2026-10-09 | onion/Nagpur: 4 market(s), 890 market-days, 2025-11-07..2026-10-24 | onion/Chandrapur: 2 market(s), 221 market-days, 2025-11-07..2026-10-24. Portal limits: price+arrival ('Both') only from 2025-11-07; ≤1-year span per query.",
   "tried": [
     "Browser check of https://agmarknet.gov.in/daily-price-and-arrival-report: 'Enter captcha' field present (2026-10-24)",
     "No automated access to report endpoints (ADR-015)",
     "Daily Price Arrival Report-25-10-2026 to 25-10-2026 for Maharashtra.csv: 1 rows (['tomato'], 2026-10-25..2026-10-25)",
     "onion.csv: 1363 rows (['onion'], 2025-11-07..2026-10-24)",
+    "orange.csv: 241 rows (['orange'], 2025-11-07..2026-10-24)",
     "potato.csv: 1144 rows (['potato'], 2025-11-07..2026-10-24)",
     "tomato.csv: 1704 rows (['tomato'], 2025-11-07..2026-10-25)",
     "1 duplicate rows across export files removed"
   ],
-  "why_failed": "Captcha-protected; automating it would circumvent bot-detection. Remaining gaps: tomato/Wardha: 0 rows in export; tomato/Bhandara: 0 rows in export; tomato/Gondia: 0 rows in export; tomato/Gadchiroli: 0 rows in export; orange: no export supplied; onion/Wardha: 0 rows in export; onion/Bhandara: 0 rows in export; onion/Gondia: 0 rows in export; onion/Gadchiroli: 0 rows in export",
+  "why_failed": "Captcha-protected; automating it would circumvent bot-detection. Remaining gaps: tomato/Wardha: 0 rows in export; tomato/Bhandara: 0 rows in export; tomato/Gondia: 0 rows in export; tomato/Gadchiroli: 0 rows in export; orange/Wardha: 0 rows in export; orange/Bhandara: 0 rows in export; orange/Gondia: 0 rows in export; orange/Gadchiroli: 0 rows in export; onion/Wardha: 0 rows in export; onion/Bhandara: 0 rows in export; onion/Gondia: 0 rows in export; onion/Gadchiroli: 0 rows in export",
   "fallback": "Districts/commodities without rows: M4 shows 'no data' (never imputed). Orange: owner to export Fruits → Orange the same way. Data before 2025-11-07 would need the 'Arrival' or 'Price' report types.",
   "urls": [
     "https://agmarknet.gov.in/daily-price-and-arrival-report"

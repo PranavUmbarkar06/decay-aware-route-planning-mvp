@@ -1,32 +1,61 @@
-# Commodity profiles for the decay model (M3) and simulation.
+# Commodity profiles for the decay model (M3) and simulation (ADR-018).
 # Every numeric parameter carries `source` + `status` (SOURCED | ASSUMPTION | MISSING).
-# MISSING values use a placeholder that makes every downstream output carry a warning.
+# Values marked SOURCED were checked by pipelines/fetch_references.py (see data/processed/crop_shelf_life_refs.csv).
+
+temperature_model:
+  # Relative deterioration velocity vs temperature, log-linearly interpolated between table points.
+  mode: fao_table1            # fao_table1 | q10
+  table_csv: data/processed/fao152_table1.csv
+  status: SOURCED
+  source: "Kader & Rolle (2004) FAO AGS Bulletin 152 §3.2 Table 1 (generic non-chilling-sensitive commodity)"
+  clamp_c: [0, 40]            # outside the table range the end value is held (not extrapolated)
+  note: "Generic curve; crop-specific rates differ (FAO 152). Applying it to these crops is an ASSUMPTION."
+
 q10:
   range: [2.0, 3.0]
   default: 2.5
   status: SOURCED
-  source: "Kader & Rolle (2004) FAO AGS Bulletin 152 §3.2: deterioration rate increases 2–3× per 10 °C rise (as cited in the Round-1 brief, ref [6]). Verified in Phase 1, see DATA_SOURCES.md"
-  note: "Generic rule of thumb for non-chilling-sensitive produce; crop-specific rates differ."
+  source: "FAO AGS Bulletin 152 §3.2: deterioration rate 'increases two to three-fold with every 10 °C increase' (fetched 2026-10-24)"
+  note: "Used for the sensitivity bounds (Q10=2 optimistic, Q10=3 pessimistic) around the FAO Table 1 curve."
 
 commodities:
   tomato:
     label: "Tomato"
-    agmarknet_cmdt_id: 65        # REAL_FETCHED (Agmarknet 2.0 filters, 2026-10-24)
-    base_shelf_life_h: {value: null, ref_temp_c: null, status: MISSING, source: null}
+    agmarknet_cmdt_id: 65        # REAL_FETCHED (Agmarknet 2.0 filters)
+    base_shelf_life_h:
+      value: 192
+      ref_temp_c: 10
+      status: SOURCED
+      source: "Suslow & Cantwell (1997) UC Davis PREC Produce Facts: Tomato: 'typically 8–10 days' within the optimum range (firm-ripe 7–10 °C). Citation only."
+      note: "Lower bound of life at the upper end of the range. Ripeness at dispatch is not observed; firm-ripe assumed."
     handling_damage_per_100km: {value: 0.01, status: ASSUMPTION, rationale: "placeholder; no measured value"}
-    nabcons_market_level_loss_pct: {value: 3.25, status: SOURCED, source: "NABCONS 2022 via PIB 2151371 Annex-II Table 2 (as cited in the brief)"}
+    nabcons_market_level_loss_pct: {value: 3.25, status: SOURCED, source: "NABCONS 2022 via PIB 2151371 Annex-II Table 2 (parsed)"}
   orange:
     label: "Nagpur orange"
-    agmarknet_cmdt_id: 18        # Agmarknet commodity "Orange" (REAL_FETCHED); variety-level split not used
-    base_shelf_life_h: {value: null, ref_temp_c: null, status: MISSING, source: null}
+    agmarknet_cmdt_id: 18        # Agmarknet commodity "Orange"
+    base_shelf_life_h:
+      value: 2016
+      ref_temp_c: 1
+      status: SOURCED
+      source: "USDA ARS Agriculture Handbook 66 (rev. 2016), 'Orange': 'up to 12 weeks under optimum storage' (FL & TX 0–1 °C)"
+      note: "OPTIMISTIC: stated maximum, US-grown sweet orange; Nagpur mandarin not specifically covered."
     handling_damage_per_100km: {value: 0.005, status: ASSUMPTION, rationale: "placeholder; no measured value"}
-    nabcons_market_level_loss_pct: {value: null, status: MISSING, source: "Not in the brief's chart; looked up in Phase 1"}
+    nabcons_market_level_loss_pct:
+      value: 2.18
+      status: SOURCED
+      source: "NABCONS 2022 via PIB 2151371 Annex-II Table 2, row 'Citrus' (parsed)"
+      note: "Category 'Citrus', not Nagpur orange specifically."
   onion:
     label: "Onion"
     agmarknet_cmdt_id: 23
-    base_shelf_life_h: {value: null, ref_temp_c: null, status: MISSING, source: null}
+    base_shelf_life_h:
+      value: 4380
+      ref_temp_c: 0
+      status: SOURCED
+      source: "USDA ARS Agriculture Handbook 66 (rev. 2016), 'Onion' (Adamicki): pungent dry onions 6–9 months at 0 °C, 65–75% RH"
+      note: "Lower bound (6 months). Long-term storage itself is out of scope; used only as the decay reference."
     handling_damage_per_100km: {value: 0.002, status: ASSUMPTION, rationale: "placeholder; no measured value"}
-    nabcons_market_level_loss_pct: {value: 1.96, status: SOURCED, source: "NABCONS 2022 via PIB 2151371 Annex-II Table 2 (as cited in the brief)"}
+    nabcons_market_level_loss_pct: {value: 1.96, status: SOURCED, source: "NABCONS 2022 via PIB 2151371 Annex-II Table 2 (parsed)"}
 
 # Used ONLY where base_shelf_life_h is MISSING. Every output that depends on it shows a warning.
 missing_placeholder:

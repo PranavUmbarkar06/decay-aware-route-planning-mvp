@@ -1,0 +1,22 @@
+{
+  "need": "Mandi physical capacity (for '% full' crowd meter)",
+  "source_name": "None found",
+  "status": "MISSING",
+  "access": "n/a",
+  "auth": "n/a",
+  "licence": "n/a",
+  "coverage": "none",
+  "tried": [
+    "Agmarknet master and report fields: no capacity field",
+    "Agmarknet 'market profile' pages not examined"
+  ],
+  "why_failed": "No verifiable capacity figure.",
+  "fallback": "Crowd meter = today's arrivals ÷ trailing 14-day median arrivals for that market and commodity, labelled exactly so. '% of capacity' is never shown.",
+  "urls": [],
+  "rate_limits": "",
+  "freshness": "",
+  "known_problems": "",
+  "flags": [
+    "MISSING"
+  ]
+}

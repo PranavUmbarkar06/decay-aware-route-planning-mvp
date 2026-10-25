@@ -12,7 +12,7 @@ from __future__ import annotations
 
 import json
 import sys
-from datetime import date, timedelta
+from datetime import date
 
 import geopandas as gpd
 import pandas as pd
@@ -33,10 +33,11 @@ META = SourceMeta("open_meteo_archive", "CC BY 4.0 (data). Free API: non-commerc
                   "Owner confirmed non-commercial research use on 2026-10-25 (ADR-008). Attribution: 'Weather data by Open-Meteo.com'.")
 URL = "https://archive-api.open-meteo.com/v1/archive"
 VARS = ["temperature_2m", "relative_humidity_2m", "precipitation"]
-# Window aligned with the Agmarknet 2.0 arrivals ('Both' report starts 2025-11-07). End date is 7 days
-# before the run date because the archive lags real time by a few days.
+# Window aligned with the Agmarknet 2.0 arrivals ('Both' report starts 2025-11-07). The end date is
+# pinned (not "today") so reruns are reproducible; it was set 7 days before the first fetch because the
+# archive lags real time. Move it forward deliberately, then rerun with --refresh.
 START = date(2025, 11, 1)
-ARCHIVE_LAG_DAYS = 7
+END = date(2026, 10, 18)
 _geod = Geod(ellps="WGS84")
 
 
@@ -45,7 +46,7 @@ def run(refresh: bool = False, end: date | None = None) -> pd.DataFrame:
     if not bpath.exists():
         raise RuntimeError("district_boundaries.geojson missing: run pipelines.fetch_boundaries first")
     gdf = gpd.read_file(bpath)
-    end = end or (date.today() - timedelta(days=ARCHIVE_LAG_DAYS))
+    end = end or END
     frames, points, problems = [], [], []
     for _, row in gdf.sort_values("district").iterrows():
         rp = row.geometry.representative_point()
@@ -91,7 +92,7 @@ def run(refresh: bool = False, end: date | None = None) -> pd.DataFrame:
         tried=[f"GET {URL} per district point"], why_failed="; ".join(problems),
         fallback="If missing: simulation runs with a constant-temperature ASSUMPTION and every output carries a warning.",
         urls=[URL, META.terms_url], rate_limits="free tier: <10,000/day, 5,000/hour, 600/min",
-        freshness=f"archive end date {end} (run date minus {ARCHIVE_LAG_DAYS} days)",
+        freshness=f"archive window {START}..{end} (pinned in pipelines/fetch_weather.py)",
         known_problems="Reanalysis grid values (not station observations). One point per district stands in for the "
                        "whole district; road-level microclimate and in-truck temperature are not observed.",
         flags=["NON_COMMERCIAL_FREE_TIER", "ATTRIBUTION_REQUIRED", "OWNER_CONFIRMED_NON_COMMERCIAL_2026-10-25"]))

@@ -1,0 +1,21 @@
+{
+  "need": "Context evidence cited in the brief (WRI India 2024, RBI WPS 08/2024, NCCD 2015)",
+  "source_name": "As cited in inputs/Source_Register_round1_brief.md",
+  "status": "UNVERIFIED",
+  "access": "not fetched by this pipeline",
+  "auth": "n/a",
+  "licence": "various",
+  "coverage": "Used only as quoted (with the brief's caveats) on the Evidence & Limitations screen",
+  "tried": [
+    "Not re-fetched in Phase 1; the team's source register records the check level for each"
+  ],
+  "why_failed": "",
+  "fallback": "Shown with the brief's own check-level labels.",
+  "urls": [],
+  "rate_limits": "",
+  "freshness": "",
+  "known_problems": "",
+  "flags": [
+    "CITED_VIA_BRIEF"
+  ]
+}

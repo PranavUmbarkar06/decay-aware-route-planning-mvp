@@ -138,7 +138,17 @@ class MissingPlaceholder(_Strict):
     warning: str
 
 
+class TemperatureModelCfg(_Strict):
+    mode: Literal["fao_table1", "q10"]
+    table_csv: str
+    status: Literal["SOURCED", "ASSUMPTION", "MISSING"]
+    source: str
+    clamp_c: tuple[float, float]
+    note: str | None = None
+
+
 class CommoditiesConfig(_Strict):
+    temperature_model: TemperatureModelCfg
     q10: Q10Cfg
     commodities: dict[str, CommodityCfg]
     missing_placeholder: MissingPlaceholder

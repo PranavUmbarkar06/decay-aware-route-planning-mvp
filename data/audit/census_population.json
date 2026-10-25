@@ -1,0 +1,25 @@
+{
+  "need": "Demand proxy: district population",
+  "source_name": "Census of India 2011, Table A-02 (Maharashtra XLS)",
+  "status": "AVAILABLE",
+  "access": "HTTP GET (NADA catalog download)",
+  "auth": "none",
+  "licence": "UNVERIFIED: Census of India (ORGI) publication; reuse terms not stated on the catalog page.",
+  "coverage": "6/6 districts, census year 2011: Nagpur=4,653,570, Wardha=1,300,774, Bhandara=1,200,334, Gondia=1,322,507, Chandrapur=2,204,307, Gadchiroli=1,072,942",
+  "tried": [
+    "GET https://censusindia.gov.in/nada/index.php/catalog/43360/download/47055 (TLS verified via OS trust store)"
+  ],
+  "why_failed": "",
+  "fallback": "Demand falls back to the Agmarknet arrivals proxy (labelled) where population is missing.",
+  "urls": [
+    "https://censusindia.gov.in/nada/index.php/catalog/43360",
+    "https://censusindia.gov.in/nada/index.php/catalog/43360/download/47055"
+  ],
+  "rate_limits": "",
+  "freshness": "2011: 15 years old. No later census results were used.",
+  "known_problems": "Population ≠ demand for a market: wholesale markets serve areas beyond district lines. Per-capita F&V consumption norm has no verified citation (MISSING) → demand is an ASSUMPTION.",
+  "flags": [
+    "STALE_2011",
+    "LICENCE_UNVERIFIED"
+  ]
+}

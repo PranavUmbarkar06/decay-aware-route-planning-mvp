@@ -98,4 +98,29 @@ project brief (Section 4) and open to override by the project owner. Status valu
 - Python 3.11.9 from the Windows launcher; the MSYS `python` in Git Bash has no pip. All versions are
   pinned in `requirements.lock.txt`.
 
+## ADR-017 Road classes for the truck network: Accepted
+- **Context:** the full drivable OSM network of a ~51,000 km² division (area computed from the OSM
+  district polygons) is very large; inter-market trucks run on the main road classes.
+- **Decision:** keep motorway → tertiary (+ links) (`geography.yaml: road_classes`); business nodes join
+  via a snapped access leg whose length uses the A8 detour factor. **Consequence:** village-level last-mile
+  roads are not modelled.
+
+## ADR-018 Temperature–decay model: Accepted
+- **Options:** constant Q10 (2–3) from a reference shelf life; FAO 152 Table 1 curve; ML.
+- **Decision:** FAO Table 1 relative-velocity curve (log-linear interpolation, held constant outside
+  0–40 °C) applied to each crop's cited reference life (`commodities.yaml`). Constant Q10 = 2 and 3 runs
+  give optimistic/pessimistic bounds. The curve itself is sourced; applying it to these crops and
+  extrapolating cold-storage lives to ambient temperatures is an ASSUMPTION (A2, A3) shown on every output.
+- **Reference lives chosen:** tomato 8 d @ 10 °C (UC Davis, citation only); onion 6 mo @ 0 °C (HB66);
+  orange 12 wk @ 1 °C (HB66 maximum → optimistic).
+
+## ADR-019 Pilot commodities stay as the deck says: Accepted (owner, 2026-10-25)
+- Owner instruction: stick to the solution deck. Pilot commodities are **tomato, Nagpur orange, onion**.
+  Potato arrivals (owner export) are ingested and flagged `in_pilot_commodity = False`; nothing uses them.
+- Orange has no arrivals export yet (DATA_GAPS); M4 shows "no data" for orange until one is supplied.
+
+## ADR-020 Pinned data windows: Accepted
+- The weather archive window is pinned (2025-11-01 → 2026-10-18) in code instead of "today minus N", so
+  `python tasks.py data` is reproducible. Extending it is a deliberate edit plus `--refresh`.
+
 (Further ADRs are appended per phase.)
