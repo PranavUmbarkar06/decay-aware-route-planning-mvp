@@ -1,4 +1,8 @@
+# Generated text: LF everywhere so outputs are byte-reproducible
 * text=auto eol=lf
+# Raw downloads and owner inputs are stored byte-for-byte (checksums in MANIFEST.json must match)
+data/raw/** -text
+inputs/** -text
 *.pptx binary
 *.pdf binary
 *.xls binary
