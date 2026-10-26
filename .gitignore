@@ -38,4 +38,3 @@ Thumbs.db
 reports/sim/*/runs/
 frontend/*.tsbuildinfo
 # Source archive is built from git (git archive); not committed
-submission/*.zip
