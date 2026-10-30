@@ -21,6 +21,12 @@
         "demo"
       ],
       "port": 8000
+    },
+    {
+      "name": "prototype",
+      "runtimeExecutable": "npm",
+      "runtimeArgs": ["--prefix", "prototype", "run", "dev"],
+      "port": 5173
     }
   ]
 }
