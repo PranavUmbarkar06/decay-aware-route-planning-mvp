@@ -1,0 +1,37 @@
+{
+  "source": "india-latest_roads.osm.pbf",
+  "built_utc": "2026-10-30T18:22:38Z",
+  "attribution": "\u00a9 OpenStreetMap contributors (ODbL 1.0)",
+  "components_dropped": 1099,
+  "nodes": 497811,
+  "edges": 591175,
+  "km_total": 580969,
+  "by_highway_km": {
+    "motorway": 14741,
+    "motorway_link": 1536,
+    "primary": 167658,
+    "primary_link": 592,
+    "secondary": 211199,
+    "secondary_link": 613,
+    "trunk": 181253,
+    "trunk_link": 3378
+  },
+  "by_rank": {
+    "0": 203782,
+    "3": 170622,
+    "1": 156346,
+    "2": 60425
+  },
+  "rough_src": {
+    "class_default": 570091,
+    "osm_smoothness": 10882,
+    "osm_surface": 10202
+  },
+  "speed_src": {
+    "class_default": 510799,
+    "osm_maxspeed": 80376
+  },
+  "oneway_edges": 333384,
+  "hgv_restricted_edges": 202,
+  "seconds": 95
+}

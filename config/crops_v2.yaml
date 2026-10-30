@@ -1,0 +1,105 @@
+# Crop sensitivity profiles for the India-wide routing engine (plan v2, §6).
+# One routing/deterioration engine; crops differ ONLY through these parameters.
+# Vibration β calibrated (illustratively) so 300 km at roughness 7 damages ≈8% grapes / 6% tomato / 1% onion,
+# and 300 km of smooth highway (roughness 2) < 1%. No Indian measurement exists to replace this yet.
+# Every number carries a status: SOURCED (citation given) | ASSUMPTION (illustrative, needs calibration).
+
+common:
+  q10: {value: 2.0, range: [2.0, 3.0], status: SOURCED,
+        source: "FAO AGS Bulletin 152 §3.2: deterioration rate rises 2–3x per +10 °C",
+        choice: "lower end (2.0): FAO 152 Table 1 relative velocities flatten above 20 °C (10→40 °C ≈ 7.5x), which a constant-Ea fit matches best at Q10≈2"}
+  q_min: {value: 0.6, status: ASSUMPTION, note: "Quality at which half the units are unsellable (calibration anchor)"}
+  grade_ratio: {value: 0.7, status: ASSUMPTION, note: "Units past 70% of reference life are sold as downgraded"}
+  downgrade_price_factor: {value: 0.5, status: ASSUMPTION}
+  sigma_unit_spread: {value: 0.25, status: ASSUMPTION, source: "Assumption A17 (docs/ASSUMPTIONS.md), lognormal unit-to-unit spread"}
+  closed_body_rh_rise: {value: 15, status: ASSUMPTION, note: "RH inside an unventilated body exceeds ambient by up to this many points"}
+  solar_load_c: {value: 3, status: ASSUMPTION, note: "Daytime cargo heating in an open/tarpaulin body"}
+  idle_heat_per_traffic_c: {value: 0.4, status: ASSUMPTION, note: "Cargo heating per traffic-severity point (0–10) from crawling/idling"}
+  reefer_failure_tau_h: {value: 1.0, status: ASSUMPTION, note: "Cargo temperature relaxes to ambient with this time constant after reefer failure"}
+
+packaging_factor:   # multiplies mechanical damage (ASSUMPTION)
+  good: 0.6
+  standard: 1.0
+  poor: 1.7
+loading_factor:     # ASSUMPTION
+  proper: 1.0
+  loose: 1.25
+  overloaded: 1.5
+
+crops:
+  grapes:
+    label: "Grapes"
+    ref_life_h: {value: 1344, status: SOURCED,
+      source: "USDA ARS Agriculture Handbook 66 (rev. 2016), 'Grape (Table)' (Crisosto & Smilanick), PDF p.354–355: stored at -1 to 0 °C, 90–95% RH; marketed up to 8–10 weeks after harvest",
+      choice: "lower bound 8 weeks = 1344 h; OPTIMISTIC for Indian transit (assumes SO2 treatment and pre-cooling)"}
+    ref_temp_c: 0
+    rh_opt: {value: 92, status: SOURCED, source: "HB66 Table Grape: 90–95% RH"}
+    rot_alpha: {value: 1.8, status: ASSUMPTION, note: "Botrytis risk when RH exceeds optimum (free water)"}
+    dry_beta: {value: 2.5, status: ASSUMPTION, note: "Stem browning / berry shrivel when RH below optimum (HB66 stresses limiting stem water loss)"}
+    beta_vib: {value: 0.00057, status: ASSUMPTION, note: "Mechanical damage per unit vibration dose (berry shatter, cracking)"}
+    handling_loss: {value: 0.006, status: ASSUMPTION, note: "Fraction damaged per handling event"}
+    reefer_set_c: 0
+    default_price_rs_kg: {value: 60, status: ASSUMPTION, note: "Replaced by destination market modal price where available"}
+    initial_quality:   # Q0 by condition at dispatch (ASSUMPTION)
+      pre_cooled: 0.94
+      field_fresh: 0.88
+      delayed_1d: 0.78
+    default_condition: pre_cooled
+    default_packaging: good
+    packaging_note: "5 kg vented boxes with liners, pre-cooled"
+    default_vehicle: reefer
+    default_corridor: {origin: "Nashik", destination: "Mumbai", research: ["Nashik → Delhi"]}
+
+  tomato:
+    label: "Tomato"
+    ref_life_h: {value: 192, status: SOURCED,
+      source: "Suslow & Cantwell (1997) UC Davis PREC Produce Facts: Tomato, 'typically 8–10 days' firm-ripe at 7–10 °C (see data/processed/crop_shelf_life_refs.csv)"}
+    ref_temp_c: 10
+    rh_opt: {value: 92, status: SOURCED, source: "UC Davis Produce Facts: Tomato, 90–95% RH"}
+    rot_alpha: {value: 1.5, status: ASSUMPTION}
+    dry_beta: {value: 0.6, status: ASSUMPTION}
+    beta_vib: {value: 0.00042, status: ASSUMPTION, note: "Bruising and compression in crates"}
+    handling_loss: {value: 0.005, status: ASSUMPTION}
+    reefer_set_c: 12
+    default_price_rs_kg: {value: 20, status: ASSUMPTION}
+    initial_quality:   # harvest maturity (ASSUMPTION)
+      mature_green: 0.97
+      turning: 0.92
+      red_ripe: 0.85
+    condition_life_factor:   # ASSUMPTION: less-ripe fruit has more remaining life (slower k); red-ripe = reference
+      mature_green: 2.5
+      turning: 1.5
+      red_ripe: 1.0
+    default_condition: turning
+    long_haul_condition: mature_green
+    default_packaging: standard
+    packaging_note: "Plastic crates, 20–25 kg"
+    default_vehicle: open_truck
+    default_corridor: {origin: "Madanapalle", destination: "Hyderabad", research: ["Kolar → Delhi"]}
+
+  onion:
+    label: "Onion"
+    ref_life_h: {value: 4380, status: SOURCED,
+      source: "USDA ARS Agriculture Handbook 66 (rev. 2016), 'Onion' (Adamicki): pungent dry onions 6–9 months at 0 °C, 65–75% RH (lower bound)"}
+    ref_temp_c: 0
+    rh_opt: {value: 70, status: SOURCED, source: "HB66 Onion: 65–75% RH"}
+    rot_alpha: {value: 4.0, status: ASSUMPTION, note: "Sprouting/rot strongly accelerated by humidity and poor ventilation"}
+    dry_beta: {value: 0.2, status: ASSUMPTION}
+    beta_vib: {value: 0.00007, status: ASSUMPTION, note: "Cured onions tolerate ordinary short-duration vibration"}
+    handling_loss: {value: 0.002, status: ASSUMPTION}
+    reefer_set_c: 2
+    default_price_rs_kg: {value: 18, status: ASSUMPTION}
+    initial_quality:   # curing state (ASSUMPTION)
+      cured: 0.90
+      partly_cured: 0.78
+      uncured: 0.66
+    default_condition: cured
+    default_packaging: standard
+    packaging_note: "50 kg mesh bags, ventilated body"
+    default_vehicle: open_truck
+    default_corridor: {origin: "Nashik", destination: "Hyderabad", research: ["Nashik → Delhi"]}
+
+vehicles:   # ASSUMPTION unless noted
+  open_truck:   {label: "Open / tarpaulin truck", ventilation: 1.0, refrigerated: false, rs_per_km: 32, rs_per_h: 550}
+  closed_body:  {label: "Closed body (unventilated)", ventilation: 0.3, refrigerated: false, rs_per_km: 34, rs_per_h: 580}
+  reefer:       {label: "Refrigerated truck", ventilation: 0.8, refrigerated: true, rs_per_km: 45, rs_per_h: 800}

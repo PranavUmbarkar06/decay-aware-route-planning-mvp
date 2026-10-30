@@ -1,0 +1,9 @@
+{
+  "source": "geoboundaries_ind",
+  "fetched_utc": "2026-10-30",
+  "files": {
+    "geoBoundaries-IND-ADM1_simplified.geojson": {"url": "https://github.com/wmgeolab/geoBoundaries/raw/9469f09/releaseData/gbOpen/IND/ADM1/geoBoundaries-IND-ADM1_simplified.geojson", "licence": "CC BY 2.5 IN", "source": "DataMeet India community, Election Commission of India", "year": 2011},
+    "geoBoundaries-IND-ADM2_simplified.geojson": {"url": "https://github.com/wmgeolab/geoBoundaries/raw/9469f09/releaseData/gbOpen/IND/ADM2/geoBoundaries-IND-ADM2_simplified.geojson", "licence": "ODbL 1.0", "source": "Pathways Data Pvt. Ltd., lgdirectory.gov.in", "year": 2021}
+  },
+  "citation": "Runfola et al. (2020) geoBoundaries: A global database of political administrative boundaries. PLoS ONE 15(4): e0231866"
+}

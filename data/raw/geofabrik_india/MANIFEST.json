@@ -1,0 +1,15 @@
+{
+  "source": "geofabrik_india",
+  "files": {
+    "india-latest.osm.pbf": {
+      "url": "https://download.geofabrik.de/asia/india-latest.osm.pbf",
+      "last_modified": "Fri, 30 Oct 2026 07:44:39 GMT",
+      "bytes": 1712780751,
+      "md5": "bde2ca40c4012703c343ed48a5987ed3",
+      "md5_verified_against": "https://download.geofabrik.de/asia/india-latest.osm.pbf.md5",
+      "fetched_utc": "2026-10-30"
+    }
+  },
+  "licence": "ODbL 1.0 (OpenStreetMap). Attribution: (c) OpenStreetMap contributors",
+  "provenance": "REAL_FETCHED"
+}

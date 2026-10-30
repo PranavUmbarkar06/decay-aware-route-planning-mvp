@@ -23,6 +23,12 @@
       "port": 8000
     },
     {
+      "name": "platform-api",
+      "runtimeExecutable": ".venv/Scripts/python.exe",
+      "runtimeArgs": ["-m", "uvicorn", "platform_api.api.main:app", "--port", "8010"],
+      "port": 8010
+    },
+    {
       "name": "prototype",
       "runtimeExecutable": "npm",
       "runtimeArgs": ["--prefix", "prototype", "run", "dev"],

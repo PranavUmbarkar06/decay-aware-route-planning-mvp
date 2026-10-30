@@ -39,3 +39,9 @@ Thumbs.db
 reports/sim/*/runs/
 frontend/*.tsbuildinfo
 # Source archive is built from git (git archive); not committed
+
+# India platform (plan v2): large generated artefacts, rebuilt by pipelines/v2/*
+data/processed/india/edges.parquet
+data/processed/india/nodes.parquet
+data/processed/india/render/roads.pmtiles
+data/app/

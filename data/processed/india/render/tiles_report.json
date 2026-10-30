@@ -1,0 +1,55 @@
+{
+  "file": "data\\processed\\india\\render\\roads.pmtiles",
+  "bytes": 43124234,
+  "zooms": {
+    "4": {
+      "edges": 203782,
+      "tiles": 3,
+      "max_kb": 66.9,
+      "mean_kb": 45.2
+    },
+    "5": {
+      "edges": 203782,
+      "tiles": 8,
+      "max_kb": 51.9,
+      "mean_kb": 23.8
+    },
+    "6": {
+      "edges": 360128,
+      "tiles": 21,
+      "max_kb": 74.4,
+      "mean_kb": 26.2
+    },
+    "7": {
+      "edges": 360128,
+      "tiles": 64,
+      "max_kb": 53.2,
+      "mean_kb": 10.8
+    },
+    "8": {
+      "edges": 541445,
+      "tiles": 205,
+      "max_kb": 181.8,
+      "mean_kb": 31.1
+    },
+    "9": {
+      "edges": 541445,
+      "tiles": 701,
+      "max_kb": 150.9,
+      "mean_kb": 11.5
+    },
+    "10": {
+      "edges": 541445,
+      "tiles": 2540,
+      "max_kb": 112.5,
+      "mean_kb": 4.1
+    },
+    "11": {
+      "edges": 591175,
+      "tiles": 9237,
+      "max_kb": 85.5,
+      "mean_kb": 1.7
+    }
+  },
+  "seconds": 268
+}

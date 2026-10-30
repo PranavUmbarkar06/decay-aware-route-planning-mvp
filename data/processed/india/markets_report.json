@@ -1,0 +1,23 @@
+{
+  "places_source": "india-latest.osm.pbf",
+  "markets": 1507,
+  "by_method": {
+    "osm_place_exact": 1025,
+    "district_centroid": 237,
+    "osm_place_fuzzy": 189,
+    "osm_place_skeleton": 51,
+    "manual_override": 5
+  },
+  "district_unmatched": [
+    [
+      "Andhra Pradesh",
+      "YSR Kadapa"
+    ]
+  ],
+  "arrival_rows": 466332,
+  "daily_rows": 449869,
+  "period": [
+    "2025-11-07",
+    "2026-10-30"
+  ]
+}

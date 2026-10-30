@@ -1,0 +1,14 @@
+# Hand-placed locations for terminal markets used by the demo corridors, where the automatic geocoder can only
+# find the city or district centre. Approximate yard locations; status NEEDS_VERIFICATION until checked on site
+# or against an official APMC address. Matched on exact Agmarknet (state, market) names.
+overrides:
+  - {state: "Maharashtra", market: "APMC Mumbai", lon: 73.0040, lat: 19.0790,
+     note: "Mumbai APMC wholesale complex, Vashi/Turbhe (Navi Mumbai)", status: NEEDS_VERIFICATION}
+  - {state: "Maharashtra", market: "Mumbai- Fruit Market", lon: 73.0040, lat: 19.0790,
+     note: "Mumbai APMC fruit market, Vashi (Navi Mumbai)", status: NEEDS_VERIFICATION}
+  - {state: "Maharashtra", market: "Mumbai-Onion & Potato Market", lon: 73.0040, lat: 19.0790,
+     note: "Mumbai APMC onion-potato market, Vashi (Navi Mumbai)", status: NEEDS_VERIFICATION}
+  - {state: "NCT of Delhi", market: "APMC Azadpur", lon: 77.1740, lat: 28.7095,
+     note: "Azadpur Mandi, North West Delhi", status: NEEDS_VERIFICATION}
+  - {state: "Telangana", market: "Bowenpally APMC", lon: 78.4775, lat: 17.4686,
+     note: "Bowenpally vegetable market, Secunderabad", status: NEEDS_VERIFICATION}
